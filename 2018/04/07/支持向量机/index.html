@@ -8,21 +8,21 @@
   <link rel="dns-prefetch" href="baishuidongcheng.com">
   <title>支持向量机 | 白水东城</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、一些概念支持向量机在高维或无限维空间中构造超平面或超平面集合，其可以用于分类、回归或其他任务。直观来说，分类边界距离最近的训练资料点越远越好，因为这样可以缩小分类器的泛化误差。说白了，就是要基于训练集在样本空间中找一个划分超平面，将不同类别的样本分开。也可以理解为对原空间进行升维，把在本来维度上不可用一个平面分割的类别在更高的维度可分。为了更直观的理解一下，请看下图！ 什么是支持向量？支持向量">
+  <meta name="description" content="一、一些概念支持向量机在高维或无限维空间中构造超平面或超平面集合，其可以用于分类、回归或其他任务。直观来说，分类边界距离最近的训练资料点越远越好，因为这样可以缩小分类器的泛化误差。说白了，就是要基于训练集在样本空间中找一个划分超平面，将不同类别的样本分开。也可以理解为对原空间进行升维，把在本来维度上不可用一个平面分割的类别在更高的维度可分。为了更直观的理解一下，请看下图！">
 <meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="支持向量机">
 <meta property="og:url" content="baishuidongcheng.com/2018/04/07/支持向量机/index.html">
 <meta property="og:site_name" content="白水东城">
-<meta property="og:description" content="一、一些概念支持向量机在高维或无限维空间中构造超平面或超平面集合，其可以用于分类、回归或其他任务。直观来说，分类边界距离最近的训练资料点越远越好，因为这样可以缩小分类器的泛化误差。说白了，就是要基于训练集在样本空间中找一个划分超平面，将不同类别的样本分开。也可以理解为对原空间进行升维，把在本来维度上不可用一个平面分割的类别在更高的维度可分。为了更直观的理解一下，请看下图！ 什么是支持向量？支持向量">
+<meta property="og:description" content="一、一些概念支持向量机在高维或无限维空间中构造超平面或超平面集合，其可以用于分类、回归或其他任务。直观来说，分类边界距离最近的训练资料点越远越好，因为这样可以缩小分类器的泛化误差。说白了，就是要基于训练集在样本空间中找一个划分超平面，将不同类别的样本分开。也可以理解为对原空间进行升维，把在本来维度上不可用一个平面分割的类别在更高的维度可分。为了更直观的理解一下，请看下图！">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/7f4879cf371f1a4e21b4e28c4758edb254ddb876%20%281%29.png">
 <meta property="og:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/c3f1562b35c929712822af47f07dfdb67cacb166.png">
 <meta property="og:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/9f22554d19e4cf3d4e94d4a0d3c0a0b527f64638.png">
-<meta property="og:updated_time" content="2018-04-07T10:20:18.009Z">
+<meta property="og:updated_time" content="2018-04-07T16:56:58.566Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="支持向量机">
-<meta name="twitter:description" content="一、一些概念支持向量机在高维或无限维空间中构造超平面或超平面集合，其可以用于分类、回归或其他任务。直观来说，分类边界距离最近的训练资料点越远越好，因为这样可以缩小分类器的泛化误差。说白了，就是要基于训练集在样本空间中找一个划分超平面，将不同类别的样本分开。也可以理解为对原空间进行升维，把在本来维度上不可用一个平面分割的类别在更高的维度可分。为了更直观的理解一下，请看下图！ 什么是支持向量？支持向量">
+<meta name="twitter:description" content="一、一些概念支持向量机在高维或无限维空间中构造超平面或超平面集合，其可以用于分类、回归或其他任务。直观来说，分类边界距离最近的训练资料点越远越好，因为这样可以缩小分类器的泛化误差。说白了，就是要基于训练集在样本空间中找一个划分超平面，将不同类别的样本分开。也可以理解为对原空间进行升维，把在本来维度上不可用一个平面分割的类别在更高的维度可分。为了更直观的理解一下，请看下图！">
 <meta name="twitter:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/7f4879cf371f1a4e21b4e28c4758edb254ddb876%20%281%29.png">
   
     <link rel="alternative" href="/atom.xml" title="白水东城" type="application/atom+xml">
@@ -167,7 +167,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="一、一些概念"><a href="#一、一些概念" class="headerlink" title="一、一些概念"></a>一、一些概念</h1><p>支持向量机在高维或无限维空间中构造超平面或超平面集合，其可以用于分类、回归或其他任务。直观来说，分类边界距离最近的训练资料点越远越好，因为这样可以缩小分类器的泛化误差。说白了，就是要基于训练集在样本空间中找一个划分超平面，将不同类别的样本分开。也可以理解为<strong>对原空间进行升维，把在本来维度上不可用一个平面分割的类别在更高的维度可分</strong>。为了更直观的理解一下，请看下图！<br><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/7f4879cf371f1a4e21b4e28c4758edb254ddb876%20%281%29.png" alt="6298996_4fc35cedc0742800_1_"></p>
+        <h1 id="一、一些概念"><a href="#一、一些概念" class="headerlink" title="一、一些概念"></a>一、一些概念</h1><p>支持向量机在高维或无限维空间中构造超平面或超平面集合，其可以用于分类、回归或其他任务。直观来说，分类边界距离最近的训练资料点越远越好，因为这样可以缩小分类器的泛化误差。说白了，就是要基于训练集在样本空间中找一个划分超平面，将不同类别的样本分开。也可以理解为<strong>对原空间进行升维，把在本来维度上不可用一个平面分割的类别在更高的维度可分</strong>。为了更直观的理解一下，请看下图！</p>
+<a id="more"></a>
+<p><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/7f4879cf371f1a4e21b4e28c4758edb254ddb876%20%281%29.png" alt="6298996_4fc35cedc0742800_1_"></p>
 <h2 id="什么是支持向量？"><a href="#什么是支持向量？" class="headerlink" title="什么是支持向量？"></a>什么是支持向量？</h2><p>支持向量 (Support Vector)是指在训练集 (Training data set)中，在分类时给予最多信息的点集合，如下图，被红色框围起来的这四个训练资料点就被称之为支持向量机。 支持向量就是与分类边界距离最近的训练资料点。从支持向量机的最佳化问题可以推导出一个重要性质：支持向量机的分类边界可由支持向量决定，而与其他资料点无关。这也是它们称为“支持向量”的原因。<br><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/c3f1562b35c929712822af47f07dfdb67cacb166.png" alt="20160317144454115_1_"></p>
 <h2 id="什么是超平面（hyperplane）？"><a href="#什么是超平面（hyperplane）？" class="headerlink" title="什么是超平面（hyperplane）？"></a>什么是超平面（hyperplane）？</h2><p>对于二维数据集，将数据集分隔开的直线称为分隔超平面，如果分隔的是三维的，分类的就是面，如果是更高维的就是超平面。支持向量机建构一个或多个高维（甚至是无限多维）的超平面来分类资料点，<strong>将分类的决策边界统称为超平面</strong>。分布在超平面一侧的所有数据都属于某个类别，而分布在另一侧的所有数据都属于另一个类别。好的分类边界（也就是求的超平面）要距离最近的训练点越远越好，因为这样可以减低分类器的泛化误差。在支持向量机中，<strong>分类边界与最近的训练资料点之间的距离称为间隔（margin）</strong>，支持向量机的目标即为找出间隔最大的超平面来作为分类边界。线性可分SVM就是在训练集中学习得到一个线性分类器，也就是得到一个<strong>超平面</strong>：$f(x)=sign(\boldsymbol{\omega}^{T}\boldsymbol{x}+b)$,线性可分表明当$\boldsymbol{\omega}^{T}\boldsymbol{x}+b&gt;0$时，对应的$f(x)=1$,相应的当$\boldsymbol{\omega}^{T}\boldsymbol{x}+b&lt;0$时，对应的$f(x) = -1$,而$\boldsymbol{\omega}^{T}\boldsymbol{x}+b=0$就是所要寻找的超平面，此时对应的超平面为<strong>硬间隔超平面</strong>。（关于硬间隔和软间隔后文细说）<br>什么是间隔（margin）？<br>对于于训练样本集$D = \{ (\boldsymbol{x_{1}},y_{1}),(\boldsymbol{x_{2}},y_{2}),…,(\boldsymbol{x_{m}},y_{m})\},y_{i}\epsilon\{-1 , +1\}$.在样本空间$D$中，划分超平面可通过如下线性方程来描述：<script type="math/tex">\boldsymbol{\omega}^{T}\boldsymbol{x}+b=0,</script>其中$\boldsymbol{\omega}=(\omega_{1};\omega_{2};…;\omega_{d})$为法向量，决定了超平面的方向；$b$为位移项，决定了超平面与原点的距离。显然，划分超平面可以由$\boldsymbol{\omega}$和$b$唯一确定。设空间中任意一个样本点到达超平面的距离 $λ$ , 假定对于一个点$x$ 它投影到超平面上对应的点为$x_{0}$，我们可以得出<script type="math/tex">x = x_{0} + \lambda\frac{\boldsymbol{\omega}}{||\boldsymbol{\omega}||},</script>其中$||\boldsymbol{\omega}||$为$\boldsymbol{\omega}$的二范数，可以理解为长度，$\frac{\boldsymbol{\omega}}{||\boldsymbol{\omega}||}$可以理解为单位法向量，又因为$x_{0}$是超平面上的点，所以有$\boldsymbol{\omega}^{T}\boldsymbol{\omega}_{0}+b = 0$,结合上式可以求得点$x$与超平面之间的距离关系<script type="math/tex">\lambda = \frac{|\boldsymbol{\omega}^{T}\boldsymbol{x}+b|}{||\boldsymbol{\omega}||}</script><br>注：$||\omega||_{2}(or ||\omega||)=(\sum_{i=1}^{n}|x_{i}|^{2})^{\frac{1}{2}}$<br>好了，假设我们得到了超平面$(\boldsymbol{\omega},b)$,那么就可以进行以下的<strong>神操作来求间隔</strong>了！<br><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/9f22554d19e4cf3d4e94d4a0d3c0a0b527f64638.png" alt="440px_Svm_max_sep_hyperplane_with_margin_1_"><br>首先，在左图中找到两个和这个超平面平行且距离相等的超平面：$\boldsymbol{\omega}^{T}\boldsymbol{x}+b=-1$和$\boldsymbol{\omega}^{T}\boldsymbol{x}+b=1$，保证在这两个超平面之间没有任何样本点，这两个超平面势必包含的是距离分隔超平面最近的点（也就是支持向量），那么问题就可转化为最大化这两个超平面之间的距离。它们之间的距离可表示为：$\gamma = \frac{2}{||\mathbf{w}||}$。<strong>这就是所谓的“间隔”了</strong>！那么问题就是最大化$\left | \boldsymbol{\omega}\right |^{-1}$，可以转化为最小化$\left | \boldsymbol{\omega}\right |^{2}$。最后结合两个超平面之间没有任何样本点这个约束，则有：对于任何一个正样本$y_{i}=+1$，它都要处在$\boldsymbol{\omega}^{T}\boldsymbol{x}+b=1$这个超平面的右边，即要保证：$y=\boldsymbol{\omega}^{T}\boldsymbol{x}+b\geqslant +1$，同理对于任何一个负样本$y_{i}=-1$，它都要处于$\boldsymbol{\omega}^{T}\boldsymbol{x}+b=1$的左边，也就是要保证：$y=\boldsymbol{\omega}^{T}\boldsymbol{x}+b\leqslant -1$，于是可以合并为：$y_{i}(\boldsymbol{\omega}^{T}\boldsymbol{x}+b)\geqslant 1$。<br>于是寻找最优超平面的问题就可以转化为二次规划问题：<script type="math/tex">\left\{\begin{matrix} \underset{\boldsymbol{\omega},b}{min}\frac{1}{2}||\boldsymbol{\omega}||^{2}\\ s.t. y_{i} (\boldsymbol{\omega}^{T}\boldsymbol{x}+b ) \geqslant 1 ,i = 1,2,...,m\end{matrix}\right.\;(3)</script><br>这就是支持向量机（SVM）的基本型。</p>
 <h1 id="二、支持向量的拉格朗日对偶求法"><a href="#二、支持向量的拉格朗日对偶求法" class="headerlink" title="二、支持向量的拉格朗日对偶求法"></a>二、支持向量的拉格朗日对偶求法</h1><p>上文说到寻找最优超平面的问题就可以转化为二次规划问题，准确的来讲，因为目标函数是一个二次的，约束条件是线性的，所以它是一个凸的二次规划（convex quadratic programming）问题。能直接用二次规划函数包解决，但是对于这个问题的求解我们有更高效的解法——拉格朗日对偶（Langrange Dual），原因如下：</p>
@@ -299,6 +301,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2018/04/08/支持向量机-2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          支持向量机-2
+        
+      </div>
+    </a>
+  
   
     <a href="/2018/03/31/写在博客开始的话/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">写在博客开始的话</div>
@@ -361,7 +372,7 @@
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
-		open_in_new: false,
+		open_in_new: true,
 		toc_hide_index: true,
 		root: "/",
 		innerArchive: true,

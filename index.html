@@ -143,6 +143,82 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-支持向量机-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/08/支持向量机-2/">支持向量机-2</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/08/支持向量机-2/" class="archive-article-date">
+  	<time datetime="2018-04-07T16:44:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>上篇博客 <a href="https://baishuidongcheng.com/2018/04/07/支持向量机/">机器学习入门|支持向量机（一）</a> 提到了<strong>SMO算法</strong>，这是用来<strong>求解优化函数变为关于拉格朗日乘子的二次规划问题的</strong>，是由Microsoft Research的John C.Platt在1998年发表的论文《Sequential Minimal Optimaization A Fast Algorithm for Training Support Vector Machines》中提出的，是最快的二次规划优化算法，特别是在针对线性SVM和数据稀疏等问题时更表现出强大的性能。<br>单看周志华《机器学习》的那一节，远不足以透彻了解算法的详细过程，也搜到了介绍SMO的博客，<strong>数学功底实在太渣＞﹏＜</strong>总的了解完机器学习几大算法之后，回头再看支持向量机的时候，把那Platt的那篇论文看一下。现在，暂且跳过SMO，其基本思路是先固定$\alpha_{i}$之外的所有参数，然后求$\alpha_{i}$上的极值。<br>
+        
+          <a class="article-more-a" href="/2018/04/08/支持向量机-2/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/08/支持向量机-2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-支持向量机" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -163,25 +239,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="一、一些概念"><a href="#一、一些概念" class="headerlink" title="一、一些概念"></a>一、一些概念</h1><p>支持向量机在高维或无限维空间中构造超平面或超平面集合，其可以用于分类、回归或其他任务。直观来说，分类边界距离最近的训练资料点越远越好，因为这样可以缩小分类器的泛化误差。说白了，就是要基于训练集在样本空间中找一个划分超平面，将不同类别的样本分开。也可以理解为<strong>对原空间进行升维，把在本来维度上不可用一个平面分割的类别在更高的维度可分</strong>。为了更直观的理解一下，请看下图！<br><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/7f4879cf371f1a4e21b4e28c4758edb254ddb876%20%281%29.png" alt="6298996_4fc35cedc0742800_1_"></p>
-<h2 id="什么是支持向量？"><a href="#什么是支持向量？" class="headerlink" title="什么是支持向量？"></a>什么是支持向量？</h2><p>支持向量 (Support Vector)是指在训练集 (Training data set)中，在分类时给予最多信息的点集合，如下图，被红色框围起来的这四个训练资料点就被称之为支持向量机。 支持向量就是与分类边界距离最近的训练资料点。从支持向量机的最佳化问题可以推导出一个重要性质：支持向量机的分类边界可由支持向量决定，而与其他资料点无关。这也是它们称为“支持向量”的原因。<br><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/c3f1562b35c929712822af47f07dfdb67cacb166.png" alt="20160317144454115_1_"></p>
-<h2 id="什么是超平面（hyperplane）？"><a href="#什么是超平面（hyperplane）？" class="headerlink" title="什么是超平面（hyperplane）？"></a>什么是超平面（hyperplane）？</h2><p>对于二维数据集，将数据集分隔开的直线称为分隔超平面，如果分隔的是三维的，分类的就是面，如果是更高维的就是超平面。支持向量机建构一个或多个高维（甚至是无限多维）的超平面来分类资料点，<strong>将分类的决策边界统称为超平面</strong>。分布在超平面一侧的所有数据都属于某个类别，而分布在另一侧的所有数据都属于另一个类别。好的分类边界（也就是求的超平面）要距离最近的训练点越远越好，因为这样可以减低分类器的泛化误差。在支持向量机中，<strong>分类边界与最近的训练资料点之间的距离称为间隔（margin）</strong>，支持向量机的目标即为找出间隔最大的超平面来作为分类边界。线性可分SVM就是在训练集中学习得到一个线性分类器，也就是得到一个<strong>超平面</strong>：$f(x)=sign(\boldsymbol{\omega}^{T}\boldsymbol{x}+b)$,线性可分表明当$\boldsymbol{\omega}^{T}\boldsymbol{x}+b&gt;0$时，对应的$f(x)=1$,相应的当$\boldsymbol{\omega}^{T}\boldsymbol{x}+b&lt;0$时，对应的$f(x) = -1$,而$\boldsymbol{\omega}^{T}\boldsymbol{x}+b=0$就是所要寻找的超平面，此时对应的超平面为<strong>硬间隔超平面</strong>。（关于硬间隔和软间隔后文细说）<br>什么是间隔（margin）？<br>对于于训练样本集$D = \{ (\boldsymbol{x_{1}},y_{1}),(\boldsymbol{x_{2}},y_{2}),…,(\boldsymbol{x_{m}},y_{m})\},y_{i}\epsilon\{-1 , +1\}$.在样本空间$D$中，划分超平面可通过如下线性方程来描述：<script type="math/tex">\boldsymbol{\omega}^{T}\boldsymbol{x}+b=0,</script>其中$\boldsymbol{\omega}=(\omega_{1};\omega_{2};…;\omega_{d})$为法向量，决定了超平面的方向；$b$为位移项，决定了超平面与原点的距离。显然，划分超平面可以由$\boldsymbol{\omega}$和$b$唯一确定。设空间中任意一个样本点到达超平面的距离 $λ$ , 假定对于一个点$x$ 它投影到超平面上对应的点为$x_{0}$，我们可以得出<script type="math/tex">x = x_{0} + \lambda\frac{\boldsymbol{\omega}}{||\boldsymbol{\omega}||},</script>其中$||\boldsymbol{\omega}||$为$\boldsymbol{\omega}$的二范数，可以理解为长度，$\frac{\boldsymbol{\omega}}{||\boldsymbol{\omega}||}$可以理解为单位法向量，又因为$x_{0}$是超平面上的点，所以有$\boldsymbol{\omega}^{T}\boldsymbol{\omega}_{0}+b = 0$,结合上式可以求得点$x$与超平面之间的距离关系<script type="math/tex">\lambda = \frac{|\boldsymbol{\omega}^{T}\boldsymbol{x}+b|}{||\boldsymbol{\omega}||}</script><br>注：$||\omega||_{2}(or ||\omega||)=(\sum_{i=1}^{n}|x_{i}|^{2})^{\frac{1}{2}}$<br>好了，假设我们得到了超平面$(\boldsymbol{\omega},b)$,那么就可以进行以下的<strong>神操作来求间隔</strong>了！<br><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/9f22554d19e4cf3d4e94d4a0d3c0a0b527f64638.png" alt="440px_Svm_max_sep_hyperplane_with_margin_1_"><br>首先，在左图中找到两个和这个超平面平行且距离相等的超平面：$\boldsymbol{\omega}^{T}\boldsymbol{x}+b=-1$和$\boldsymbol{\omega}^{T}\boldsymbol{x}+b=1$，保证在这两个超平面之间没有任何样本点，这两个超平面势必包含的是距离分隔超平面最近的点（也就是支持向量），那么问题就可转化为最大化这两个超平面之间的距离。它们之间的距离可表示为：$\gamma = \frac{2}{||\mathbf{w}||}$。<strong>这就是所谓的“间隔”了</strong>！那么问题就是最大化$\left | \boldsymbol{\omega}\right |^{-1}$，可以转化为最小化$\left | \boldsymbol{\omega}\right |^{2}$。最后结合两个超平面之间没有任何样本点这个约束，则有：对于任何一个正样本$y_{i}=+1$，它都要处在$\boldsymbol{\omega}^{T}\boldsymbol{x}+b=1$这个超平面的右边，即要保证：$y=\boldsymbol{\omega}^{T}\boldsymbol{x}+b\geqslant +1$，同理对于任何一个负样本$y_{i}=-1$，它都要处于$\boldsymbol{\omega}^{T}\boldsymbol{x}+b=1$的左边，也就是要保证：$y=\boldsymbol{\omega}^{T}\boldsymbol{x}+b\leqslant -1$，于是可以合并为：$y_{i}(\boldsymbol{\omega}^{T}\boldsymbol{x}+b)\geqslant 1$。<br>于是寻找最优超平面的问题就可以转化为二次规划问题：<script type="math/tex">\left\{\begin{matrix} \underset{\boldsymbol{\omega},b}{min}\frac{1}{2}||\boldsymbol{\omega}||^{2}\\ s.t. y_{i} (\boldsymbol{\omega}^{T}\boldsymbol{x}+b ) \geqslant 1 ,i = 1,2,...,m\end{matrix}\right.\;(3)</script><br>这就是支持向量机（SVM）的基本型。</p>
-<h1 id="二、支持向量的拉格朗日对偶求法"><a href="#二、支持向量的拉格朗日对偶求法" class="headerlink" title="二、支持向量的拉格朗日对偶求法"></a>二、支持向量的拉格朗日对偶求法</h1><p>上文说到寻找最优超平面的问题就可以转化为二次规划问题，准确的来讲，因为目标函数是一个二次的，约束条件是线性的，所以它是一个凸的二次规划（convex quadratic programming）问题。能直接用二次规划函数包解决，但是对于这个问题的求解我们有更高效的解法——拉格朗日对偶（Langrange Dual），原因如下：</p>
-<ul>
-<li>原问题下，求解算法的复杂度与样本维度（等于权值$\boldsymbol{\omega}$的维度）有关，而在对偶问题下，求解算法的复杂度与样本数量（等于拉格朗日算子a的数量）有关</li>
-<li>如果做线性分类，且样本维度低于样本数量的话，在原问题下求解就好了；但如果做非线性分类，那就会涉及到升维（比如使用高斯核做核函数，其实是将样本升到无穷维），升维后的样本维度往往会远大于样本数量，此时显然在对偶问题下求解会更好。</li>
-<li>支持向量机中用到了高维映射，但是映射函数的具体形式几乎完全不可确定，而求解对偶问题之后，可以使用核函数来解决这个问题。</li>
-</ul>
-<p>好吧，说了这么多优点，还是来见识一下“拉格朗日对偶”吧！</p>
-<h2 id="拉格朗日对偶"><a href="#拉格朗日对偶" class="headerlink" title="拉格朗日对偶"></a>拉格朗日对偶</h2><p>拉格朗日乘子法很多人在大一的高数课就应该学过，当时是用来求极值的（其实这里也是求极值(/▽＼)），是一种寻找多元函数在一组等式约束下极值的方法，通过引入拉格朗日乘子，可以将有$d$个变量与$k$个约束条件的最优化问题转化为具有转化为具有$d+k$个变量的无约束优化问题求解。所谓对偶问题，简单来说就是要求这个问题的解可以通过求另外一个问题来得出。<br>首先将原模型的每条约束添加拉格朗日乘子$\alpha_{i}$，则该问题的拉格朗日函数可以写为<script type="math/tex">L (\boldsymbol{\omega},b,\boldsymbol{\alpha}) = \frac{1}{2}\left \| \boldsymbol{\omega} \right \|^{2} + \sum_{i = 1}^{m}\alpha_{i}(1-y_{i}(\boldsymbol{\omega}^{T}\boldsymbol{x}_{i}+b)),\;(2)</script>其中，$\boldsymbol{\alpha}=(\alpha_{1};\alpha_{2};…;\alpha_{m}).$令$L (\boldsymbol{\omega},b,\boldsymbol{\alpha}) $对$\boldsymbol{\omega}$和$b$求偏导为零可得<script type="math/tex">\frac{\partial L}{\partial \boldsymbol{\omega}} = 0 \rightarrow w = \sum_{i = 1}^{m}\alpha_{i}y_{i}\boldsymbol{x}_{i}</script></p>
-<script type="math/tex; mode=display">\frac{\partial L}{\partial b} = 0 \rightarrow \sum_{i = 1}^{m}\alpha_{i}y_{i} = 0</script><p>证明过程如下<script type="math/tex">\frac{\partial L (\boldsymbol{\omega},b,\boldsymbol{\alpha})}{\partial \boldsymbol{\omega}}</script></p>
-<script type="math/tex; mode=display">= \frac{\partial \frac{1}{2}\boldsymbol{\omega}^{T}\boldsymbol{\omega}}{\partial \boldsymbol{\omega}}-\sum_{i = 1}^{m}\frac{\partial \alpha_{i}y_{i}\boldsymbol{\omega}^{T}\boldsymbol{x}_{i}}{\partial \boldsymbol{\omega}}</script><script type="math/tex; mode=display">=\boldsymbol{\omega}-\sum_{i = 1}^{m}\alpha_{i}y_{i}\boldsymbol{x}_{i}=0</script><p>注：求解过程要用到矩阵求导，之前写过写过一篇矩阵求导总结，强力推荐看！不是自吹自擂，反正，现在遇到的所有矩阵（向量）求导问题都能解决了！<br>将求导结果带入对偶式$L$，可以得到<script type="math/tex">L (\boldsymbol{\omega},b,\boldsymbol{\alpha}) = \sum_{i = 1}^{n}\alpha_{i}- \frac{1}{2} \sum_{i= 1}^{m}\sum_{j=1}^{m}\alpha_{i}\alpha_{j}y_{i}y_{j}\boldsymbol{x}_{i}^{T}\boldsymbol{x}_{j}</script><br>于是，我们就得到了原式的<strong>对偶问题</strong></p>
-<script type="math/tex; mode=display">\underset{\alpha}{max}\sum_{i = 1}^{n}\alpha_{i}- \frac{1}{2} \sum_{i= 1}^{m}\sum_{j=1}^{m}\alpha_{i}\alpha_{j}y_{i}y_{j}\boldsymbol{x}_{i}^{T}\boldsymbol{x}_{j}\;(1)</script><script type="math/tex; mode=display">s.t.\;\sum_{i=1}^{m}\alpha_{i}y_{i}=0,\;\alpha_{i}\geqslant0,i=1,2...,m.</script><p>解出$\boldsymbol{\alpha}$后，求出$\boldsymbol{\omega}$与$b$即可得到模型</p>
-<script type="math/tex; mode=display">f(\boldsymbol{x})=\boldsymbol{\omega}^{T}\boldsymbol{x}+b</script><script type="math/tex; mode=display">=\sum_{i=1}^{m}\alpha_{i}y_{i}\boldsymbol{x}_{i}^{T}\boldsymbol{x}+b.\;(4)</script><p>从对偶问题（1）解出的$\alpha_{i}$是式（2)中的拉格朗日乘子，它恰对应着训练样本$(\boldsymbol(x)_{i},y_{i}$。因为式（3）中有约束不等式，所以上述过程需满足KKT条件，即要求<script type="math/tex">\left\{\begin{matrix}\alpha_{i} \geqslant 0\\y_{i}f(\boldsymbol{x}_{i})-1 \geqslant 0 \\ \alpha_{i}(y_{i}f(\boldsymbol{x}_{i})-1) = 0\end{matrix}\right.</script><br>于是，对于任意训练样本$\boldsymbol{x}_{i},y_{i}$,总有$\alpha_{i}=0$或$y_{i}f(\boldsymbol{x}_{i})=1$。若$\alpha_{i}=0$，则该样本将不会在式（4）的求和中出现，也就不会对$f(x)$有任何影响；若$\alpha_{i}&gt;0$，则必有$y_{i}f(\boldsymbol{x}_{i})=1$，所对应的样本点位于最大间隔边界上，是一个<strong>支持向量</strong>（可以看看前文的图）。这显示出支持向量机的一个充要性质：<strong>训练完成后，大部分的训练样本都不需要保留，最终模型仅与支持向量有关。</strong></p>
-<p>前文在提到过拉格朗提对偶的优势，在看完原始模型到对偶问题以及对偶模型化简的推导，再次说明一下：原问题下，求解算法的复杂度与样本维度（等于权值$\boldsymbol{\omega}$的维度）有关，而在对偶问题下，求解算法的复杂度与样本数量（等于拉格朗日算子a的数量）有关。从推到的最后结果来看，我们是消除了$\boldsymbol{\omega}$，并将优化函数变为了关于拉格朗日乘子的二次规划问题。</p>
-<h2 id="好了，总该说说怎么求这个二次规划问题吧？"><a href="#好了，总该说说怎么求这个二次规划问题吧？" class="headerlink" title="好了，总该说说怎么求这个二次规划问题吧？"></a>好了，总该说说怎么求这个二次规划问题吧？</h2><p>在<strong>周志华《机器学习》中提到了一个高效的算法——SMO</strong>（Sequential Minimal Optimization）。还在学习中(→_→)…….</p>
-<p>参考：<br><a href="http://blog.csdn.net/xidiancoder/article/details/50913607" target="_blank" rel="noopener">安东的技术博客</a><br><a href="https://zh.wikipedia.org/wiki/支持向量机" target="_blank" rel="noopener">维基百科</a><br><a href="http://www.cnblogs.com/ybjourney/p/4740999.html" target="_blank" rel="noopener">oYabea-机器学习（三）—支持向量机（1）</a><br>周志华《机器学习》</p>
-
+        <h1 id="一、一些概念"><a href="#一、一些概念" class="headerlink" title="一、一些概念"></a>一、一些概念</h1><p>支持向量机在高维或无限维空间中构造超平面或超平面集合，其可以用于分类、回归或其他任务。直观来说，分类边界距离最近的训练资料点越远越好，因为这样可以缩小分类器的泛化误差。说白了，就是要基于训练集在样本空间中找一个划分超平面，将不同类别的样本分开。也可以理解为<strong>对原空间进行升维，把在本来维度上不可用一个平面分割的类别在更高的维度可分</strong>。为了更直观的理解一下，请看下图！</p>
+        
+          <a class="article-more-a" href="/2018/04/07/支持向量机/#more">more >></a>
+        
       
 
       
@@ -259,16 +320,9 @@
 <p>是的！</p>
 <p>终于下决心抛弃了臃肿的，并且随着博客访问量日渐扩张显得力不从心的wordpress，开始转hexo了！</p>
 <p>我们各自开始搞自己的hexo，白水东城这个域名，交给了我(ノへ￣、)（鸭梨山大大大）</p>
-<p>既然从头开始，那么就从一开始严格要求，打造具有一定影响力的独立博客，哪怕只有几个人能爱来这个博客看看，我也要坚持写下去，我要用博客记录下自己成长和学习中的酸甜苦辣（￣︶￣）↗　</p>
-<p>写这篇《写在博客开始的话》，我已经大二了，深切感受到了大学生活的美好，身边的朋友，给力的室友也都让我感觉很温暖。</p>
-<p>我对我大学的要求不算高，只希望能弄明白自己到底想要什么，未来又想要过怎么样的生活，并努力去朝着梦想爬一爬，万一实现了呢？</p>
-<p>今天从早上就开始忙着搞这个博客了，现在已经是晚上九点了，头略微有点晕，写的很零碎，就这样吧！</p>
-<p>以后可要常来<a href="http://baishuidongcheng.com">白水东城</a>看看哦(/▽＼)</p>
-<ul>
-<li>开心的时候可以边吃零食边学学一些新知识</li>
-<li>不开心的时候可以来翻翻我的随（糗）笔（事）.</li>
-</ul>
-
+        
+          <a class="article-more-a" href="/2018/03/31/写在博客开始的话/#more">more >></a>
+        
       
 
       
@@ -348,7 +402,7 @@
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
-		open_in_new: false,
+		open_in_new: true,
 		toc_hide_index: true,
 		root: "/",
 		innerArchive: true,
