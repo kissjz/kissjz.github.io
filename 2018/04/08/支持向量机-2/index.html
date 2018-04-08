@@ -16,13 +16,13 @@
 <meta property="og:site_name" content="白水东城">
 <meta property="og:description" content="上篇博客 机器学习入门|支持向量机（一） 提到了SMO算法，这是用来求解优化函数变为关于拉格朗日乘子的二次规划问题的，是由Microsoft Research的John C.Platt在1998年发表的论文《Sequential Minimal Optimaization A Fast Algorithm for Training Support Vector Machines》中提出的，是最快的">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/7f4879cf371f1a4e21b4e28c4758edb254ddb876%20%281%29.png">
-<meta property="og:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/41b88087e575426134aada316e2695c3b9540833.gif">
-<meta property="og:updated_time" content="2018-04-07T17:01:40.011Z">
+<meta property="og:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/7f4879cf371f1a4e21b4e28c4758edb254ddb876%20%281%29.png_wm">
+<meta property="og:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/41b88087e575426134aada316e2695c3b9540833.gif_wm">
+<meta property="og:updated_time" content="2018-04-08T13:15:45.537Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="支持向量机-2">
 <meta name="twitter:description" content="上篇博客 机器学习入门|支持向量机（一） 提到了SMO算法，这是用来求解优化函数变为关于拉格朗日乘子的二次规划问题的，是由Microsoft Research的John C.Platt在1998年发表的论文《Sequential Minimal Optimaization A Fast Algorithm for Training Support Vector Machines》中提出的，是最快的">
-<meta name="twitter:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/7f4879cf371f1a4e21b4e28c4758edb254ddb876%20%281%29.png">
+<meta name="twitter:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/7f4879cf371f1a4e21b4e28c4758edb254ddb876%20%281%29.png_wm">
   
     <link rel="alternative" href="/atom.xml" title="白水东城" type="application/atom+xml">
   
@@ -167,8 +167,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>上篇博客 <a href="https://baishuidongcheng.com/2018/04/07/支持向量机/">机器学习入门|支持向量机（一）</a> 提到了<strong>SMO算法</strong>，这是用来<strong>求解优化函数变为关于拉格朗日乘子的二次规划问题的</strong>，是由Microsoft Research的John C.Platt在1998年发表的论文《Sequential Minimal Optimaization A Fast Algorithm for Training Support Vector Machines》中提出的，是最快的二次规划优化算法，特别是在针对线性SVM和数据稀疏等问题时更表现出强大的性能。<br>单看周志华《机器学习》的那一节，远不足以透彻了解算法的详细过程，也搜到了介绍SMO的博客，<strong>数学功底实在太渣＞﹏＜</strong>总的了解完机器学习几大算法之后，回头再看支持向量机的时候，把那Platt的那篇论文看一下。现在，暂且跳过SMO，其基本思路是先固定$\alpha_{i}$之外的所有参数，然后求$\alpha_{i}$上的极值。<br><a id="more"></a></p>
-<h1 id="核函数"><a href="#核函数" class="headerlink" title="核函数"></a>核函数</h1><p>好了，经过之前的介绍，我们能解决训练样本是线性可分的，即存在一个划分超平面能将训练样本正确分类。然而，在现实任务中，原始样本空间也许并不存在一个能正确划分两类样本的超平面。就像上一篇一开始提到的，<strong>对原空间进行升维，把在本来维度上不可用一个平面分割的类别在更高的维度可分</strong>。也许你还记得这张图<br><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/7f4879cf371f1a4e21b4e28c4758edb254ddb876%20%281%29.png" alt="6298996_4fc35cedc0742800_1_"></p>
-<p>加深一下印象，再看一张！自己体会<br><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/41b88087e575426134aada316e2695c3b9540833.gif" alt="1364952814_3505_1_"></p>
+<h1 id="核函数"><a href="#核函数" class="headerlink" title="核函数"></a>核函数</h1><p>好了，经过之前的介绍，我们能解决训练样本是线性可分的，即存在一个划分超平面能将训练样本正确分类。然而，在现实任务中，原始样本空间也许并不存在一个能正确划分两类样本的超平面。就像上一篇一开始提到的，<strong>对原空间进行升维，把在本来维度上不可用一个平面分割的类别在更高的维度可分</strong>。也许你还记得这张图<br><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/7f4879cf371f1a4e21b4e28c4758edb254ddb876%20%281%29.png_wm" alt="6298996_4fc35cedc0742800_1_"></p>
+<p>加深一下印象，再看一张！自己体会<br><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/41b88087e575426134aada316e2695c3b9540833.gif_wm" alt="1364952814_3505_1_"></p>
 <p>对！将样本从原始空间映射到一个更高维的特征空间，就能实现线性的划分。我们把原先的样本点从二维空间映射到了三维空间之后，便可以很方便的找到一个超平面将两类样本点划分开。划分开之后，我们再重新将样本点以及划分平面从高维映射到低维，便完成了分类任务。可以肯定的是，<strong>如果原始空间是有限维的，即属性数有限，那么一定存在一个高维特征空间是样本可分</strong>。<br>令$\phi(\boldsymbol{x})$表示将$\boldsymbol{x}$映射后的特征向量，于是，在特征空间中划分超平面所对应的模型可表示为 <script type="math/tex">f(\boldsymbol{x})=\boldsymbol{\omega}^{T}\phi(\boldsymbol{x})+b</script>同样的（也就是把上文的$\boldsymbol{x}$替换为$\phi(\boldsymbol{x})$）有<script type="math/tex">\left\{\begin{matrix} \underset{\boldsymbol{\omega},b}{min}\frac{1}{2}||\boldsymbol{\omega}||^{2}\\ s.t. y_{i} (\boldsymbol{\omega}^{T}\phi(\boldsymbol{x}_{i})+b ) \geqslant 1 ,i = 1,2,...,m\end{matrix}\right.\;</script>其<strong>对偶问题</strong><script type="math/tex">\underset{\alpha}{max}\sum_{i = 1}^{n}\alpha_{i}- \frac{1}{2} \sum_{i= 1}^{m}\sum_{j=1}^{m}\alpha_{i}\alpha_{j}y_{i}y_{j}\phi(\boldsymbol{x}_{i})^{T}\phi(\boldsymbol{x}_{j})\;</script></p>
 <script type="math/tex; mode=display">s.t.\;\sum_{i=1}^{m}\alpha_{i}y_{i}=0,\;\alpha_{i}\geqslant0,i=1,2...,m.</script><p>上式中涉及到计算$\phi(\boldsymbol{x}_{i})^{T}\phi(\boldsymbol{x}_{j})$ ，这是样本$\boldsymbol{x}_{i}$和$\boldsymbol{x}_{j}$映射到特征空间之后的内积。由于特征空间的维度可能很高，甚至是无穷维，因此直接计算很困难，就可以设想这样一个函数</p>
 <script type="math/tex; mode=display">\kappa (\boldsymbol{x}_{i},\boldsymbol{x}_{j})=\left \langle \phi(\boldsymbol{x}_{i}),\phi(\boldsymbol{x}_{j}) \right \rangle=\phi(\boldsymbol{x}_{i})^{T}\phi(\boldsymbol{x}_{j})</script><p>即$\boldsymbol{x}_{i}$和$\boldsymbol{x}_{j}$在特征空间的内积等于它们在原始样本空间中通过函数$kappa(\cdot,\cdot)$计算的结果。这个函数就是鼎鼎大名的——核函数（kernel function）。于是，可以将对偶问题重新写为</p>
@@ -303,6 +303,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/04/08/支持向量机-3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          支持向量机-3
+        
+      </div>
+    </a>
   
   
     <a href="/2018/04/07/支持向量机/" id="article-nav-older" class="article-nav-link-wrap">
@@ -449,11 +458,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
             
             <div class="clearfix"></div>
