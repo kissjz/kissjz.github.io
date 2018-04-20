@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="baishuidongcheng.com">
-  <title>白水东城</title>
+  <title>Java小白进阶笔记(4)-流程控制语句 | 白水东城</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个能同时保有两种相反的观念，还能正常行事的人">
-<meta property="og:type" content="website">
-<meta property="og:title" content="白水东城">
-<meta property="og:url" content="baishuidongcheng.com/index.html">
+  <meta name="description" content="继续学习：5.偏头痛杨的Java入门教学系列之流程控制语句篇  详细的去看原文，这里分割线中摘录一些我觉得对新手比较重要的概念（也容易混淆）。方法的种类1.实例方法属于每个实例的方法，必须使用对象来调用，方法前不要加static修饰。 2.类方法属于类的方法，必须加static修饰,使用类名调用（当然类方法也可以使用实例调用，但是不建议这么做），为什么要用类名来访问一些方法呢？因为不耗费内存，不用">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java小白进阶笔记(4)-流程控制语句">
+<meta property="og:url" content="baishuidongcheng.com/2018/04/20/Java小白进阶笔记-4-流程控制语句/index.html">
 <meta property="og:site_name" content="白水东城">
-<meta property="og:description" content="一个能同时保有两种相反的观念，还能正常行事的人">
+<meta property="og:description" content="继续学习：5.偏头痛杨的Java入门教学系列之流程控制语句篇  详细的去看原文，这里分割线中摘录一些我觉得对新手比较重要的概念（也容易混淆）。方法的种类1.实例方法属于每个实例的方法，必须使用对象来调用，方法前不要加static修饰。 2.类方法属于类的方法，必须加static修饰,使用类名调用（当然类方法也可以使用实例调用，但是不建议这么做），为什么要用类名来访问一些方法呢？因为不耗费内存，不用">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-04-20T08:51:52.849Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="白水东城">
-<meta name="twitter:description" content="一个能同时保有两种相反的观念，还能正常行事的人">
+<meta name="twitter:title" content="Java小白进阶笔记(4)-流程控制语句">
+<meta name="twitter:description" content="继续学习：5.偏头痛杨的Java入门教学系列之流程控制语句篇  详细的去看原文，这里分割线中摘录一些我觉得对新手比较重要的概念（也容易混淆）。方法的种类1.实例方法属于每个实例的方法，必须使用对象来调用，方法前不要加static修饰。 2.类方法属于类的方法，必须加static修饰,使用类名调用（当然类方法也可以使用实例调用，但是不建议这么做），为什么要用类名来访问一些方法呢？因为不耗费内存，不用">
   
     <link rel="alternative" href="/atom.xml" title="白水东城" type="application/atom+xml">
   
@@ -141,16 +143,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-Java小白进阶笔记-4-流程控制语句" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Java小白进阶笔记-4-流程控制语句" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/20/Java小白进阶笔记-4-流程控制语句/">Java小白进阶笔记(4)-流程控制语句</a>
+    <h1 class="article-title" itemprop="name">
+      Java小白进阶笔记(4)-流程控制语句
     </h1>
   
 
@@ -234,81 +234,36 @@
       
 
       
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/20/Java小白进阶笔记-4-流程控制语句/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果:)<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechatpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java小白进阶笔记-3-初级面向对象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/20/Java小白进阶笔记-3-初级面向对象/">Java小白进阶笔记(3)-初级面向对象</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/20/Java小白进阶笔记-3-初级面向对象/" class="archive-article-date">
-  	<time datetime="2018-04-20T04:24:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>继续学习：<br><a href="https://blog.csdn.net/piantoutongyang/article/details/78135129" target="_blank" rel="noopener">4.偏头痛杨的Java入门教学系列之初级面向对象篇</a><br>分割线中为原文的摘录：<br>
-        
-          <a class="article-more-a" href="/2018/04/20/Java小白进阶笔记-3-初级面向对象/#more">more >></a>
-        
-      
-
       
     </div>
     <div class="article-info article-info-index">
@@ -328,16 +283,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/20/Java小白进阶笔记-3-初级面向对象/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http:baishuidongcheng.com/2018/04/20/Java小白进阶笔记-4-流程控制语句/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2018/04/20/Java小白进阶笔记-3-初级面向对象/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java小白进阶笔记(3)-初级面向对象</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -357,622 +371,14 @@
 
 
 
-
-  
-    <article id="post-Java小白进阶笔记-2-变量和数据类型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/20/Java小白进阶笔记-2-变量和数据类型/">Java小白进阶笔记(2)-变量和数据类型</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/20/Java小白进阶笔记-2-变量和数据类型/" class="archive-article-date">
-  	<time datetime="2018-04-20T03:09:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>复习Java知识，主要是一边看<strong>偏头痛杨</strong>的博客，一边完成博主布置的任务。这是看<a href="https://blog.csdn.net/piantoutongyang/article/details/70193622" target="_blank" rel="noopener">2.偏头痛杨的Java入门教学系列之变量&amp;数据类型篇</a> 的作业：<br>
-        
-          <a class="article-more-a" href="/2018/04/20/Java小白进阶笔记-2-变量和数据类型/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/20/Java小白进阶笔记-2-变量和数据类型/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-查查Z陪你学英语-9" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/20/查查Z陪你学英语-9/">查查Z陪你学英语-9</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/20/查查Z陪你学英语-9/" class="archive-article-date">
-  	<time datetime="2018-04-19T16:40:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Today I have a tight schedule ~</p>
-<p><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/img_0045.jpg_wm" alt="此处输入图片的描述"><br>
-        
-          <a class="article-more-a" href="/2018/04/20/查查Z陪你学英语-9/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">英语</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/20/查查Z陪你学英语-9/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-查查Z陪你学英语-8" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/19/查查Z陪你学英语-8/">查查Z陪你学英语-8</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/19/查查Z陪你学英语-8/" class="archive-article-date">
-  	<time datetime="2018-04-18T16:55:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Some idioms I learned today.<br><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/QQ%E5%9B%BE%E7%89%8720180419005750.jpg_wm" alt="此处输入图片的描述"><br>
-        
-          <a class="article-more-a" href="/2018/04/19/查查Z陪你学英语-8/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">英语</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/19/查查Z陪你学英语-8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-查查Z陪你学英语-7" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/18/查查Z陪你学英语-7/">查查Z陪你学英语-7</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/18/查查Z陪你学英语-7/" class="archive-article-date">
-  	<time datetime="2018-04-17T16:08:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>The 10 greatest love letters of all time.<br>hhhh~~<br><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/img_0040.jpg_wm" alt="pic"><br>
-        
-          <a class="article-more-a" href="/2018/04/18/查查Z陪你学英语-7/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">英语</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/18/查查Z陪你学英语-7/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java小白进阶笔记-1-重新认识java" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/17/Java小白进阶笔记-1-重新认识java/">Java小白进阶笔记(1)-重新认识Java</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/17/Java小白进阶笔记-1-重新认识java/" class="archive-article-date">
-  	<time datetime="2018-04-17T07:18:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>重新开始学习Java了，这也是为了以后找工作考虑。热爱的机器学习就先放一放了，作为兴趣爱好研究，不花太多精力了＞﹏＜<br>因为大二上学期有过一门Java课，作为快速复习。在CSDN上找到了<strong>偏头痛杨</strong>的Java入门系列文章，写得非常好！<br>
-        
-          <a class="article-more-a" href="/2018/04/17/Java小白进阶笔记-1-重新认识java/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/17/Java小白进阶笔记-1-重新认识java/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-查查Z陪你学英语-6" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/17/查查Z陪你学英语-6/">查查Z陪你学英语-6</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/17/查查Z陪你学英语-6/" class="archive-article-date">
-  	<time datetime="2018-04-16T16:03:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Some <strong>FOOD IDIOMS</strong> that i think maybe you will like them~<br>They are common to use.<br><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/img_0035.jpg_wm" alt="pic"><br>
-        
-          <a class="article-more-a" href="/2018/04/17/查查Z陪你学英语-6/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">英语</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/17/查查Z陪你学英语-6/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-查查Z陪你学英语-5" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/查查Z陪你学英语-5/">查查Z陪你学英语-5</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/15/查查Z陪你学英语-5/" class="archive-article-date">
-  	<time datetime="2018-04-15T14:22:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Some confusing English words.<br>It’s very common vocabulary mistakes that you maybe make in your daily life.<br><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/img_0034.jpg_wm" alt="pic"><br>
-        
-          <a class="article-more-a" href="/2018/04/15/查查Z陪你学英语-5/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">英语</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/15/查查Z陪你学英语-5/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-查查Z陪你学英语-4" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/14/查查Z陪你学英语-4/">查查Z陪你学英语-4</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/14/查查Z陪你学英语-4/" class="archive-article-date">
-  	<time datetime="2018-04-14T13:28:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>6 Phrasal verbs with PICK.</p>
-<p><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/QQ%E5%9B%BE%E7%89%8720180414212037.jpg_wm" alt="此处输入图片的描述"><br>
-        
-          <a class="article-more-a" href="/2018/04/14/查查Z陪你学英语-4/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">英语</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/14/查查Z陪你学英语-4/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -995,8 +401,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
