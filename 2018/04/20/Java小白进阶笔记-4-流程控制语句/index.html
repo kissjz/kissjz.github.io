@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="baishuidongcheng.com">
   <title>Java小白进阶笔记(4)-流程控制语句 | 白水东城</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="继续学习：5.偏头痛杨的Java入门教学系列之流程控制语句篇  详细的去看原文，这里分割线中摘录一些我觉得对新手比较重要的概念（也容易混淆）。方法的种类1.实例方法属于每个实例的方法，必须使用对象来调用，方法前不要加static修饰。 2.类方法属于类的方法，必须加static修饰,使用类名调用（当然类方法也可以使用实例调用，但是不建议这么做），为什么要用类名来访问一些方法呢？因为不耗费内存，不用">
+  <meta name="description" content="继续学习：5.偏头痛杨的Java入门教学系列之流程控制语句篇  详细的去看原文，这里分割线中摘录一些我觉得对新手比较重要的概念（也容易混淆）。">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java小白进阶笔记(4)-流程控制语句">
 <meta property="og:url" content="baishuidongcheng.com/2018/04/20/Java小白进阶笔记-4-流程控制语句/index.html">
 <meta property="og:site_name" content="白水东城">
-<meta property="og:description" content="继续学习：5.偏头痛杨的Java入门教学系列之流程控制语句篇  详细的去看原文，这里分割线中摘录一些我觉得对新手比较重要的概念（也容易混淆）。方法的种类1.实例方法属于每个实例的方法，必须使用对象来调用，方法前不要加static修饰。 2.类方法属于类的方法，必须加static修饰,使用类名调用（当然类方法也可以使用实例调用，但是不建议这么做），为什么要用类名来访问一些方法呢？因为不耗费内存，不用">
+<meta property="og:description" content="继续学习：5.偏头痛杨的Java入门教学系列之流程控制语句篇  详细的去看原文，这里分割线中摘录一些我觉得对新手比较重要的概念（也容易混淆）。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-20T08:51:52.849Z">
+<meta property="og:updated_time" content="2018-04-20T08:54:06.313Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java小白进阶笔记(4)-流程控制语句">
-<meta name="twitter:description" content="继续学习：5.偏头痛杨的Java入门教学系列之流程控制语句篇  详细的去看原文，这里分割线中摘录一些我觉得对新手比较重要的概念（也容易混淆）。方法的种类1.实例方法属于每个实例的方法，必须使用对象来调用，方法前不要加static修饰。 2.类方法属于类的方法，必须加static修饰,使用类名调用（当然类方法也可以使用实例调用，但是不建议这么做），为什么要用类名来访问一些方法呢？因为不耗费内存，不用">
+<meta name="twitter:description" content="继续学习：5.偏头痛杨的Java入门教学系列之流程控制语句篇  详细的去看原文，这里分割线中摘录一些我觉得对新手比较重要的概念（也容易混淆）。">
   
     <link rel="alternative" href="/atom.xml" title="白水东城" type="application/atom+xml">
   
@@ -164,7 +164,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>继续学习：<br><a href="https://blog.csdn.net/piantoutongyang/article/details/71698589" target="_blank" rel="noopener">5.偏头痛杨的Java入门教学系列之流程控制语句篇</a> </p>
-<h2 id="详细的去看原文，这里分割线中摘录一些我觉得对新手比较重要的概念（也容易混淆）。"><a href="#详细的去看原文，这里分割线中摘录一些我觉得对新手比较重要的概念（也容易混淆）。" class="headerlink" title="详细的去看原文，这里分割线中摘录一些我觉得对新手比较重要的概念（也容易混淆）。"></a>详细的去看原文，这里分割线中摘录一些我觉得对新手比较重要的概念（也容易混淆）。</h2><h2 id="方法的种类"><a href="#方法的种类" class="headerlink" title="方法的种类"></a>方法的种类</h2><h3 id="1-实例方法"><a href="#1-实例方法" class="headerlink" title="1.实例方法"></a>1.实例方法</h3><p>属于每个实例的方法，必须<strong>使用对象来调用</strong>，方法前不要加static修饰。</p>
+<p>详细的去看原文，这里分割线中摘录一些我觉得对新手比较重要的概念（也容易混淆）。</p>
+<a id="more"></a>
+<hr>
+<h2 id="方法的种类"><a href="#方法的种类" class="headerlink" title="方法的种类"></a>方法的种类</h2><h3 id="1-实例方法"><a href="#1-实例方法" class="headerlink" title="1.实例方法"></a>1.实例方法</h3><p>属于每个实例的方法，必须<strong>使用对象来调用</strong>，方法前不要加static修饰。</p>
 <h3 id="2-类方法"><a href="#2-类方法" class="headerlink" title="2.类方法"></a>2.类方法</h3><p>属于类的方法，<strong>必须加static修饰</strong>,使用类名调用（当然类方法也可以使用实例调用，但是不建议这么做），为什么要用类名来访问一些方法呢？因为不耗费内存，不用创建实例。</p>
 <h3 id="3-构造方法-构造器（Constructor）"><a href="#3-构造方法-构造器（Constructor）" class="headerlink" title="3.构造方法/构造器（Constructor）"></a>3.构造方法/构造器（Constructor）</h3><p>构造方法是一个类创建对象的根本途径，如果一个类没有构造方法，这个类通常无法创建实例。<br>因此如果程序员忘记定义构造方法的话，<strong>Java编译器将会为该类提供一个默认构造方法（无参的构造方法）</strong>，一旦程序员已经定义了构造方法，则系统不再提供默认的构造方法。（注意：<strong>如果程序员定义了一个有参构造，系统也不再提供默认的无参构造</strong>）当然，如果你也想使用无参数构造方法，就可以自己手动写一个。</p>
 <h4 id="构造方法的作用"><a href="#构造方法的作用" class="headerlink" title="构造方法的作用"></a>构造方法的作用</h4><ul>
@@ -493,11 +496,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
