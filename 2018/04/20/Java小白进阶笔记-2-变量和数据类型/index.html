@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="baishuidongcheng.com">
-  <title>写在博客开始的话 | 白水东城</title>
+  <title>Java小白进阶笔记(2)-变量和数据类型 | 白水东城</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="From Scratch（从头开始） 如果你之前就关注白水东城的话，可能会注意到，博客貌似改变了(●ˇ∀ˇ●) 是的！ 终于下决心抛弃了臃肿的，并且随着博客访问量日渐扩张显得力不从心的wordpress，开始转hexo了！ 我们各自开始搞自己的hexo，白水东城这个域名，交给了我(ノへ￣、)（鸭梨山大大大）">
-<meta name="keywords" content="随笔">
+  <meta name="description" content="复习Java知识，主要是一边看偏头痛杨的博客，一边完成博主布置的任务。这是看2.偏头痛杨的Java入门教学系列之变量&amp;amp;数据类型篇 的作业：">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="写在博客开始的话">
-<meta property="og:url" content="baishuidongcheng.com/2018/03/31/写在博客开始的话/index.html">
+<meta property="og:title" content="Java小白进阶笔记(2)-变量和数据类型">
+<meta property="og:url" content="baishuidongcheng.com/2018/04/20/Java小白进阶笔记-2-变量和数据类型/index.html">
 <meta property="og:site_name" content="白水东城">
-<meta property="og:description" content="From Scratch（从头开始） 如果你之前就关注白水东城的话，可能会注意到，博客貌似改变了(●ˇ∀ˇ●) 是的！ 终于下决心抛弃了臃肿的，并且随着博客访问量日渐扩张显得力不从心的wordpress，开始转hexo了！ 我们各自开始搞自己的hexo，白水东城这个域名，交给了我(ノへ￣、)（鸭梨山大大大）">
+<meta property="og:description" content="复习Java知识，主要是一边看偏头痛杨的博客，一边完成博主布置的任务。这是看2.偏头痛杨的Java入门教学系列之变量&amp;amp;数据类型篇 的作业：">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-07T16:56:45.954Z">
+<meta property="og:updated_time" content="2018-04-20T03:10:47.788Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="写在博客开始的话">
-<meta name="twitter:description" content="From Scratch（从头开始） 如果你之前就关注白水东城的话，可能会注意到，博客貌似改变了(●ˇ∀ˇ●) 是的！ 终于下决心抛弃了臃肿的，并且随着博客访问量日渐扩张显得力不从心的wordpress，开始转hexo了！ 我们各自开始搞自己的hexo，白水东城这个域名，交给了我(ノへ￣、)（鸭梨山大大大）">
+<meta name="twitter:title" content="Java小白进阶笔记(2)-变量和数据类型">
+<meta name="twitter:description" content="复习Java知识，主要是一边看偏头痛杨的博客，一边完成博主布置的任务。这是看2.偏头痛杨的Java入门教学系列之变量&amp;amp;数据类型篇 的作业：">
   
     <link rel="alternative" href="/atom.xml" title="白水东城" type="application/atom+xml">
   
@@ -143,41 +143,82 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-写在博客开始的话" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Java小白进阶笔记-2-变量和数据类型" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      写在博客开始的话
+      Java小白进阶笔记(2)-变量和数据类型
     </h1>
   
 
         
-        <a href="/2018/03/31/写在博客开始的话/" class="archive-article-date">
-  	<time datetime="2018-03-31T12:11:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-31</time>
+        <a href="/2018/04/20/Java小白进阶笔记-2-变量和数据类型/" class="archive-article-date">
+  	<time datetime="2018-04-20T03:09:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="From-Scratch（从头开始）"><a href="#From-Scratch（从头开始）" class="headerlink" title="From Scratch（从头开始）"></a>From Scratch（从头开始）</h1><hr>
-<p>如果你之前就关注<strong>白水东城</strong>的话，可能会注意到，博客貌似改变了(●ˇ∀ˇ●)</p>
-<p>是的！</p>
-<p>终于下决心抛弃了臃肿的，并且随着博客访问量日渐扩张显得力不从心的wordpress，开始转hexo了！</p>
-<p>我们各自开始搞自己的hexo，白水东城这个域名，交给了我(ノへ￣、)（鸭梨山大大大）</p>
-<a id="more"></a>
-<p>既然从头开始，那么就从一开始严格要求，打造具有一定影响力的独立博客，哪怕只有几个人能爱来这个博客看看，我也要坚持写下去，我要用博客记录下自己成长和学习中的酸甜苦辣（￣︶￣）↗　</p>
-<p>写这篇《写在博客开始的话》，我已经大二了，深切感受到了大学生活的美好，身边的朋友，给力的室友也都让我感觉很温暖。</p>
-<p>我对我大学的要求不算高，只希望能弄明白自己到底想要什么，未来又想要过怎么样的生活，并努力去朝着梦想爬一爬，万一实现了呢？</p>
-<p>今天从早上就开始忙着搞这个博客了，现在已经是晚上九点了，头略微有点晕，写的很零碎，就这样吧！</p>
-<p>以后可要常来<a href="http://baishuidongcheng.com">白水东城</a>看看哦(/▽＼)</p>
+        <p>复习Java知识，主要是一边看<strong>偏头痛杨</strong>的博客，一边完成博主布置的任务。这是看<a href="https://blog.csdn.net/piantoutongyang/article/details/70193622" target="_blank" rel="noopener">2.偏头痛杨的Java入门教学系列之变量&amp;数据类型篇</a> 的作业：<br><a id="more"></a></p>
+<h1 id="1-Java有多少种数据类型，数据类型的分类？"><a href="#1-Java有多少种数据类型，数据类型的分类？" class="headerlink" title="1.Java有多少种数据类型，数据类型的分类？"></a>1.Java有多少种数据类型，数据类型的分类？</h1><p>两种数据类型：</p>
 <ul>
-<li>开心的时候可以边吃零食边学学一些新知识</li>
-<li>不开心的时候可以来翻翻我的随（糗）笔（事）.</li>
+<li>基本数据类型</li>
+<li>引用数据类型<br>除了八种基本数据类型，其他的都是引用数据类型。</li>
 </ul>
+<h1 id="2-Java的工作机制？"><a href="#2-Java的工作机制？" class="headerlink" title="2.Java的工作机制？"></a>2.Java的工作机制？</h1><p>Java程序的源代码（.java）编译成虚拟机（JVM）能看懂的字节码（.class），然后再由虚拟机解释执行成对应的操作系统能看懂的机器码</p>
+<h1 id="3-自动类型转换与强制类型转换的规则？"><a href="#3-自动类型转换与强制类型转换的规则？" class="headerlink" title="3.自动类型转换与强制类型转换的规则？"></a>3.自动类型转换与强制类型转换的规则？</h1><ul>
+<li>从小到大<strong>自动转</strong></li>
+<li>从大到小<strong>强制转</strong></li>
+</ul>
+<h2 id="自动类型转换："><a href="#自动类型转换：" class="headerlink" title="自动类型转换："></a>自动类型转换：</h2><ul>
+<li>byte-&gt;short-&gt;int-&gt;long-&gt;float-&gt;double</li>
+<li>char-&gt;int-&gt;long-&gt;float-&gt;double</li>
+</ul>
+<h3 id="表达式类型的自动提升："><a href="#表达式类型的自动提升：" class="headerlink" title="表达式类型的自动提升："></a>表达式类型的自动提升：</h3><p>当表达式中有多个数据类型运算式，自动提升为容量最大的数据类型。</p>
+<ul>
+<li>byte,short,char之间不会自动转换，首先都提升为int</li>
+<li>整个表达式的类型自动提升到与表达式中最高等级操作数同样的类型</li>
+</ul>
+<h2 id="强制类型转换："><a href="#强制类型转换：" class="headerlink" title="强制类型转换："></a>强制类型转换：</h2><p>容量大的数据类型转换为容量小的数据类型时，需要强制类型转换</p>
+<ul>
+<li>语法：变量 = (目标类型)值。比如，int a=(int)b;</li>
+<li>整数类型进行强制转换时会发生溢出</li>
+<li>浮点数进行强制转换时会发生精度失准<br><strong>注意</strong>：</li>
+<li>boolean无法转换成其他数据类型</li>
+<li>char的字符被转成int，变成对应的ASCII值</li>
+<li>浮点数到整数的转换是通过舍弃小数得到，而不是四舍五入</li>
+</ul>
+<h1 id="4-什么是变量，如何定义变量？"><a href="#4-什么是变量，如何定义变量？" class="headerlink" title="4.什么是变量，如何定义变量？"></a>4.什么是变量，如何定义变量？</h1><ul>
+<li>变量是指在程序的运行过程中随时可以发生变化的量，Java使用变量临时存储各种数据，是存储数据的基本单元.</li>
+<li>变量必须要先定义（声明），再初始化（也可以不初始化，有默认值），之后才能使用。必须为每个变量确定一个具体数据类型。</li>
+</ul>
+<h1 id="5-整型从小到大排序并且说出大小？"><a href="#5-整型从小到大排序并且说出大小？" class="headerlink" title="5.整型从小到大排序并且说出大小？"></a>5.整型从小到大排序并且说出大小？</h1><p>byte（1字节8位）short（2字节16位）int（4字节32位）long（8字节64位）</p>
+<h1 id="6-数据类型的默认值？"><a href="#6-数据类型的默认值？" class="headerlink" title="6.数据类型的默认值？"></a>6.数据类型的默认值？</h1><ul>
+<li>整数型：0</li>
+<li>浮点型：0.0</li>
+<li>字符型（char）：一个空的字符，即’\u0000’</li>
+<li>布尔型（boolean）：false</li>
+<li>引用数据类型：null，表示变量不引用任何对象</li>
+</ul>
+<h1 id="7-整型与浮点型的默认数据类型是什么？"><a href="#7-整型与浮点型的默认数据类型是什么？" class="headerlink" title="7.整型与浮点型的默认数据类型是什么？"></a>7.整型与浮点型的默认数据类型是什么？</h1><p>同上。</p>
+<h1 id="8-基本数据类型的包装类型分别是什么？"><a href="#8-基本数据类型的包装类型分别是什么？" class="headerlink" title="8.基本数据类型的包装类型分别是什么？"></a>8.基本数据类型的包装类型分别是什么？</h1><p>8种基本数据类型还对应着8种包装类，包装类里有一些常见属性。基本数据类型与包装类型的初始值不同，例如int的初始值为0，<br>而包装类则为null。<br>对应关系：<br>byte-&gt;Byte<br>short-&gt;Short<br><strong>int-&gt;Integer</strong><br>long -&gt;Long<br>float-&gt;Float<br>double-Double<br><strong>char-&gt;Character</strong><br>boolean-&gt;Boolean</p>
+<h1 id="9-如何定义一个常量？"><a href="#9-如何定义一个常量？" class="headerlink" title="9.如何定义一个常量？"></a>9.如何定义一个常量？</h1><ul>
+<li>Java中使用final关键字来修饰常量</li>
+<li>常量的字母要全部大写</li>
+</ul>
+<h2 id="基本数据类型："><a href="#基本数据类型：" class="headerlink" title="基本数据类型："></a>基本数据类型：</h2><pre><code>final String NAME = &quot;Jack&quot;;//无法修改NAME的值
+</code></pre><h2 id="引用数据类型："><a href="#引用数据类型：" class="headerlink" title="引用数据类型："></a>引用数据类型：</h2><ul>
+<li>可以修改其引用对象的属性，但不可以修改对象的引用</li>
+</ul>
+<pre><code>final Person P1 = new Person();
+P1.name = &quot;Jack&quot;;
+P1.name = &quot;Rose&quot;;//It&#39;s ok!
+P1 = null;//错误！不可以修改对象的引用
+</code></pre><h1 id="10-JDK-amp-JRE-amp-JVM分别是什么以及他们的关系？"><a href="#10-JDK-amp-JRE-amp-JVM分别是什么以及他们的关系？" class="headerlink" title="10.JDK&amp;JRE&amp;JVM分别是什么以及他们的关系？"></a>10.JDK&amp;JRE&amp;JVM分别是什么以及他们的关系？</h1><p>JDk是开发集成工具，JRE是java运行环境，JVM是Javaxu’ni’j<br>JDK&gt;JRE&gt;JVM<br>三者关系详细见<a href="https://yq.aliyun.com/articles/582454?spm=a2c4e.11155435.0.0.154f3312L2KXUR" target="_blank" rel="noopener">上一篇博客</a></p>
 
       
 
@@ -222,7 +263,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
@@ -278,7 +319,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http:baishuidongcheng.com/2018/03/31/写在博客开始的话/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http:baishuidongcheng.com/2018/04/20/Java小白进阶笔记-2-变量和数据类型/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -292,15 +333,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/04/07/支持向量机/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          支持向量机
-        
-      </div>
-    </a>
   
+    <a href="/2018/04/20/查查Z陪你学英语-9/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">查查Z陪你学英语-9</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
