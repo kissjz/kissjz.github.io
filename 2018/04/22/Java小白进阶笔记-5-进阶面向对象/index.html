@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="baishuidongcheng.com">
-  <title>Java小白进阶笔记(2)-变量和数据类型 | 白水东城</title>
+  <title>Java小白进阶笔记(5)-进阶面向对象 | 白水东城</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="复习Java知识，主要是一边看偏头痛杨的博客，一边完成博主布置的任务。这是看2.偏头痛杨的Java入门教学系列之变量&amp;amp;数据类型篇 的作业：">
+  <meta name="description" content="继续学习：7.偏头痛杨的Java入门教学系列之进阶面向对象篇">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java小白进阶笔记(2)-变量和数据类型">
-<meta property="og:url" content="baishuidongcheng.com/2018/04/20/Java小白进阶笔记-2-变量和数据类型/index.html">
+<meta property="og:title" content="Java小白进阶笔记(5)-进阶面向对象">
+<meta property="og:url" content="baishuidongcheng.com/2018/04/22/Java小白进阶笔记-5-进阶面向对象/index.html">
 <meta property="og:site_name" content="白水东城">
-<meta property="og:description" content="复习Java知识，主要是一边看偏头痛杨的博客，一边完成博主布置的任务。这是看2.偏头痛杨的Java入门教学系列之变量&amp;amp;数据类型篇 的作业：">
+<meta property="og:description" content="继续学习：7.偏头痛杨的Java入门教学系列之进阶面向对象篇">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-20T03:10:47.788Z">
+<meta property="og:updated_time" content="2018-04-22T16:23:30.110Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java小白进阶笔记(2)-变量和数据类型">
-<meta name="twitter:description" content="复习Java知识，主要是一边看偏头痛杨的博客，一边完成博主布置的任务。这是看2.偏头痛杨的Java入门教学系列之变量&amp;amp;数据类型篇 的作业：">
+<meta name="twitter:title" content="Java小白进阶笔记(5)-进阶面向对象">
+<meta name="twitter:description" content="继续学习：7.偏头痛杨的Java入门教学系列之进阶面向对象篇">
   
     <link rel="alternative" href="/atom.xml" title="白水东城" type="application/atom+xml">
   
@@ -143,82 +143,140 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Java小白进阶笔记-2-变量和数据类型" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Java小白进阶笔记-5-进阶面向对象" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Java小白进阶笔记(2)-变量和数据类型
+      Java小白进阶笔记(5)-进阶面向对象
     </h1>
   
 
         
-        <a href="/2018/04/20/Java小白进阶笔记-2-变量和数据类型/" class="archive-article-date">
-  	<time datetime="2018-04-20T03:09:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-20</time>
+        <a href="/2018/04/22/Java小白进阶笔记-5-进阶面向对象/" class="archive-article-date">
+  	<time datetime="2018-04-22T14:10:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>复习Java知识，主要是一边看<strong>偏头痛杨</strong>的博客，一边完成博主布置的任务。这是看<a href="https://blog.csdn.net/piantoutongyang/article/details/70193622" target="_blank" rel="noopener">2.偏头痛杨的Java入门教学系列之变量&amp;数据类型篇</a> 的作业：<br><a id="more"></a></p>
-<h1 id="1-Java有多少种数据类型，数据类型的分类？"><a href="#1-Java有多少种数据类型，数据类型的分类？" class="headerlink" title="1.Java有多少种数据类型，数据类型的分类？"></a>1.Java有多少种数据类型，数据类型的分类？</h1><p>两种数据类型：</p>
+        <p>继续学习：<br><a href="https://blog.csdn.net/piantoutongyang/article/details/73176373" target="_blank" rel="noopener">7.偏头痛杨的Java入门教学系列之进阶面向对象篇</a> </p>
+<a id="more"></a>
+<p>上Java课的时候没弄明白接口，今天终于明白了（但没使用过，还停在理论的程度，可能理解也不准确，以后学通了会回来补充：）如果你刚学Java，对Java的三要素不能理解，强烈推荐看一下这篇文章。</p>
+<p>下面是看完<strong>偏头痛杨</strong>的这篇博客的摘要</p>
+<hr>
+<h1 id="继承（Inheritance，也称为泛化）"><a href="#继承（Inheritance，也称为泛化）" class="headerlink" title="继承（Inheritance，也称为泛化）"></a>继承（Inheritance，也称为泛化）</h1><h2 id="为什么要继承"><a href="#为什么要继承" class="headerlink" title="为什么要继承"></a>为什么要继承</h2><ul>
+<li>继承是面向对象编程实现软件复用的重要手段</li>
+<li>当子类被继承，子类作为一种特殊的父类，将直接获得父类的属性和方法，同时子类也可以<strong>增加自己的属性和方法</strong>，以及<strong>重新定义父类的属性</strong>，<strong>重写父类的方法</strong>以获得和父类方法实现的不同的功能。</li>
+<li>在类层次结构中，，对父类的改动自动反映在它所有的子类，子类的子类中，不需要修改或重新编译任何低层次的类，那些类通过继承而接收父类中新改变的信息，仅仅需要在层次结构中定义行为和属性一次，那么，以后将自动由所有子类所继承。</li>
+<li>继承有利于软件的复用，避免重复代码，提高开发效率。</li>
+</ul>
+<h2 id="什么时候会用到继承"><a href="#什么时候会用到继承" class="headerlink" title="什么时候会用到继承"></a>什么时候会用到继承</h2><p>（这里理解比较浅，以后对Java继承加深理解后再补充）</p>
 <ul>
-<li>基本数据类型</li>
-<li>引用数据类型<br>除了八种基本数据类型，其他的都是引用数据类型。</li>
+<li>当两个类具有相同的特征（属性）和行为（方法）时，可以将相同的部分抽取出来放到一个类中作为父类，然后这两个类作为这个父类的子类继承父类的属性和方法。</li>
 </ul>
-<h1 id="2-Java的工作机制？"><a href="#2-Java的工作机制？" class="headerlink" title="2.Java的工作机制？"></a>2.Java的工作机制？</h1><p>Java程序的源代码（.java）编译成虚拟机（JVM）能看懂的字节码（.class），然后再由虚拟机解释执行成对应的操作系统能看懂的机器码</p>
-<h1 id="3-自动类型转换与强制类型转换的规则？"><a href="#3-自动类型转换与强制类型转换的规则？" class="headerlink" title="3.自动类型转换与强制类型转换的规则？"></a>3.自动类型转换与强制类型转换的规则？</h1><ul>
-<li>从小到大<strong>自动转</strong></li>
-<li>从大到小<strong>强制转</strong></li>
+<h2 id="继承的一些注意事项"><a href="#继承的一些注意事项" class="headerlink" title="继承的一些注意事项"></a>继承的一些注意事项</h2><ul>
+<li>子类无法继承父类的构造方法</li>
+<li>Java只支持单继承（可以用接口变相实现多继承）</li>
+<li>父类中private的属性和方法无法被继承</li>
+<li>继承提高了类之间的耦合性</li>
+<li>所有的类默认继承java.lang.Object</li>
 </ul>
-<h2 id="自动类型转换："><a href="#自动类型转换：" class="headerlink" title="自动类型转换："></a>自动类型转换：</h2><ul>
-<li>byte-&gt;short-&gt;int-&gt;long-&gt;float-&gt;double</li>
-<li>char-&gt;int-&gt;long-&gt;float-&gt;double</li>
+<h3 id="特别的"><a href="#特别的" class="headerlink" title="特别的"></a>特别的</h3><ul>
+<li>实例化子类对象的时候总会在执行子类构造方法之前去调用父类的构造方法（先实例化父类，再实例化子类，如果继承的类很多则可能影响性能）</li>
+<li>如果父类中有无参构造，则默认先调用父类的无参构造（子类不用显示的调用super()）</li>
+<li>如果父类没有无参构造，则需显示的在子类构造中用super()来调用父类相应的构造，且必须在第一行调用</li>
+<li>如果父类中只有有参构造，而子类没有显示的去调用则会报错</li>
+<li>如果父类中只有有参构造，而子类显示的去调用父类的无参构造则也会报错</li>
 </ul>
-<h3 id="表达式类型的自动提升："><a href="#表达式类型的自动提升：" class="headerlink" title="表达式类型的自动提升："></a>表达式类型的自动提升：</h3><p>当表达式中有多个数据类型运算式，自动提升为容量最大的数据类型。</p>
+<h2 id="this和super关键字"><a href="#this和super关键字" class="headerlink" title="this和super关键字"></a>this和super关键字</h2><p>this()与super()必须定在在构造方法中，并且必须在第一行</p>
+<h3 id="super（）"><a href="#super（）" class="headerlink" title="super（）"></a>super（）</h3><p>调用父类的构造方法，只能出现在子类的构造器中，且必须是第一行。</p>
 <ul>
-<li>byte,short,char之间不会自动转换，首先都提升为int</li>
-<li>整个表达式的类型自动提升到与表达式中最高等级操作数同样的类型</li>
+<li>super()中的参数，决定了调用父类的那个构造方法</li>
+<li>如果子类的构造方法中没有出现super，那么编译器默认加上super()，即调用父类的无参构造，如果父类没有无参构造，编译器就会报错。</li>
 </ul>
-<h2 id="强制类型转换："><a href="#强制类型转换：" class="headerlink" title="强制类型转换："></a>强制类型转换：</h2><p>容量大的数据类型转换为容量小的数据类型时，需要强制类型转换</p>
+<h3 id="this"><a href="#this" class="headerlink" title="this()"></a>this()</h3><p>调用本类的构造方法</p>
+<p><strong>注意</strong>：</p>
 <ul>
-<li>语法：变量 = (目标类型)值。比如，int a=(int)b;</li>
-<li>整数类型进行强制转换时会发生溢出</li>
-<li>浮点数进行强制转换时会发生精度失准<br><strong>注意</strong>：</li>
-<li>boolean无法转换成其他数据类型</li>
-<li>char的字符被转成int，变成对应的ASCII值</li>
-<li>浮点数到整数的转换是通过舍弃小数得到，而不是四舍五入</li>
+<li>this()和super()不能出现在static的方法与static块中（这个不理解，感觉可能与加载顺序有关，以后回来补充）</li>
+<li>this()调用和super()调用不会同时出现</li>
 </ul>
-<h1 id="4-什么是变量，如何定义变量？"><a href="#4-什么是变量，如何定义变量？" class="headerlink" title="4.什么是变量，如何定义变量？"></a>4.什么是变量，如何定义变量？</h1><ul>
-<li>变量是指在程序的运行过程中随时可以发生变化的量，Java使用变量临时存储各种数据，是存储数据的基本单元.</li>
-<li>变量必须要先定义（声明），再初始化（也可以不初始化，有默认值），之后才能使用。必须为每个变量确定一个具体数据类型。</li>
+<h3 id="this-和super"><a href="#this-和super" class="headerlink" title="this. 和super."></a>this. 和super.</h3><ul>
+<li>super.指向父类的引用，我们可以通过super关键字来实现对父类成员的访问。</li>
+<li>this.指向本类的引用，我们可以通过this关键字来实现对本类成员的访问。</li>
 </ul>
-<h1 id="5-整型从小到大排序并且说出大小？"><a href="#5-整型从小到大排序并且说出大小？" class="headerlink" title="5.整型从小到大排序并且说出大小？"></a>5.整型从小到大排序并且说出大小？</h1><p>byte（1字节8位）short（2字节16位）int（4字节32位）long（8字节64位）</p>
-<h1 id="6-数据类型的默认值？"><a href="#6-数据类型的默认值？" class="headerlink" title="6.数据类型的默认值？"></a>6.数据类型的默认值？</h1><ul>
-<li>整数型：0</li>
-<li>浮点型：0.0</li>
-<li>字符型（char）：一个空的字符，即’\u0000’</li>
-<li>布尔型（boolean）：false</li>
-<li>引用数据类型：null，表示变量不引用任何对象</li>
+<h2 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h2><p><strong>final可以修饰的元素</strong>：</p>
+<ul>
+<li><strong>类</strong>：不能被继承，类被定义成final，那么类中所有的方法全部为final</li>
+<li><strong>方法</strong>：不能在子类中被覆盖（private方法除外，因为private方法不能被子类继承），即不能修改</li>
+<li><strong>变量</strong>：被final修饰，也就是常量</li>
 </ul>
-<h1 id="7-整型与浮点型的默认数据类型是什么？"><a href="#7-整型与浮点型的默认数据类型是什么？" class="headerlink" title="7.整型与浮点型的默认数据类型是什么？"></a>7.整型与浮点型的默认数据类型是什么？</h1><p>同上。</p>
-<h1 id="8-基本数据类型的包装类型分别是什么？"><a href="#8-基本数据类型的包装类型分别是什么？" class="headerlink" title="8.基本数据类型的包装类型分别是什么？"></a>8.基本数据类型的包装类型分别是什么？</h1><p>8种基本数据类型还对应着8种包装类，包装类里有一些常见属性。基本数据类型与包装类型的初始值不同，例如int的初始值为0，<br>而包装类则为null。<br>对应关系：<br>byte-&gt;Byte<br>short-&gt;Short<br><strong>int-&gt;Integer</strong><br>long -&gt;Long<br>float-&gt;Float<br>double-Double<br><strong>char-&gt;Character</strong><br>boolean-&gt;Boolean</p>
-<h1 id="9-如何定义一个常量？"><a href="#9-如何定义一个常量？" class="headerlink" title="9.如何定义一个常量？"></a>9.如何定义一个常量？</h1><ul>
-<li>Java中使用final关键字来修饰常量</li>
-<li>常量的字母要全部大写</li>
+<h2 id="包（package）"><a href="#包（package）" class="headerlink" title="包（package）"></a>包（package）</h2><ul>
+<li>包主要用来对类和接口进行分类</li>
+<li>与文件夹类似，把Java类文件放到不同包（文件夹）中，不同的报下，文件名可以重复</li>
+<li>与包相关的语句：1.打包语句package；2.引用包语句import</li>
+<li>package语句必须写在第一行，不写的话，默认放在默认路径下，也就是src根目录</li>
+<li>使用import访问第三方或者其他包中的类，如果这个类与本类在同一个包中则不需要import</li>
 </ul>
-<h2 id="基本数据类型："><a href="#基本数据类型：" class="headerlink" title="基本数据类型："></a>基本数据类型：</h2><pre><code>final String NAME = &quot;Jack&quot;;//无法修改NAME的值
-</code></pre><h2 id="引用数据类型："><a href="#引用数据类型：" class="headerlink" title="引用数据类型："></a>引用数据类型：</h2><ul>
-<li>可以修改其引用对象的属性，但不可以修改对象的引用</li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//package 包名;</span><br><span class="line">//package 包名.子包名.子子包名;</span><br><span class="line"></span><br><span class="line">package com.webi.hwj.weixin.controller;</span><br><span class="line"></span><br><span class="line">public class WeixinHandleController &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">import 包名;</span><br><span class="line">import 包名.子包名.子子包名;</span><br><span class="line">package com.webi.hwj.weixin.controller;</span><br><span class="line"></span><br><span class="line">import org.apache.log4j.Logger;</span><br><span class="line"></span><br><span class="line">public class WeixinHandleController &#123;</span><br><span class="line">  Logger logger = Logger.getLogger(WeixinHandleController.class);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h1><p>将对象实现的细节（属性和方法）隐藏起来，然后通过一些公用方法来暴露该对象的功能。</p>
+<h2 id="为什么要封装"><a href="#为什么要封装" class="headerlink" title="为什么要封装"></a>为什么要封装</h2><p>开发者让使用者只能通过事先定制好的方法来访问数据，可以方便地加入控制逻辑，限制对属性的不合理操作。</p>
+<h2 id="如何实现封装"><a href="#如何实现封装" class="headerlink" title="如何实现封装"></a>如何实现封装</h2><p><strong>Java的访问控制符</strong><br>从小到大：private，default，protected，public<br>范围：同一类，同一包，子类，全局范围（同一项目）</p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ul>
+<li>类的控制级别只有public和default，成员变量与方法四个都有</li>
+<li>如果类的构造方法为private，则其他类均不能生成该类的实例（自己类内部可以）</li>
+<li><strong>Java类中一般会使用private来修饰成员变量，来防止外部调用</strong></li>
 </ul>
-<pre><code>final Person P1 = new Person();
-P1.name = &quot;Jack&quot;;
-P1.name = &quot;Rose&quot;;//It&#39;s ok!
-P1 = null;//错误！不可以修改对象的引用
-</code></pre><h1 id="10-JDK-amp-JRE-amp-JVM分别是什么以及他们的关系？"><a href="#10-JDK-amp-JRE-amp-JVM分别是什么以及他们的关系？" class="headerlink" title="10.JDK&amp;JRE&amp;JVM分别是什么以及他们的关系？"></a>10.JDK&amp;JRE&amp;JVM分别是什么以及他们的关系？</h1><p>JDk是开发集成工具，JRE是java运行环境，JVM是Javaxu’ni’j<br>JDK&gt;JRE&gt;JVM<br>三者关系详细见<a href="https://yq.aliyun.com/articles/582454?spm=a2c4e.11155435.0.0.154f3312L2KXUR" target="_blank" rel="noopener">上一篇博客</a></p>
+<h2 id="模块设计追求高内聚、低耦合。"><a href="#模块设计追求高内聚、低耦合。" class="headerlink" title="模块设计追求高内聚、低耦合。"></a>模块设计追求高内聚、低耦合。</h2><p><strong>高内聚</strong>：尽可能把模块的内部数据、功能实现细节隐藏在模块的内部独立完成，不允许外部直接干涉。<br><strong>低耦合</strong>：仅暴露少量的方法给外部使用。</p>
+<h2 id="方法的覆盖"><a href="#方法的覆盖" class="headerlink" title="方法的覆盖"></a>方法的覆盖</h2><h3 id="重写（overriding）"><a href="#重写（overriding）" class="headerlink" title="重写（overriding）"></a>重写（overriding）</h3><p>在父子类继承情况下，子类写出一个跟父类一摸一样的方法，方法体内可以修改，这就是重写。<br><strong>优势</strong>：子类可以根据需要，定义特定与自己的行为，即子类可以根据需要实现父类的方法<br><strong>注意</strong>：子类中写的要覆盖父类的方法的访问权限要不小于父类中被覆盖方法的访问权限</p>
+<h3 id="重载（overloading）"><a href="#重载（overloading）" class="headerlink" title="重载（overloading）"></a>重载（overloading）</h3><p>在同一个类中，新写一个方法，方法名跟某一个老方法一样，但<strong>参数必须不一样，返回值可能也不一样</strong>，这就是新方法重载了老方法。<br><strong>比较常见的重载方式是重载构造方法</strong></p>
+<h1 id="多态（Polymorphism）"><a href="#多态（Polymorphism）" class="headerlink" title="多态（Polymorphism）"></a>多态（Polymorphism）</h1><p>多态是建立在继承的基础上的，是指子类类型的对象可以赋值给父类类型的引用变量，但运行时仍表现子类的行为特征。<br><strong>也就是说，同一中类型的对象执行同一个方法时可以表现出不同的行为特征。</strong></p>
+<h2 id="为什么要使用多态"><a href="#为什么要使用多态" class="headerlink" title="为什么要使用多态"></a>为什么要使用多态</h2><p>可以增强程序的可扩展性及可维护性，使代码更加简洁。<br><strong>作用</strong>：在方法传递引用数据类型的时候，使方法内部的代码更具有可维护性，当有新增子类时，方法内部的代码不用去修改，进一步的使用抽象的概念。</p>
+<p><strong>java引用变量有两个类型</strong>：一个是编译时类型，一个是运行时类型。<br><strong>编译时类型由声明该变量时使用的类型决定</strong>，<strong>运行时类型由实际赋给该变量的对象决定</strong>，如果编译时类型与运行时类型不一致，就可能会出现所谓的<strong>多态</strong>。</p>
+<p>多态的三个必要条件：</p>
+<ul>
+<li>要有类继承或实现接口</li>
+<li>要有方法重写</li>
+<li>父类引用指向子类对象（或接口引用指向实现类对象）。</li>
+</ul>
+<p>满足条件后，当调用父类中被重写的方法后，运行时创建的是哪个子类的对象，就调用该子类中重写的那个方法。</p>
+<h3 id="注意-1"><a href="#注意-1" class="headerlink" title="注意"></a>注意</h3><ul>
+<li>在<strong>多态情况下</strong>，<strong>父类的成员变量无法被子类覆盖</strong>，因此需要使用setter/getter方法。</li>
+<li>在<strong>继承情况下</strong>，<strong>父类的成员变量可以被子类覆盖</strong>。</li>
+<li>在多态情况下，子类有重写父类方法的情况，则调用子类方法。</li>
+<li>多态情况下，对象无法调用子类独有的方法与属性，只能调用编译类型的成员。</li>
+</ul>
+<h2 id="抽象类、抽象方法"><a href="#抽象类、抽象方法" class="headerlink" title="抽象类、抽象方法"></a>抽象类、抽象方法</h2><h3 id="抽象方法"><a href="#抽象方法" class="headerlink" title="抽象方法"></a>抽象方法</h3><p>可以只有方法定义，没有方法实现的方法，抽象方法由子类来实现。<br><strong>子类必须实现父类的抽象方法，否则报错，但如果子类也是抽象类就没问题了</strong></p>
+<h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><p>抽象类是从多个具体类中抽象出来的父类，它具有更高层次的抽象。从多个具有相同特征的类中抽象出一个抽象类，以这个抽象类<strong>作为其子类的模板</strong>，从而避免了子类设计的随意性。</p>
+<p><strong>注意</strong>：</p>
+<ul>
+<li>抽象类不能实例化，即不能new，抽象类的构造方法不能用于创建实例，而是用于被子类调用。<strong>可以这么理解</strong>：抽象类，既然还是抽象类，那怎么能实例化呢？比如说你跟老板说买十斤“鱼”，这个老板就为难了，“鱼”是一个抽象的概念，应该说清楚，买鲤鱼还是鲢鱼（也就是被子类调用）。</li>
+<li>static、final、private方法与构造方法不能被声明为抽象方法</li>
+<li>抽象类中可以有非抽象方法，但含有抽象类的方法一定是抽象方法。</li>
+<li>抽象类允许有构造方法（不是抽象方法），在子类实例化对象时会自动调用父类的构造方法</li>
+</ul>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p><strong>接口是抽象类的变体</strong>，在接口中，所有方法都是抽象的，多继承性可通过实现这样的接口而获得。<br>接口就是标准（一些类需要遵守的规范），是用来隔离具体实现的（或者说是和具体实现解耦）。</p>
+<p>程序接口的使用就将调用者和提供者之间进行了解耦，只要实现者遵守这个接口来做实现就好，实现细节不用管。比如说U盘，不需要关注U盘里存放的内容与不同电脑的兼容性，只要USB接口一样就OK。</p>
+<h3 id="注意-2"><a href="#注意-2" class="headerlink" title="注意"></a>注意</h3><ul>
+<li><strong>接口不是类</strong>，不能被实例化也没有构造方法，但抽象类有构造方法。</li>
+<li>接口内所有的属性均默认为public static final，只能在定义时指定默认值。</li>
+<li>接口内所有的方法均默认为public abstract，不能用static&amp;final。</li>
+<li><strong>接口内不允许有正常方法（带方法体的方法）</strong>。</li>
+<li>接口可以同时继承多个父接口，但<strong>接口只能继承接口</strong>，不能继承类。</li>
+<li>方法提供者与方法调用者有可能是一个人也可能是不同的人（可以理解成，写一个接口，可以被自己调用也可以被别人调用）。</li>
+<li>一个java源文件中最多只能有一个public接口，并且文件名与接口名相同。</li>
+</ul>
+<h3 id="类实现接口（implements）"><a href="#类实现接口（implements）" class="headerlink" title="类实现接口（implements）"></a>类实现接口（implements）</h3><p><strong>类一旦实现接口，就必须实现其所有方法，否则这个类必须声明为抽象类</strong>。<br>一个类可以只能继承一个类，但可以实现多个接口。<br><strong>多个无关的类可以实现一个接口，一个类可以实现多个无关的接口</strong>。<br>一个类可以在继承一个父类的同时，实现一个或多个接口。</p>
+<h3 id="接口与抽象类的区别"><a href="#接口与抽象类的区别" class="headerlink" title="接口与抽象类的区别"></a>接口与抽象类的区别</h3><ul>
+<li>接口不能含有任何非抽象方法，而抽象类可以。（JDK8以及以上除外）</li>
+<li>类可以实现多个接口，但只能继承一个父类。</li>
+<li>接口不是类分级结构的一部分，<strong>没有联系的类可以实现相同的接口。</strong>（这也是<strong>接口的优势</strong>之一）</li>
+</ul>
+<hr>
+<p>更多的请看<a href="https://blog.csdn.net/piantoutongyang/article/details/73176373" target="_blank" rel="noopener">原博客</a>，这里简单的摘了一些。以便以后快速拾起来。</p>
 
       
 
@@ -319,7 +377,7 @@ P1 = null;//错误！不可以修改对象的引用
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http:baishuidongcheng.com/2018/04/20/Java小白进阶笔记-2-变量和数据类型/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http:baishuidongcheng.com/2018/04/22/Java小白进阶笔记-5-进阶面向对象/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -333,18 +391,9 @@ P1 = null;//错误！不可以修改对象的引用
   
 <nav id="article-nav">
   
-    <a href="/2018/04/20/Java小白进阶笔记-3-初级面向对象/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Java小白进阶笔记(3)-初级面向对象
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/04/20/查查Z陪你学英语-9/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">查查Z陪你学英语-9</div>
+    <a href="/2018/04/22/查查Z陪你学英语-11/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">查查Z陪你学英语-11</div>
       <i class="icon-circle-right"></i>
     </a>
   
