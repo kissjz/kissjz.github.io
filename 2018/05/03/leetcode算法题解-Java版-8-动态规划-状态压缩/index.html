@@ -6,23 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="baishuidongcheng.com">
-  <title>支持向量机-2 | 白水东城</title>
+  <title>leetcode算法题解(Java版)-8-动态规划+状态压缩 | 白水东城</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="上篇博客 机器学习入门|支持向量机（一） 提到了SMO算法，这是用来求解优化函数变为关于拉格朗日乘子的二次规划问题的，是由Microsoft Research的John C.Platt在1998年发表的论文《Sequential Minimal Optimaization A Fast Algorithm for Training Support Vector Machines》中提出的，是最快的">
-<meta name="keywords" content="机器学习">
+  <meta name="description" content="一、树题目描述123456Given a binary tree     struct TreeLinkNode &amp;#123;      TreeLinkNode *left;      TreeLinkNode *right;      TreeLinkNode *next;    &amp;#125;">
+<meta name="keywords" content="leetcode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="支持向量机-2">
-<meta property="og:url" content="baishuidongcheng.com/2018/04/08/支持向量机-2/index.html">
+<meta property="og:title" content="leetcode算法题解(Java版)-8-动态规划+状态压缩">
+<meta property="og:url" content="baishuidongcheng.com/2018/05/03/leetcode算法题解-Java版-8-动态规划-状态压缩/index.html">
 <meta property="og:site_name" content="白水东城">
-<meta property="og:description" content="上篇博客 机器学习入门|支持向量机（一） 提到了SMO算法，这是用来求解优化函数变为关于拉格朗日乘子的二次规划问题的，是由Microsoft Research的John C.Platt在1998年发表的论文《Sequential Minimal Optimaization A Fast Algorithm for Training Support Vector Machines》中提出的，是最快的">
+<meta property="og:description" content="一、树题目描述123456Given a binary tree     struct TreeLinkNode &amp;#123;      TreeLinkNode *left;      TreeLinkNode *right;      TreeLinkNode *next;    &amp;#125;">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/7f4879cf371f1a4e21b4e28c4758edb254ddb876%20%281%29.png_wm">
-<meta property="og:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/41b88087e575426134aada316e2695c3b9540833.gif_wm">
-<meta property="og:updated_time" content="2018-04-08T13:15:45.537Z">
+<meta property="og:updated_time" content="2018-05-03T14:10:41.750Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="支持向量机-2">
-<meta name="twitter:description" content="上篇博客 机器学习入门|支持向量机（一） 提到了SMO算法，这是用来求解优化函数变为关于拉格朗日乘子的二次规划问题的，是由Microsoft Research的John C.Platt在1998年发表的论文《Sequential Minimal Optimaization A Fast Algorithm for Training Support Vector Machines》中提出的，是最快的">
-<meta name="twitter:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/7f4879cf371f1a4e21b4e28c4758edb254ddb876%20%281%29.png_wm">
+<meta name="twitter:title" content="leetcode算法题解(Java版)-8-动态规划+状态压缩">
+<meta name="twitter:description" content="一、树题目描述123456Given a binary tree     struct TreeLinkNode &amp;#123;      TreeLinkNode *left;      TreeLinkNode *right;      TreeLinkNode *next;    &amp;#125;">
   
     <link rel="alternative" href="/atom.xml" title="白水东城" type="application/atom+xml">
   
@@ -146,50 +143,62 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-支持向量机-2" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-leetcode算法题解-Java版-8-动态规划-状态压缩" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      支持向量机-2
+      leetcode算法题解(Java版)-8-动态规划+状态压缩
     </h1>
   
 
         
-        <a href="/2018/04/08/支持向量机-2/" class="archive-article-date">
-  	<time datetime="2018-04-07T16:44:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-08</time>
+        <a href="/2018/05/03/leetcode算法题解-Java版-8-动态规划-状态压缩/" class="archive-article-date">
+  	<time datetime="2018-05-03T14:08:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-03</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>上篇博客 <a href="https://baishuidongcheng.com/2018/04/07/支持向量机/">机器学习入门|支持向量机（一）</a> 提到了<strong>SMO算法</strong>，这是用来<strong>求解优化函数变为关于拉格朗日乘子的二次规划问题的</strong>，是由Microsoft Research的John C.Platt在1998年发表的论文《Sequential Minimal Optimaization A Fast Algorithm for Training Support Vector Machines》中提出的，是最快的二次规划优化算法，特别是在针对线性SVM和数据稀疏等问题时更表现出强大的性能。<br>单看周志华《机器学习》的那一节，远不足以透彻了解算法的详细过程，也搜到了介绍SMO的博客，<strong>数学功底实在太渣＞﹏＜</strong>总的了解完机器学习几大算法之后，回头再看支持向量机的时候，把那Platt的那篇论文看一下。现在，暂且跳过SMO，其基本思路是先固定$\alpha_{i}$之外的所有参数，然后求$\alpha_{i}$上的极值。<br><a id="more"></a></p>
-<h1 id="核函数"><a href="#核函数" class="headerlink" title="核函数"></a>核函数</h1><p>好了，经过之前的介绍，我们能解决训练样本是线性可分的，即存在一个划分超平面能将训练样本正确分类。然而，在现实任务中，原始样本空间也许并不存在一个能正确划分两类样本的超平面。就像上一篇一开始提到的，<strong>对原空间进行升维，把在本来维度上不可用一个平面分割的类别在更高的维度可分</strong>。也许你还记得这张图<br><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/7f4879cf371f1a4e21b4e28c4758edb254ddb876%20%281%29.png_wm" alt="6298996_4fc35cedc0742800_1_"></p>
-<p>加深一下印象，再看一张！自己体会<br><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/41b88087e575426134aada316e2695c3b9540833.gif_wm" alt="1364952814_3505_1_"></p>
-<p>对！将样本从原始空间映射到一个更高维的特征空间，就能实现线性的划分。我们把原先的样本点从二维空间映射到了三维空间之后，便可以很方便的找到一个超平面将两类样本点划分开。划分开之后，我们再重新将样本点以及划分平面从高维映射到低维，便完成了分类任务。可以肯定的是，<strong>如果原始空间是有限维的，即属性数有限，那么一定存在一个高维特征空间是样本可分</strong>。<br>令$\phi(\boldsymbol{x})$表示将$\boldsymbol{x}$映射后的特征向量，于是，在特征空间中划分超平面所对应的模型可表示为 <script type="math/tex">f(\boldsymbol{x})=\boldsymbol{\omega}^{T}\phi(\boldsymbol{x})+b</script>同样的（也就是把上文的$\boldsymbol{x}$替换为$\phi(\boldsymbol{x})$）有<script type="math/tex">\left\{\begin{matrix} \underset{\boldsymbol{\omega},b}{min}\frac{1}{2}||\boldsymbol{\omega}||^{2}\\ s.t. y_{i} (\boldsymbol{\omega}^{T}\phi(\boldsymbol{x}_{i})+b ) \geqslant 1 ,i = 1,2,...,m\end{matrix}\right.\;</script>其<strong>对偶问题</strong><script type="math/tex">\underset{\alpha}{max}\sum_{i = 1}^{n}\alpha_{i}- \frac{1}{2} \sum_{i= 1}^{m}\sum_{j=1}^{m}\alpha_{i}\alpha_{j}y_{i}y_{j}\phi(\boldsymbol{x}_{i})^{T}\phi(\boldsymbol{x}_{j})\;</script></p>
-<script type="math/tex; mode=display">s.t.\;\sum_{i=1}^{m}\alpha_{i}y_{i}=0,\;\alpha_{i}\geqslant0,i=1,2...,m.</script><p>上式中涉及到计算$\phi(\boldsymbol{x}_{i})^{T}\phi(\boldsymbol{x}_{j})$ ，这是样本$\boldsymbol{x}_{i}$和$\boldsymbol{x}_{j}$映射到特征空间之后的内积。由于特征空间的维度可能很高，甚至是无穷维，因此直接计算很困难，就可以设想这样一个函数</p>
-<script type="math/tex; mode=display">\kappa (\boldsymbol{x}_{i},\boldsymbol{x}_{j})=\left \langle \phi(\boldsymbol{x}_{i}),\phi(\boldsymbol{x}_{j}) \right \rangle=\phi(\boldsymbol{x}_{i})^{T}\phi(\boldsymbol{x}_{j})</script><p>即$\boldsymbol{x}_{i}$和$\boldsymbol{x}_{j}$在特征空间的内积等于它们在原始样本空间中通过函数$kappa(\cdot,\cdot)$计算的结果。这个函数就是鼎鼎大名的——核函数（kernel function）。于是，可以将对偶问题重新写为</p>
-<script type="math/tex; mode=display">\underset{\alpha}{max}\sum_{i = 1}^{n}\alpha_{i}- \frac{1}{2} \sum_{i= 1}^{m}\sum_{j=1}^{m}\alpha_{i}\alpha_{j}y_{i}y_{j}\kappa (\boldsymbol{x}_{i},\boldsymbol{x}_{j})\;</script><script type="math/tex; mode=display">s.t.\;\sum_{i=1}^{m}\alpha_{i}y_{i}=0,\;\alpha_{i}\geqslant0,i=1,2...,m.</script><p>求解后即可得到划分超平面</p>
-<script type="math/tex; mode=display">f(\boldsymbol{x})=\boldsymbol{\omega}^{T}\phi(\boldsymbol{x})+b</script><script type="math/tex; mode=display">==\sum_{i=1}^{m}\alpha_{i}y_{i}\phi(\boldsymbol{x}_{i})^{T}\phi(\boldsymbol{x}_{j})+b\;</script><script type="math/tex; mode=display">==\sum_{i=1}^{m}\alpha_{i}y_{i}\kappa (\boldsymbol{x}_{i},\boldsymbol{x}_{j})+b\;.(1)</script><p>式（1）显示出模型最优解可以通过训练样本的核函数展开，这一展式亦称为“支持向量展式”（support vector expansion）。<br>当然，如果我们知道合适映射$\phi(\cdot)$的具体形式，则可写出核函数$\kappa(\cdot,\cdot).$但现实任务中我们通常不知道$\phi(\cdot)$是什么形式，那么合适的核函数是否一定存在（之前说过如果原始空间是有限维的那么一定存在）?什么样的函数能做核函数？我们有一下定理:<br>核函数： 令$\chi$为输入空间，$\kappa(\cdot,\cdot).$是定义在$\chi \times \chi$上的对称函数，则$\kappa$是核函数当且仅当对于任意数据$D=\left\{\boldsymbol{x}_{1},\boldsymbol{x}_{2},…,\boldsymbol{x}_{m}\right\},$“核矩阵”（kernel matrix）$\mathbf{K}$<br>总是半正定的：</p>
-<script type="math/tex; mode=display">
-\mathbf{K}=\begin{bmatrix}\kappa (\boldsymbol{x}_{1},\boldsymbol{x}_{1}) & \cdots & \kappa (\boldsymbol{x}_{1},\boldsymbol{x}_{j})& \cdots &\kappa (\boldsymbol{x}_{1},\boldsymbol{x}_{m}) \\
-\vdots & \ddots & \vdots & \ddots & \vdots \\
-\kappa (\boldsymbol{x}_{i},\boldsymbol{x}_{1})& \cdots & \kappa (\boldsymbol{x}_{i},\boldsymbol{x}_{j}) & \cdots &\kappa (\boldsymbol{x}_{i},\boldsymbol{x}_{m}) \\
-\vdots & \ddots & \vdots & \ddots &\vdots \\
-\kappa (\boldsymbol{x}_{m},\boldsymbol{x}_{1})& \cdots & \kappa (\boldsymbol{x}_{m},\boldsymbol{x}_{j}) & \cdots & \kappa (\boldsymbol{x}_{m},\boldsymbol{x}_{m})
-\end{bmatrix}</script><p>上式表明，只要一个对称函数所对应的核矩阵半正定，它就能作为核函数使用。事实上，对于一个半正定核矩阵，总能找到一个与之对应的映射$\kappa$。换言之，任何一个核函数都隐式地定义了一个称为“再生和希尔伯特空间”（Reproducing Kernel Hilbert Space，简称RKHS）的特征空间。<br>通过前面的讨论可知，我们希望样本在特征空间内线性可分，因此特征空间的好坏对支持向量机的性能至关重要。需要注意的是，在不知道特征映射的形式时，我们并不知道什么样的核函数时合适的，而核函数也仅是隐式地定义了这个特征空间。于是“<strong>核函数选择“成为非线性划分情况下影响支持向量机分类性能的最大变数</strong>。若选择了一个不合适的核函数，则意味着将样本映射到了一个不合适的特征空间，从而导致性能不佳。<br>常用的核函数有：<a href="http://blog.csdn.net/xiaowei_cqu/article/details/35993729" target="_blank" rel="noopener">SVM核函数</a><br>最后引用别人博客的一段，梳理一下核函数的引入：</p>
+        <h1 id="一、树"><a href="#一、树" class="headerlink" title="一、树"></a>一、树</h1><p><strong>题目描述</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Given a binary tree </span><br><span class="line">    struct TreeLinkNode &#123;</span><br><span class="line">      TreeLinkNode *left;</span><br><span class="line">      TreeLinkNode *right;</span><br><span class="line">      TreeLinkNode *next;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set toNULL.<br>Initially, all next pointers are set toNULL.<br>Note:<br>You may only use constant extra space.<br>You may assume that it is a perfect binary tree (ie, all leaves are at the same level, and every parent has two children). </p>
+<p>For example,<br>Given the following perfect binary tree,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">     1</span><br><span class="line">   /  \</span><br><span class="line">  2    3</span><br><span class="line"> / \  / \</span><br><span class="line">4  5  6  7</span><br></pre></td></tr></table></figure></p>
+<p>After calling your function, the tree should look like:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">     1 -&gt; NULL</span><br><span class="line">   /  \</span><br><span class="line">  2 -&gt; 3 -&gt; NULL</span><br><span class="line"> / \  / \</span><br><span class="line">4-&gt;5-&gt;6-&gt;7 -&gt; NULL</span><br></pre></td></tr></table></figure></p>
+<p><strong>思路</strong></p>
 <ul>
-<li>问题1：<br>SVM显然是线性分类器，但数据如果根本就线性不可分怎么办？</li>
-<li>解决方案1：<br>数据在原始空间（称为输入空间）线性不可分，但是映射到高维空间（称为特征空间）后很可能就线性可分了。</li>
-<li>问题2：<br>映射到高维空间同时带来一个问题：在高维空间上求解一个带约束的优化问题显然比在低维空间上计算量要大得多，这就是所谓的“维数灾难”。</li>
-<li>解决方案2：<br>于是就引入了“核函数”，核函数的价值在于它虽然也是将特征进行从低维到高维的转换，但却方便计算。</li>
+<li>题目的意思可能看文字有点不明白，没关系！看明白它给的两个图就行了，就是图上描绘的意思。</li>
+<li>这道题有点像链表，二叉树中多了个链表，其实解法也应该往链表上去想，一般考虑用<strong>两个指针</strong>一个当前的，控制外部循环，一个是移动的，控制内部小循环。二叉树不断往下走，一边走一边从左向右实现同一层节点之间链表的链接</li>
 </ul>
-<p>在所有之前的讨论中，我们都一直假定训练样本在样本空间或特征空间式线性可分的，不允许任何一个样本划分错，这样会导致过拟合，所以我们就允许支持向量机在一些样本上出错，为此，要引入“<strong>软间隔</strong>”（soft margin）。<br>至于“软间隔”就先丢一边了，明天开始搞——神经网络！</p>
-<p>PS：欢迎访问我们的wordpress博客╰(￣ω￣ｏ) <a href="https://baishuidongcheng.com/2018/04/08/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA-2/">白水东城-机器学习入门：支持向量机（二）</a></p>
-<p>参考：<br><a href="http://blog.csdn.net/u011067360/article/details/25503073" target="_blank" rel="noopener">流水无Qing-支持向量机（四）— 核函数</a><br>周志华《机器学习》</p>
+<p><strong>代码</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for binary tree with next pointer.</span></span><br><span class="line"><span class="comment"> * public class TreeLinkNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeLinkNode left, right, next;</span></span><br><span class="line"><span class="comment"> *     TreeLinkNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connect</span><span class="params">(TreeLinkNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        TreeLinkNode p=root;</span><br><span class="line">        TreeLinkNode q=root;</span><br><span class="line">        <span class="keyword">while</span>(p.left!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            q=p;</span><br><span class="line">            <span class="keyword">while</span>(q!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                q.left.next=q.right;</span><br><span class="line">                <span class="keyword">if</span>(q.next!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                    q.right.next=q.next.left; </span><br><span class="line">                &#125;</span><br><span class="line">                q=q.next;</span><br><span class="line">            &#125;</span><br><span class="line">            p=p.left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="二、动态规划"><a href="#二、动态规划" class="headerlink" title="二、动态规划"></a>二、动态规划</h1><p><strong>题目描述</strong></p>
+<p>Given a string S and a string T, count the number of distinct subsequences of T in S.<br>A subsequence of a string is a new string which is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (ie,”ACE”is a subsequence of”ABCDE”while”AEC”is not).<br>Here is an example:<br>S =”rabbbit”, T =”rabbit”<br>Return3. </p>
+<p><strong>思路</strong></p>
+<ul>
+<li>又是典型的动态规划~~重新的复习了一下：</li>
+</ul>
+<h2 id="动态规划："><a href="#动态规划：" class="headerlink" title="动态规划："></a>动态规划：</h2><p>参考：<a href="https://blog.csdn.net/baidu_28312631/article/details/47418773" target="_blank" rel="noopener">CSDN</a></p>
+<h3 id="动态规划解题的一般思路："><a href="#动态规划解题的一般思路：" class="headerlink" title="动态规划解题的一般思路："></a>动态规划解题的一般思路：</h3><ul>
+<li>将原问题分解为子问题：子问题和原问题类似</li>
+<li>确定状态：即是dp数组，存储了子问题的状态</li>
+<li>确定初始状态（边界）的值：这个需要想一下，但其实一般都是由套路的，比如都是0或者都是1。实在不知道，可以用几个值试一试</li>
+<li>写出状态转移方程</li>
+</ul>
+<h3 id="动态规划解题的特点："><a href="#动态规划解题的特点：" class="headerlink" title="动态规划解题的特点："></a>动态规划解题的特点：</h3><ul>
+<li>问题具有最优子结构：如果原问题的最优解也是子问题的最优解。</li>
+<li>无后效性：当前的状态之和它之前的某些特定位置的状态有关，和路径等无关，即后来产生的值不会影响前面已经确定的值。</li>
+</ul>
+<h3 id="回到题目中来"><a href="#回到题目中来" class="headerlink" title="回到题目中来"></a>回到题目中来</h3><ul>
+<li>好了，那么来看这一道题：首先可以分解为子问题，而且子问题的最优解也是原问题的最优解。</li>
+<li>dp[i][j]就是所谓的子问题，也是<strong>状态空间</strong>，表示S[0~i-1]中包含的T[0~j-1]的subsequences（这个定义看题目）数目。然后具体分析请看代码</li>
+<li>推荐在草稿画出dp数组，一边看代码一边填dp。</li>
+</ul>
+<p><strong>代码</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numDistinct</span><span class="params">(String S, String T)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> lenS=S.length();</span><br><span class="line">        <span class="keyword">int</span> lenT=T.length();</span><br><span class="line">        <span class="keyword">if</span>(lenS==<span class="number">0</span>||lenT==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> row=lenS+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> col=lenT+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> [][] dp=<span class="keyword">new</span> <span class="keyword">int</span> [row][col];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;col;i++)&#123;</span><br><span class="line">            dp[<span class="number">0</span>][i]=<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;row;j++)&#123;</span><br><span class="line">            dp[j][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;row;i++)&#123;</span><br><span class="line">            <span class="comment">//这里在纸上画字符串数组分析的时候，把字符串的下表可以从“1”开始，便于思维理解</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;col;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(S.charAt(i-<span class="number">1</span>)==T.charAt(j-<span class="number">1</span>))&#123;</span><br><span class="line">                    dp[i][j]=dp[i-<span class="number">1</span>][j-<span class="number">1</span>]+dp[i-<span class="number">1</span>][j];<span class="comment">//这里可能稍微难理解，</span></span><br><span class="line">                    <span class="comment">//要记住这一步的目的是解决字符串可以是不连续的，只要满足在原来串中顺序不变即可称为subsequence</span></span><br><span class="line">                    <span class="comment">//结合这个区想这一步为啥这么相加，就能理解了，我是用这个笨方法想的。。。</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    dp[i][j]=dp[i-<span class="number">1</span>][j];<span class="comment">//既然S[i-1]和T[j-1]不一样，那么不妨不要S[i]，</span></span><br><span class="line">                    <span class="comment">//可不能也不要T[j]噢，因为我们的目标是找到S中包含T的所有subsequences</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[row-<span class="number">1</span>][col-<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>状态压缩+细节优化过的代码</strong><br>详细见代码注释，动态规划一般都是可以压缩一下状态的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numDistinct</span><span class="params">(String S, String T)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> lenS=S.length();</span><br><span class="line">        <span class="keyword">int</span> lenT=T.length();</span><br><span class="line">        <span class="keyword">if</span>(lenS==<span class="number">0</span>||lenT==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> col=lenT+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> row=lenS+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> dp[]=<span class="keyword">new</span> <span class="keyword">int</span>[col];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;col;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i==<span class="number">0</span>)&#123;</span><br><span class="line">                dp[i]=<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            dp[i]=<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;row;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=j=Math.min(i,col-<span class="number">1</span>);j&gt;<span class="number">0</span>;j--)&#123;</span><br><span class="line">                <span class="comment">//其实这里还能再优化，写成 "j=Math.min(i,col-1)"</span></span><br><span class="line">                <span class="comment">//因为S[0~i]不可能包含长度比他大的T[0~j]</span></span><br><span class="line">                <span class="keyword">if</span>(S.charAt(i-<span class="number">1</span>)==T.charAt(j-<span class="number">1</span>))&#123;</span><br><span class="line">                    dp[j]=dp[j-<span class="number">1</span>]+dp[j];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    dp[j]=dp[j];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[col-<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -234,7 +243,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
         		</li>
       		
 		</ul>
@@ -290,7 +299,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http:baishuidongcheng.com/2018/04/08/支持向量机-2/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http:baishuidongcheng.com/2018/05/03/leetcode算法题解-Java版-8-动态规划-状态压缩/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -304,18 +313,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/04/08/支持向量机-3/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/05/04/查查Z陪你学英语-23/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          支持向量机-3
+          查查Z陪你学英语-23
         
       </div>
     </a>
   
   
-    <a href="/2018/04/07/支持向量机/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">支持向量机</div>
+    <a href="/2018/05/03/查查Z陪你学英语-22/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">查查Z陪你学英语-22</div>
       <i class="icon-circle-right"></i>
     </a>
   
