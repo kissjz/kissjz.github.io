@@ -6,22 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="baishuidongcheng.com">
-  <title>查查Z陪你学英语-17 | 白水东城</title>
+  <title>leetcode算法题解(Java版)-9-N皇后问题 | 白水东城</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="gogogo!">
-<meta name="keywords" content="英语">
+  <meta name="description" content="一、贪心题目描述 Find the contiguous subarray within an array (containing at least one number) which has the largest sum.For example, given the array[−2,1,−3,4,−1,2,1,−5,4],the contiguous subarray[4,−1,2,1]ha">
+<meta name="keywords" content="leetcode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="查查Z陪你学英语-17">
-<meta property="og:url" content="baishuidongcheng.com/2018/04/28/查查Z陪你学英语-17/index.html">
+<meta property="og:title" content="leetcode算法题解(Java版)-9-N皇后问题">
+<meta property="og:url" content="baishuidongcheng.com/2018/05/04/leetcode算法题解-Java版-9-N皇后问题/index.html">
 <meta property="og:site_name" content="白水东城">
-<meta property="og:description" content="gogogo!">
+<meta property="og:description" content="一、贪心题目描述 Find the contiguous subarray within an array (containing at least one number) which has the largest sum.For example, given the array[−2,1,−3,4,−1,2,1,−5,4],the contiguous subarray[4,−1,2,1]ha">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/QQ%E5%9B%BE%E7%89%8720180428002014.jpg_wm">
-<meta property="og:updated_time" content="2018-04-27T16:23:53.119Z">
+<meta property="og:updated_time" content="2018-05-04T13:44:25.582Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="查查Z陪你学英语-17">
-<meta name="twitter:description" content="gogogo!">
-<meta name="twitter:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/QQ%E5%9B%BE%E7%89%8720180428002014.jpg_wm">
+<meta name="twitter:title" content="leetcode算法题解(Java版)-9-N皇后问题">
+<meta name="twitter:description" content="一、贪心题目描述 Find the contiguous subarray within an array (containing at least one number) which has the largest sum.For example, given the array[−2,1,−3,4,−1,2,1,−5,4],the contiguous subarray[4,−1,2,1]ha">
   
     <link rel="alternative" href="/atom.xml" title="白水东城" type="application/atom+xml">
   
@@ -145,38 +143,52 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-查查Z陪你学英语-17" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-leetcode算法题解-Java版-9-N皇后问题" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      查查Z陪你学英语-17
+      leetcode算法题解(Java版)-9-N皇后问题
     </h1>
   
 
         
-        <a href="/2018/04/28/查查Z陪你学英语-17/" class="archive-article-date">
-  	<time datetime="2018-04-27T16:22:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-28</time>
+        <a href="/2018/05/04/leetcode算法题解-Java版-9-N皇后问题/" class="archive-article-date">
+  	<time datetime="2018-05-04T13:43:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>gogogo!</p>
-<p><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/QQ%E5%9B%BE%E7%89%8720180428002014.jpg_wm" alt="此处输入图片的描述"><br><a id="more"></a></p>
-<h1 id="Love-After-Love"><a href="#Love-After-Love" class="headerlink" title="Love After Love"></a>Love After Love</h1><p><strong>by Derek Walcott</strong></p>
-<blockquote>
-<p>The time will come<br>when, with elation<br>you will greet yourself arriving<br>at your own door, in your own mirror<br>and each will smile at the other’s welcome,<br>and say, sit here. Eat.<br>You will love again the stranger who was your self.<br>Give wine. Give bread. Give back your heart<br>to itself, to the stranger who has loved you<br>all your life, whom you ignored<br>for another, who knows you by heart.<br>Take down the love letters from the bookshelf,<br>the photographs, the desperate notes,<br>peel your own image from the mirror.<br>Sit. Feast on your life. </p>
-</blockquote>
-<p><strong>TIPS</strong>:</p>
+        <h1 id="一、贪心"><a href="#一、贪心" class="headerlink" title="一、贪心"></a>一、贪心</h1><p><strong>题目描述</strong></p>
+<p>Find the contiguous subarray within an array (containing at least one number) which has the largest sum.<br>For example, given the array[−2,1,−3,4,−1,2,1,−5,4],<br>the contiguous subarray[4,−1,2,1]has the largest sum =6.<br><a id="more"></a><br>click to show more practice.<br>More practice:<br>If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle. </p>
+<p><strong>思路</strong></p>
 <ul>
-<li><strong>elation</strong>:it is a feeling of great happiness and excitement about something that has happpened.</li>
-<li><strong>feast</strong>:it is a large and special meal.</li>
+<li>贪心的基本思想就是局部找最优解，然后通过局部的最优解得出来的结果，就是全局的最优解，往往很难证明，但不妨先试一试。</li>
+<li>就像这道题，因为要求的是最大的子串和，那显然负数是起到反作用的，所以如果当前和是负的，那就果断舍去，这也是贪心的思路。</li>
+<li>这样的解法时间复杂度是O(n）题目中说明了，可以使用分治进一步优化，请看代码二。</li>
 </ul>
-<p>hope you enjoy(‾◡◝)</p>
+<p><strong>代码一</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len=A.length;</span><br><span class="line">        <span class="keyword">if</span>(len==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> sum=A[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> max=A[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(sum&lt;<span class="number">0</span>)&#123;</span><br><span class="line">                sum=<span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            sum+=A[i];</span><br><span class="line">            <span class="keyword">if</span>(sum&gt;max)&#123;</span><br><span class="line">                max=sum;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>代码二</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">div</span><span class="params">(<span class="keyword">int</span> [] A,<span class="keyword">int</span> left,<span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">            <span class="keyword">int</span> mid=(left+right)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(left==right)&#123;</span><br><span class="line">                <span class="keyword">return</span> A[left];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> max1=div(A,left,mid);</span><br><span class="line">            <span class="keyword">int</span> max2=div(A,mid+<span class="number">1</span>,right);</span><br><span class="line">            <span class="keyword">int</span> max3=-<span class="number">999999</span>;<span class="comment">//这里不严谨，但不能用Integer.MIN_VALUE。</span></span><br><span class="line">            <span class="comment">//否则max3+max4如果是负数和Integer.MIN_VALUE相加会溢出</span></span><br><span class="line">            <span class="keyword">int</span> max4=-<span class="number">999999</span>;</span><br><span class="line">            <span class="keyword">int</span> tem=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=mid;i&gt;=left;i--)&#123;</span><br><span class="line">                tem+=A[i];</span><br><span class="line">                max3=Math.max(max3,tem);</span><br><span class="line">            &#125;</span><br><span class="line">            tem=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=mid+<span class="number">1</span>;i&lt;=right;i++)&#123;</span><br><span class="line">                tem+=A[i];</span><br><span class="line">                max4=Math.max(max4,tem);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> Math.max(Math.max(max1,max2),max3+max4);        </span><br><span class="line">        &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len=A.length;</span><br><span class="line">        <span class="keyword">if</span>(len==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> div(A,<span class="number">0</span>,len-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="二、N皇后问题"><a href="#二、N皇后问题" class="headerlink" title="二、N皇后问题"></a>二、N皇后问题</h1><p><strong>题目描述</strong></p>
+<p>Follow up for N-Queens problem.<br>Now, instead outputting board configurations, return the total number of distinct solutions. </p>
+<p><strong>思路</strong></p>
+<ul>
+<li>经典的老题目了，存储当然是用一个数组map解决：下标表示行号，每个map[i]中存放的数字表示列号。</li>
+<li>然后就是写一个判断函数：1.判断行是否重复：这个不需要判定，因为数组下标即使行。2.判断列是否重复，即map[t]!=map[i]。3.判断对角线是否重复：即map[t]-map[i]!=t-i。</li>
+</ul>
+<p><strong>代码</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> [] map=<span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">30</span>];</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> count=<span class="number">0</span>;<span class="comment">//注意！！不能写成public static int count=0;</span></span><br><span class="line">    <span class="comment">//否则全局静态变量的话，内存地址是一个，</span></span><br><span class="line">    <span class="comment">//也就是当前测试用例会受到上一个测试用例中count的影响</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">totalNQueens</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        backtrack(<span class="number">1</span>,n);</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="keyword">int</span> t,<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(t&gt;n)&#123;</span><br><span class="line">            count++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">                map[t]=i;</span><br><span class="line">                <span class="keyword">if</span>(valid(t))&#123;</span><br><span class="line">                    backtrack(t+<span class="number">1</span>,n);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">valid</span><span class="params">(<span class="keyword">int</span> t)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;t;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(Math.abs(t-i)==Math.abs(map[t]-map[i])||map[i]==map[t])&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="三、N皇后问题再度升级"><a href="#三、N皇后问题再度升级" class="headerlink" title="三、N皇后问题再度升级"></a>三、N皇后问题再度升级</h1><p><strong>题目描述</strong></p>
+<p>The n-queens puzzle is the problem of placing n queens on an n×n chessboard such that no two queens attack each other. </p>
+<p>Given an integer n, return all distinct solutions to the n-queens puzzle.<br>Each solution contains a distinct board configuration of the n-queens’ placement, where’Q’and’.’both indicate a queen and an empty space respectively.<br>For example,<br>There exist two distinct solutions to the 4-queens puzzle:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line"> [&quot;.Q..&quot;,  // Solution 1</span><br><span class="line">  &quot;...Q&quot;,</span><br><span class="line">  &quot;Q...&quot;,</span><br><span class="line">  &quot;..Q.&quot;],</span><br><span class="line"></span><br><span class="line"> [&quot;..Q.&quot;,  // Solution 2</span><br><span class="line">  &quot;Q...&quot;,</span><br><span class="line">  &quot;...Q&quot;,</span><br><span class="line">  &quot;.Q..&quot;]</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<p><strong>思路</strong></p>
+<ul>
+<li>和上一道只需要输出个数，这道题也需要把所有的图输出来。只需要改动一个地方就OK。具体的看代码，写的很清楚。</li>
+</ul>
+<p><strong>代码</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> [] mark=<span class="keyword">new</span> <span class="keyword">int</span> [<span class="number">30</span>];</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> count=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> ArrayList&lt;String[]&gt; resList=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">public</span> ArrayList&lt;String[]&gt; solveNQueens(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        backtrack(<span class="number">1</span>,n);</span><br><span class="line">        <span class="keyword">return</span> resList;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> StringBuilder <span class="title">drawOneLine</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        StringBuilder sb=<span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            sb.append(<span class="string">'.'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sb;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">valid</span><span class="params">(<span class="keyword">int</span> t)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;t;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(Math.abs(mark[i]-mark[t])==Math.abs(i-t)||mark[i]==mark[t])&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span>  <span class="title">backtrack</span><span class="params">(<span class="keyword">int</span> t,<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(t&gt;n)&#123;</span><br><span class="line">            String [] tem=<span class="keyword">new</span> String[n];</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">                StringBuilder line=drawOneLine(n);</span><br><span class="line">                line.setCharAt(mark[i+<span class="number">1</span>]-<span class="number">1</span>,<span class="string">'Q'</span>);<span class="comment">//因为String从0开始而我的mark是从1开始记的</span></span><br><span class="line">                <span class="comment">//这里下标有点乱：mark数组是从1开始的，而tem是从0开始的。</span></span><br><span class="line">                tem[i]=line.toString();</span><br><span class="line">            &#125;</span><br><span class="line">            resList.add(tem);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">                mark[t]=i;</span><br><span class="line">                <span class="keyword">if</span>(valid(t))&#123;</span><br><span class="line">                    backtrack(t+<span class="number">1</span>,n);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -221,7 +233,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">英语</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
         		</li>
       		
 		</ul>
@@ -277,7 +289,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http:baishuidongcheng.com/2018/04/28/查查Z陪你学英语-17/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http:baishuidongcheng.com/2018/05/04/leetcode算法题解-Java版-9-N皇后问题/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -291,18 +303,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/04/28/leetcode算法题解-Java版-3-广搜-HashMap/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/05/05/查查Z陪你学英语-24/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          leetcode算法题解(Java版)-3-广搜+HashMap
+          查查Z陪你学英语-24
         
       </div>
     </a>
   
   
-    <a href="/2018/04/27/leetcode算法题解-Java版-2-最长回文子串/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">leetcode算法题解(Java版)-2-最长回文子串</div>
+    <a href="/2018/05/04/查查Z陪你学英语-23/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">查查Z陪你学英语-23</div>
       <i class="icon-circle-right"></i>
     </a>
   
