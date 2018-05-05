@@ -6,24 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="baishuidongcheng.com">
-  <title>红帽Linux学习笔记-1 | 白水东城</title>
+  <title>leetcode算法题解(Java版)-10-全排列(递归) | 白水东城</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="基础零碎“$” 普通用户“#” 超级用户">
-<meta name="keywords" content="Linux">
+  <meta name="description" content="一、二维数据题目描述 You are given an n x n 2D matrix representing an image.Rotate the image by 90 degrees (clockwise).">
+<meta name="keywords" content="leetcode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="红帽Linux学习笔记-1">
-<meta property="og:url" content="baishuidongcheng.com/2018/04/23/红帽Linux学习笔记-1/index.html">
+<meta property="og:title" content="leetcode算法题解(Java版)-10-全排列(递归)">
+<meta property="og:url" content="baishuidongcheng.com/2018/05/06/leetcode算法题解-Java版-10-全排列-递归/index.html">
 <meta property="og:site_name" content="白水东城">
-<meta property="og:description" content="基础零碎“$” 普通用户“#” 超级用户">
+<meta property="og:description" content="一、二维数据题目描述 You are given an n x n 2D matrix representing an image.Rotate the image by 90 degrees (clockwise).">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/sss.png_wm">
-<meta property="og:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/aaaa.png_wm">
-<meta property="og:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/cccc.png_wm">
-<meta property="og:updated_time" content="2018-04-23T12:53:19.170Z">
+<meta property="og:updated_time" content="2018-05-05T17:35:07.882Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="红帽Linux学习笔记-1">
-<meta name="twitter:description" content="基础零碎“$” 普通用户“#” 超级用户">
-<meta name="twitter:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/sss.png_wm">
+<meta name="twitter:title" content="leetcode算法题解(Java版)-10-全排列(递归)">
+<meta name="twitter:description" content="一、二维数据题目描述 You are given an n x n 2D matrix representing an image.Rotate the image by 90 degrees (clockwise).">
   
     <link rel="alternative" href="/atom.xml" title="白水东城" type="application/atom+xml">
   
@@ -147,49 +143,49 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-红帽Linux学习笔记-1" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-leetcode算法题解-Java版-10-全排列-递归" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      红帽Linux学习笔记-1
+      leetcode算法题解(Java版)-10-全排列(递归)
     </h1>
   
 
         
-        <a href="/2018/04/23/红帽Linux学习笔记-1/" class="archive-article-date">
-  	<time datetime="2018-04-23T11:59:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-23</time>
+        <a href="/2018/05/06/leetcode算法题解-Java版-10-全排列-递归/" class="archive-article-date">
+  	<time datetime="2018-05-05T17:34:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="基础零碎"><a href="#基础零碎" class="headerlink" title="基础零碎"></a>基础零碎</h2><p>“$” 普通用户<br>“#” 超级用户<br><a id="more"></a></p>
-<p><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/sss.png_wm" alt="此处输入图片的描述"></p>
-<h2 id="Linux的目录结构"><a href="#Linux的目录结构" class="headerlink" title="Linux的目录结构"></a>Linux的目录结构</h2><p>/bin 存放的是普通用户可以操作的命令<br>/boot  存放的是引导文件，设备启动文件，包括内核<br>/dev      存放设备硬件文件（鼠标，硬盘）<br>/etc     存放的是系统的配置文件<br>/home    存放的是普通用户的家目录<br>/root      超级用户的家目录<br>/sbin  存放一些超级用户的命令<br>/tmp     交换目录，存放一些临时的交换文件<br>/usr     安装程序的默认存放目录<br>/lib    存放一些库函数的目录<br>/lib64 存放的是一些64位的库函数<br>/mnt    新的分区的挂载目录（硬盘挂载后才能使用）</p>
-<h2 id="相对路径-绝对路径"><a href="#相对路径-绝对路径" class="headerlink" title="相对路径/绝对路径"></a>相对路径/绝对路径</h2><p>只要是以“/” 开始的都是绝对路径，不是以“/”开始的都是相对路径</p>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><p>pwd   #print working directory</p>
-<p>cd #change Directory<br>cd ~ 回到家目录(cd = cd ~)<br>cd - 切换到上次所在目录<br>cd .. 回到上级目录<br>ls    #list<br>ls     -a       查看隐藏文件(开头带 . 的）<br>ls   -l  = ll   以长格式显示文件（详细信息）<br>ls  -lh   显示出文件的大小，kb等为单位<br>ls   目录  -d    显示目录本身</p>
-<p><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/aaaa.png_wm" alt="此处输入图片的描述"><br><strong>第一位代表文件的类型</strong></p>
-<h3 id="普通文件"><a href="#普通文件" class="headerlink" title="普通文件"></a>普通文件</h3><ul>
-<li>‘-‘    普通文件</li>
-<li>d        目录文件</li>
-<li>l       链接文件</li>
-<li>b    块设备文件</li>
-<li>c    字符型设备文件</li>
-<li>p 管道类型文件</li>
+        <h1 id="一、二维数据"><a href="#一、二维数据" class="headerlink" title="一、二维数据"></a>一、二维数据</h1><p><strong>题目描述</strong></p>
+<p>You are given an n x n 2D matrix representing an image.<br>Rotate the image by 90 degrees (clockwise).<br><a id="more"></a><br>Follow up:<br>Could you do this in-place?<br><strong>思路</strong></p>
+<ul>
+<li>最简单的方法就是在开一个新二维数组tem,然后实行“旋转操作”</li>
+<li>这样，不符合题意！要在同一个数组中进行！</li>
 </ul>
-<h3 id="第二组-总共9位"><a href="#第二组-总共9位" class="headerlink" title="第二组 总共9位"></a>第二组 总共9位</h3><p>总共三组权限，三组<strong>权限分别都有读写执行</strong>，读r，写w，执行x<br>3组分别代表3类人<br>第一组  //代表文件拥有者对此文件的权限<br>第二组 //文件所属组的权限<br>第三组 //其他人</p>
-<h3 id="第三组"><a href="#第三组" class="headerlink" title="第三组"></a>第三组</h3><p>一个· 代表了SElinux开启了<br>数字代表 被引用的次数</p>
-<h2 id="有关文件的命令"><a href="#有关文件的命令" class="headerlink" title="有关文件的命令"></a>有关文件的命令</h2><p>mkdir 创建文件夹<br>mkdir  目录/目录  -p  // 递归创建目录<br>mkdir .目录  //创建隐藏文件<br>rmdir  //删除空文件夹<br>rmdir 目录/目录 -p   //递归删除目录<br>rm （文件名） //删除文件<br>rm -i（文件名） //删除前提示<br>rm -r  目录名 //递归处理，目录下的所有文件与子目录一并删除；<br>rm -rf  * 清除当前目录的所有文件<br>rm  -f  //不提示强制删除所有文件</p>
-<p>cp     copy复制<br>cp   文件名  路径</p>
-<p>MV  move   移动（剪切）<br>mv  文件名  路径<br>mv  源文件  目标文件  //改名</p>
-<p>touch  文件名//创建文件<br>通配符</p>
-<p><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/cccc.png_wm" alt="此处输入图片的描述"></p>
-<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><p>ctrl+u 删除光标所在位置之前的所有字符<br>ctrl+k 删除光标所在位置之后的所有字符<br>ctrl+a 将光标移动到最左端<br>ctrl+e 将光标移动到最右端<br>ctrl+c 终止运行命令<br>ctrl+z 停止运行命令<br>ctrl+w 删除一个单词<br>ctrl+l 清屏<br>ctrl + shift + c  复制<br>ctrl + Shift + v  粘贴<br>ctrl + Shift + q  关闭终端</p>
+<p><strong>代码</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> [][] tem=<span class="keyword">new</span> <span class="keyword">int</span> [matrix.length][matrix.length];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;tem.length;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;tem.length;j++)&#123;</span><br><span class="line">                tem[j][tem.length-<span class="number">1</span>-i]=matrix[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;tem.length;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;tem.length;j++)&#123;</span><br><span class="line">                matrix[i][j]=tem[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>思路二</strong></p>
+<ul>
+<li>画一条从左上角到右下角的对角线，这时候矩阵被分成了两份，然后将左下角那部分和右上角那部分的处于对称位置的对调。</li>
+<li>然后将列水平对称位置对调，即为所求！</li>
+<li>听着有点懵的话，不妨在纸上试试。</li>
+</ul>
+<p><strong>代码</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len=matrix.length;</span><br><span class="line">        <span class="keyword">int</span> tem;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;i;j++)&#123;</span><br><span class="line">                tem=matrix[i][j];</span><br><span class="line">                matrix[i][j]=matrix[j][i];</span><br><span class="line">                matrix[j][i]=tem;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;len/<span class="number">2</span>;j++)&#123;</span><br><span class="line">                tem=matrix[i][j];</span><br><span class="line">                matrix[i][j]=matrix[i][len-<span class="number">1</span>-j];</span><br><span class="line">                matrix[i][len-<span class="number">1</span>-j]=tem;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="二、全排列（深搜）"><a href="#二、全排列（深搜）" class="headerlink" title="二、全排列（深搜）"></a>二、全排列（深搜）</h1><p><strong>题目描述</strong></p>
+<p>Given a collection of numbers, return all possible permutations.<br>For example,<br>[1,2,3]have the following permutations:<br>[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2], and[3,2,1]. </p>
+<p><strong>思路</strong></p>
+<ul>
+<li>找全排列，典型的深搜题。</li>
+<li>语法点：<code>res.add(new ArrayList&lt;Integer&gt;(list));</code>不要忘了加<code>new ArrayList&lt;Integer&gt;</code>不加就通过不了，虽然不明白为什么要加上。</li>
+</ul>
+<p><strong>代码</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> ArrayList&lt;ArrayList&lt;Integer&gt;&gt; permute(<span class="keyword">int</span>[] num) &#123;</span><br><span class="line">        ArrayList&lt;ArrayList&lt;Integer&gt;&gt; res=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> len=num.length;</span><br><span class="line">        <span class="keyword">if</span>(num==<span class="keyword">null</span>||len==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">boolean</span> [] visit=<span class="keyword">new</span> <span class="keyword">boolean</span> [len];</span><br><span class="line">        ArrayList&lt;Integer&gt; list=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        dfs(num,list,visit,res);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> [] num,ArrayList&lt;Integer&gt; list,<span class="keyword">boolean</span> [] visit,ArrayList&lt;ArrayList&lt;Integer&gt;&gt; res)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(list.size()==num.length)&#123;</span><br><span class="line">            res.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;(list));</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;num.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!visit[i])&#123;</span><br><span class="line">                visit[i]=<span class="keyword">true</span>;</span><br><span class="line">                list.add(num[i]);</span><br><span class="line">                dfs(num,list,visit,res);</span><br><span class="line">                list.remove(list.size()-<span class="number">1</span>);</span><br><span class="line">                visit[i]=<span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这道全排列的题，还有扩展，明天接着搞~~</p>
 
       
 
@@ -234,7 +230,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
         		</li>
       		
 		</ul>
@@ -290,7 +286,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http:baishuidongcheng.com/2018/04/23/红帽Linux学习笔记-1/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http:baishuidongcheng.com/2018/05/06/leetcode算法题解-Java版-10-全排列-递归/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -304,18 +300,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/04/23/红帽Linux学习笔记-2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          红帽Linux学习笔记-2
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/04/23/查查Z陪你学英语-12/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">查查Z陪你学英语-12</div>
+    <a href="/2018/05/06/查查Z陪你学英语-25/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">查查Z陪你学英语-25</div>
       <i class="icon-circle-right"></i>
     </a>
   
