@@ -6,23 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="baishuidongcheng.com">
-  <title>支持向量机-2 | 白水东城</title>
+  <title>leetcode算法题解(Java版)-11-贪心大法 | 白水东城</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="上篇博客 机器学习入门|支持向量机（一） 提到了SMO算法，这是用来求解优化函数变为关于拉格朗日乘子的二次规划问题的，是由Microsoft Research的John C.Platt在1998年发表的论文《Sequential Minimal Optimaization A Fast Algorithm for Training Support Vector Machines》中提出的，是最快的">
-<meta name="keywords" content="机器学习">
+  <meta name="description" content="一、全排列变式（递归）题目描述 Given a collection of numbers that might contain duplicates, return all possible unique permutations.For example,">
+<meta name="keywords" content="leetcode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="支持向量机-2">
-<meta property="og:url" content="baishuidongcheng.com/2018/04/08/支持向量机-2/index.html">
+<meta property="og:title" content="leetcode算法题解(Java版)-11-贪心大法">
+<meta property="og:url" content="baishuidongcheng.com/2018/05/06/leetcode算法题解-Java版-11-贪心大法/index.html">
 <meta property="og:site_name" content="白水东城">
-<meta property="og:description" content="上篇博客 机器学习入门|支持向量机（一） 提到了SMO算法，这是用来求解优化函数变为关于拉格朗日乘子的二次规划问题的，是由Microsoft Research的John C.Platt在1998年发表的论文《Sequential Minimal Optimaization A Fast Algorithm for Training Support Vector Machines》中提出的，是最快的">
+<meta property="og:description" content="一、全排列变式（递归）题目描述 Given a collection of numbers that might contain duplicates, return all possible unique permutations.For example,">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/7f4879cf371f1a4e21b4e28c4758edb254ddb876%20%281%29.png_wm">
-<meta property="og:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/41b88087e575426134aada316e2695c3b9540833.gif_wm">
-<meta property="og:updated_time" content="2018-04-08T13:15:45.537Z">
+<meta property="og:updated_time" content="2018-05-06T13:26:14.071Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="支持向量机-2">
-<meta name="twitter:description" content="上篇博客 机器学习入门|支持向量机（一） 提到了SMO算法，这是用来求解优化函数变为关于拉格朗日乘子的二次规划问题的，是由Microsoft Research的John C.Platt在1998年发表的论文《Sequential Minimal Optimaization A Fast Algorithm for Training Support Vector Machines》中提出的，是最快的">
-<meta name="twitter:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/7f4879cf371f1a4e21b4e28c4758edb254ddb876%20%281%29.png_wm">
+<meta name="twitter:title" content="leetcode算法题解(Java版)-11-贪心大法">
+<meta name="twitter:description" content="一、全排列变式（递归）题目描述 Given a collection of numbers that might contain duplicates, return all possible unique permutations.For example,">
   
     <link rel="alternative" href="/atom.xml" title="白水东城" type="application/atom+xml">
   
@@ -146,51 +143,62 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-支持向量机-2" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-leetcode算法题解-Java版-11-贪心大法" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      支持向量机-2
+      leetcode算法题解(Java版)-11-贪心大法
     </h1>
   
 
         
-        <a href="/2018/04/08/支持向量机-2/" class="archive-article-date">
-  	<time datetime="2018-04-07T16:44:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-08</time>
+        <a href="/2018/05/06/leetcode算法题解-Java版-11-贪心大法/" class="archive-article-date">
+  	<time datetime="2018-05-06T13:25:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>上篇博客 <a href="https://baishuidongcheng.com/2018/04/07/支持向量机/">机器学习入门|支持向量机（一）</a> 提到了<strong>SMO算法</strong>，这是用来<strong>求解优化函数变为关于拉格朗日乘子的二次规划问题的</strong>，是由Microsoft Research的John C.Platt在1998年发表的论文《Sequential Minimal Optimaization A Fast Algorithm for Training Support Vector Machines》中提出的，是最快的二次规划优化算法，特别是在针对线性SVM和数据稀疏等问题时更表现出强大的性能。<br>单看周志华《机器学习》的那一节，远不足以透彻了解算法的详细过程，也搜到了介绍SMO的博客，<strong>数学功底实在太渣＞﹏＜</strong>总的了解完机器学习几大算法之后，回头再看支持向量机的时候，把那Platt的那篇论文看一下。现在，暂且跳过SMO，其基本思路是先固定$\alpha_{i}$之外的所有参数，然后求$\alpha_{i}$上的极值。<br><a id="more"></a></p>
-<h1 id="核函数"><a href="#核函数" class="headerlink" title="核函数"></a>核函数</h1><p>好了，经过之前的介绍，我们能解决训练样本是线性可分的，即存在一个划分超平面能将训练样本正确分类。然而，在现实任务中，原始样本空间也许并不存在一个能正确划分两类样本的超平面。就像上一篇一开始提到的，<strong>对原空间进行升维，把在本来维度上不可用一个平面分割的类别在更高的维度可分</strong>。也许你还记得这张图<br><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/7f4879cf371f1a4e21b4e28c4758edb254ddb876%20%281%29.png_wm" alt="6298996_4fc35cedc0742800_1_"></p>
-<p>加深一下印象，再看一张！自己体会<br><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/41b88087e575426134aada316e2695c3b9540833.gif_wm" alt="1364952814_3505_1_"></p>
-<p>对！将样本从原始空间映射到一个更高维的特征空间，就能实现线性的划分。我们把原先的样本点从二维空间映射到了三维空间之后，便可以很方便的找到一个超平面将两类样本点划分开。划分开之后，我们再重新将样本点以及划分平面从高维映射到低维，便完成了分类任务。可以肯定的是，<strong>如果原始空间是有限维的，即属性数有限，那么一定存在一个高维特征空间是样本可分</strong>。<br>令$\phi(\boldsymbol{x})$表示将$\boldsymbol{x}$映射后的特征向量，于是，在特征空间中划分超平面所对应的模型可表示为 <script type="math/tex">f(\boldsymbol{x})=\boldsymbol{\omega}^{T}\phi(\boldsymbol{x})+b</script>同样的（也就是把上文的$\boldsymbol{x}$替换为$\phi(\boldsymbol{x})$）有<script type="math/tex">\left\{\begin{matrix} \underset{\boldsymbol{\omega},b}{min}\frac{1}{2}||\boldsymbol{\omega}||^{2}\\ s.t. y_{i} (\boldsymbol{\omega}^{T}\phi(\boldsymbol{x}_{i})+b ) \geqslant 1 ,i = 1,2,...,m\end{matrix}\right.\;</script>其<strong>对偶问题</strong><script type="math/tex">\underset{\alpha}{max}\sum_{i = 1}^{n}\alpha_{i}- \frac{1}{2} \sum_{i= 1}^{m}\sum_{j=1}^{m}\alpha_{i}\alpha_{j}y_{i}y_{j}\phi(\boldsymbol{x}_{i})^{T}\phi(\boldsymbol{x}_{j})\;</script></p>
-<script type="math/tex; mode=display">s.t.\;\sum_{i=1}^{m}\alpha_{i}y_{i}=0,\;\alpha_{i}\geqslant0,i=1,2...,m.</script><p>上式中涉及到计算$\phi(\boldsymbol{x}_{i})^{T}\phi(\boldsymbol{x}_{j})$ ，这是样本$\boldsymbol{x}_{i}$和$\boldsymbol{x}_{j}$映射到特征空间之后的内积。由于特征空间的维度可能很高，甚至是无穷维，因此直接计算很困难，就可以设想这样一个函数</p>
-<script type="math/tex; mode=display">\kappa (\boldsymbol{x}_{i},\boldsymbol{x}_{j})=\left \langle \phi(\boldsymbol{x}_{i}),\phi(\boldsymbol{x}_{j}) \right \rangle=\phi(\boldsymbol{x}_{i})^{T}\phi(\boldsymbol{x}_{j})</script><p>即$\boldsymbol{x}_{i}$和$\boldsymbol{x}_{j}$在特征空间的内积等于它们在原始样本空间中通过函数$kappa(\cdot,\cdot)$计算的结果。这个函数就是鼎鼎大名的——核函数（kernel function）。于是，可以将对偶问题重新写为</p>
-<script type="math/tex; mode=display">\underset{\alpha}{max}\sum_{i = 1}^{n}\alpha_{i}- \frac{1}{2} \sum_{i= 1}^{m}\sum_{j=1}^{m}\alpha_{i}\alpha_{j}y_{i}y_{j}\kappa (\boldsymbol{x}_{i},\boldsymbol{x}_{j})\;</script><script type="math/tex; mode=display">s.t.\;\sum_{i=1}^{m}\alpha_{i}y_{i}=0,\;\alpha_{i}\geqslant0,i=1,2...,m.</script><p>求解后即可得到划分超平面</p>
-<script type="math/tex; mode=display">f(\boldsymbol{x})=\boldsymbol{\omega}^{T}\phi(\boldsymbol{x})+b</script><script type="math/tex; mode=display">==\sum_{i=1}^{m}\alpha_{i}y_{i}\phi(\boldsymbol{x}_{i})^{T}\phi(\boldsymbol{x}_{j})+b\;</script><script type="math/tex; mode=display">==\sum_{i=1}^{m}\alpha_{i}y_{i}\kappa (\boldsymbol{x}_{i},\boldsymbol{x}_{j})+b\;.(1)</script><p>式（1）显示出模型最优解可以通过训练样本的核函数展开，这一展式亦称为“支持向量展式”（support vector expansion）。<br>当然，如果我们知道合适映射$\phi(\cdot)$的具体形式，则可写出核函数$\kappa(\cdot,\cdot).$但现实任务中我们通常不知道$\phi(\cdot)$是什么形式，那么合适的核函数是否一定存在（之前说过如果原始空间是有限维的那么一定存在）?什么样的函数能做核函数？我们有一下定理:<br>核函数： 令$\chi$为输入空间，$\kappa(\cdot,\cdot).$是定义在$\chi \times \chi$上的对称函数，则$\kappa$是核函数当且仅当对于任意数据$D=\left\{\boldsymbol{x}_{1},\boldsymbol{x}_{2},…,\boldsymbol{x}_{m}\right\},$“核矩阵”（kernel matrix）$\mathbf{K}$<br>总是半正定的：</p>
-<script type="math/tex; mode=display">
-\mathbf{K}=\begin{bmatrix}\kappa (\boldsymbol{x}_{1},\boldsymbol{x}_{1}) & \cdots & \kappa (\boldsymbol{x}_{1},\boldsymbol{x}_{j})& \cdots &\kappa (\boldsymbol{x}_{1},\boldsymbol{x}_{m}) \\
-\vdots & \ddots & \vdots & \ddots & \vdots \\
-\kappa (\boldsymbol{x}_{i},\boldsymbol{x}_{1})& \cdots & \kappa (\boldsymbol{x}_{i},\boldsymbol{x}_{j}) & \cdots &\kappa (\boldsymbol{x}_{i},\boldsymbol{x}_{m}) \\
-\vdots & \ddots & \vdots & \ddots &\vdots \\
-\kappa (\boldsymbol{x}_{m},\boldsymbol{x}_{1})& \cdots & \kappa (\boldsymbol{x}_{m},\boldsymbol{x}_{j}) & \cdots & \kappa (\boldsymbol{x}_{m},\boldsymbol{x}_{m})
-\end{bmatrix}</script><p>上式表明，只要一个对称函数所对应的核矩阵半正定，它就能作为核函数使用。事实上，对于一个半正定核矩阵，总能找到一个与之对应的映射$\kappa$。换言之，任何一个核函数都隐式地定义了一个称为“再生和希尔伯特空间”（Reproducing Kernel Hilbert Space，简称RKHS）的特征空间。<br>通过前面的讨论可知，我们希望样本在特征空间内线性可分，因此特征空间的好坏对支持向量机的性能至关重要。需要注意的是，在不知道特征映射的形式时，我们并不知道什么样的核函数时合适的，而核函数也仅是隐式地定义了这个特征空间。于是“<strong>核函数选择“成为非线性划分情况下影响支持向量机分类性能的最大变数</strong>。若选择了一个不合适的核函数，则意味着将样本映射到了一个不合适的特征空间，从而导致性能不佳。<br>常用的核函数有：<a href="http://blog.csdn.net/xiaowei_cqu/article/details/35993729" target="_blank" rel="noopener">SVM核函数</a><br>最后引用别人博客的一段，梳理一下核函数的引入：</p>
+        <h1 id="一、全排列变式（递归）"><a href="#一、全排列变式（递归）" class="headerlink" title="一、全排列变式（递归）"></a>一、全排列变式（递归）</h1><p><strong>题目描述</strong></p>
+<p>Given a collection of numbers that might contain duplicates, return all possible unique permutations.<br>For example,<br><a id="more"></a><br>[1,1,2]have the following unique permutations:<br>[1,1,2],[1,2,1], and[2,1,1]. </p>
+<p><strong>思路</strong></p>
 <ul>
-<li>问题1：<br>SVM显然是线性分类器，但数据如果根本就线性不可分怎么办？</li>
-<li>解决方案1：<br>数据在原始空间（称为输入空间）线性不可分，但是映射到高维空间（称为特征空间）后很可能就线性可分了。</li>
-<li>问题2：<br>映射到高维空间同时带来一个问题：在高维空间上求解一个带约束的优化问题显然比在低维空间上计算量要大得多，这就是所谓的“维数灾难”。</li>
-<li>解决方案2：<br>于是就引入了“核函数”，核函数的价值在于它虽然也是将特征进行从低维到高维的转换，但却方便计算。</li>
+<li>多了一个条件，就是有重复数字出现。那可以考虑先排序，然后递归选择在相应位置放置数字的时候，可以添加判断是否被用过，也就是和前面那个比较一下：如果前面那个数和它一样值，而且目前的used 显示false那说明这个数已经在这个位置被用过了，而且已经计入了结果res中。</li>
 </ul>
-<p>在所有之前的讨论中，我们都一直假定训练样本在样本空间或特征空间式线性可分的，不允许任何一个样本划分错，这样会导致过拟合，所以我们就允许支持向量机在一些样本上出错，为此，要引入“<strong>软间隔</strong>”（soft margin）。<br>至于“软间隔”就先丢一边了，明天开始搞——神经网络！</p>
-<p>PS：欢迎访问我们的wordpress博客╰(￣ω￣ｏ) <a href="https://baishuidongcheng.com/2018/04/08/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA-2/">白水东城-机器学习入门：支持向量机（二）</a></p>
-<p>参考：<br><a href="http://blog.csdn.net/u011067360/article/details/25503073" target="_blank" rel="noopener">流水无Qing-支持向量机（四）— 核函数</a><br>周志华《机器学习》</p>
-
+<p><strong>代码</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> ArrayList&lt;ArrayList&lt;Integer&gt;&gt; permuteUnique(<span class="keyword">int</span>[] num) &#123;</span><br><span class="line">        ArrayList&lt;ArrayList&lt;Integer&gt;&gt; res=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> len=num.length;</span><br><span class="line">        <span class="keyword">if</span>(num==<span class="keyword">null</span>||len==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">boolean</span> [] used=<span class="keyword">new</span> <span class="keyword">boolean</span>[len];</span><br><span class="line">        ArrayList&lt;Integer&gt; list=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        Arrays.sort(num);</span><br><span class="line">        dfs(list,num,used,res);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(ArrayList&lt;Integer&gt; list,<span class="keyword">int</span> [] num,<span class="keyword">boolean</span> [] used,ArrayList&lt;ArrayList&lt;Integer&gt;&gt; res)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(list.size()==num.length)&#123;</span><br><span class="line">            res.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;(list));</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;num.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i&gt;<span class="number">0</span>&amp;&amp;num[i]==num[i-<span class="number">1</span>]&amp;&amp;!used[i-<span class="number">1</span>])&#123;<span class="comment">//如果它前一个和它一样的数现在没有被用过，那就跳过，</span></span><br><span class="line">                <span class="comment">//说明之前那个数已经形成过结果list之一了，目前这个分支处于回溯阶段。。。有点绕，希望能明白</span></span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(!used[i])&#123;</span><br><span class="line">                used[i]=<span class="keyword">true</span>;</span><br><span class="line">                list.add(num[i]);</span><br><span class="line">                dfs(list,num,used,res);</span><br><span class="line">                list.remove(list.size()-<span class="number">1</span>);</span><br><span class="line">                used[i]=<span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="二、贪心"><a href="#二、贪心" class="headerlink" title="二、贪心"></a>二、贪心</h1><p><strong>题目描述</strong></p>
+<p>Given an array of non-negative integers, you are initially positioned at the first index of the array.<br>Each element in the array represents your maximum jump length at that position.<br>Determine if you are able to reach the last index.<br>For example:<br>A =[2,3,1,1,4], returntrue.<br>A =[3,2,1,0,4], returnfalse</p>
+<p><strong>思路</strong></p>
+<ul>
+<li>贪心的题，每走一步，跟新一下从当前这个位置所能到达的最大距离。这就是这题的贪心，贪心一般证明很难，但是可以逻辑简单想一下，肯定是能走的距离越大越好，越有可能到达终点，再说，如果最大距离都不能到终点，那其他情况更加不可能了。</li>
+</ul>
+<p><strong>代码</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canJump</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> maxlen=A[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;A.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(maxlen==<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            maxlen-=<span class="number">1</span>;</span><br><span class="line">            maxlen=Math.max(maxlen,A[i]);</span><br><span class="line">            <span class="comment">//if(maxlen+i==A.length-1)&#123;//剪枝</span></span><br><span class="line">            <span class="comment">//    return true;</span></span><br><span class="line">           <span class="comment">// &#125;</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="三、动态规划or贪心"><a href="#三、动态规划or贪心" class="headerlink" title="三、动态规划or贪心"></a>三、动态规划or贪心</h1><p><strong>题目描述</strong></p>
+<p>Given an array of non-negative integers, you are initially positioned at the first index of the array.<br>Each element in the array represents your maximum jump length at that position.<br>Your goal is to reach the last index in the minimum number of jumps.<br>For example:<br>Given array A =[2,3,1,1,4]<br>The minimum number of jumps to reach the last index is2. (Jump1step from index 0 to 1, then3steps to the last index</p>
+<p><strong>思路</strong></p>
+<ul>
+<li>dp解法：</li>
+<li>题目想考察的是贪心，想了一下，思绪有点乱。先看一下动态规划的解法。</li>
+<li>首先，满足dp的条件：1.子问题的最优解也是全局的最优解，有最优子结构；2.当前状态只依赖于它上一个状态，与怎么到达它上一个状态的路径无关。</li>
+</ul>
+<p><strong>代码</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">jump</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> [] dp=<span class="keyword">new</span> <span class="keyword">int</span>[A.length];<span class="comment">//存放起点到各点的最小步数</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;A.length;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> maxpos=Math.min(i+A[i],A.length-<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;=maxpos;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(dp[j]==<span class="number">0</span>)&#123;</span><br><span class="line">                    dp[j]=dp[i]+<span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(dp[A.length-<span class="number">1</span>]!=<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[A.length-<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>思路二</strong></p>
+<ul>
+<li>贪心解法：</li>
+<li>贪心大法好，但真的难想明白。。首先，要设置三个值：当前位置（是一个区域：从<code>i~furthest_pre</code>中，区域中的点中能到达的最大位置）所能到达的最大位置（<code>furthest_cur</code>)，当前位置的上一个位置(也是区域）所能到达的最大位置（<code>furthest_pre</code>），还有就是所走的步数。</li>
+<li>有一点可能有点会懵，<code>furthest_cur</code>是还没有step++的时候，具体结合代码，也就是是一个预判能走到的但还没走的状态。</li>
+<li>感觉讲的还是有点乱，现在抛开代码，<strong>想象我们站在题目给的数组的开头位置</strong>：从开始位置到开始位置能走到的最大距离（<code>furthest_pre</code>）之间构成了一块区域，然后我们开始一格一格走，每走一下刷新一下当前这块区域能到的最大位置(<code>furthest_cur</code>)，如果走到从开始位置走到了<code>furthest_pre</code>那我们也刷新出了最大的<code>furthest_cur</code>,如果<code>furthest_cur</code>比终点大，那恭喜！再跳一不就到终点了！可以开始跳一步咯！然后重复上述的动作，直到到达终点。</li>
+<li>如果能一步到最大位置<code>furthest_pre</code>，那肯定能到一步到它前面那块区域的某一位置，实行下一步跳，跳到<code>furthest_cur</code>。</li>
+<li>给一个测试用例，可以在纸上画画：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4 1 6 9 7 4 5 0 6 8 1 2 3 5 8 0 2 1 2</span><br></pre></td></tr></table></figure>
+<p><strong>代码</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">jump</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len=A.length;</span><br><span class="line">        <span class="keyword">if</span>(len==<span class="number">0</span>||A==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> furthest_cur=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> furthest_pre=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> steps=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(furthest_pre&gt;=len)&#123;</span><br><span class="line">                <span class="keyword">return</span> steps;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(i&gt;furthest_pre)&#123;</span><br><span class="line">                furthest_pre=furthest_cur;</span><br><span class="line">                steps++;</span><br><span class="line">            &#125;</span><br><span class="line">            furthest_cur=Math.max(furthest_cur,A[i]+i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> steps;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -234,7 +242,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
         		</li>
       		
 		</ul>
@@ -290,7 +298,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http:baishuidongcheng.com/2018/04/08/支持向量机-2/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http:baishuidongcheng.com/2018/05/06/leetcode算法题解-Java版-11-贪心大法/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -304,18 +312,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/04/08/支持向量机-3/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/05/07/查查Z陪你学英语-26/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          支持向量机-3
+          查查Z陪你学英语-26
         
       </div>
     </a>
   
   
-    <a href="/2018/04/07/支持向量机/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">支持向量机</div>
+    <a href="/2018/05/06/leetcode算法题解-Java版-10-全排列-递归/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">leetcode算法题解(Java版)-10-全排列(递归)</div>
       <i class="icon-circle-right"></i>
     </a>
   
