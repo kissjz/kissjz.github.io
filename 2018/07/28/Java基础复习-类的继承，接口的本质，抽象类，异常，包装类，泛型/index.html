@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="baishuidongcheng.com">
   <title>Java基础复习(类的继承，接口的本质，抽象类，异常，包装类，泛型) | 白水东城</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="类的继承为什么要针对接口编程？继承不好用吗?难道就因为java是单继承，所以才搞出接口来实现所谓的多继承?首先，继承是把双刃剑。 继承的好处: 代码复用，公共属性和方法可以丢到基类中去，子类只需要关注子类特有的就行。 通过基类可以方便统一处理不同的子类，如上转型对象。  继承的痛点 破坏了封装，封装可谓面相对象三大特性之一，是面相对象编程基本思维。那怎么破坏封装了呢？子类如果要重写(扩展)父类方法">
+  <meta name="description" content="类的继承为什么要针对接口编程？继承不好用吗?难道就因为java是单继承，所以才搞出接口来实现所谓的多继承?首先，继承是把双刃剑。 继承的好处: 代码复用，公共属性和方法可以丢到基类中去，子类只需要关注子类特有的就行。 通过基类可以方便统一处理不同的子类，如上转型对象。">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java基础复习(类的继承，接口的本质，抽象类，异常，包装类，泛型)">
 <meta property="og:url" content="baishuidongcheng.com/2018/07/28/Java基础复习-类的继承，接口的本质，抽象类，异常，包装类，泛型/index.html">
 <meta property="og:site_name" content="白水东城">
-<meta property="og:description" content="类的继承为什么要针对接口编程？继承不好用吗?难道就因为java是单继承，所以才搞出接口来实现所谓的多继承?首先，继承是把双刃剑。 继承的好处: 代码复用，公共属性和方法可以丢到基类中去，子类只需要关注子类特有的就行。 通过基类可以方便统一处理不同的子类，如上转型对象。  继承的痛点 破坏了封装，封装可谓面相对象三大特性之一，是面相对象编程基本思维。那怎么破坏封装了呢？子类如果要重写(扩展)父类方法">
+<meta property="og:description" content="类的继承为什么要针对接口编程？继承不好用吗?难道就因为java是单继承，所以才搞出接口来实现所谓的多继承?首先，继承是把双刃剑。 继承的好处: 代码复用，公共属性和方法可以丢到基类中去，子类只需要关注子类特有的就行。 通过基类可以方便统一处理不同的子类，如上转型对象。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-28T12:41:05.406Z">
+<meta property="og:updated_time" content="2018-07-28T12:53:18.153Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java基础复习(类的继承，接口的本质，抽象类，异常，包装类，泛型)">
-<meta name="twitter:description" content="类的继承为什么要针对接口编程？继承不好用吗?难道就因为java是单继承，所以才搞出接口来实现所谓的多继承?首先，继承是把双刃剑。 继承的好处: 代码复用，公共属性和方法可以丢到基类中去，子类只需要关注子类特有的就行。 通过基类可以方便统一处理不同的子类，如上转型对象。  继承的痛点 破坏了封装，封装可谓面相对象三大特性之一，是面相对象编程基本思维。那怎么破坏封装了呢？子类如果要重写(扩展)父类方法">
+<meta name="twitter:description" content="类的继承为什么要针对接口编程？继承不好用吗?难道就因为java是单继承，所以才搞出接口来实现所谓的多继承?首先，继承是把双刃剑。 继承的好处: 代码复用，公共属性和方法可以丢到基类中去，子类只需要关注子类特有的就行。 通过基类可以方便统一处理不同的子类，如上转型对象。">
   
     <link rel="alternative" href="/atom.xml" title="白水东城" type="application/atom+xml">
   
@@ -166,9 +166,8 @@
         <h1 id="类的继承"><a href="#类的继承" class="headerlink" title="类的继承"></a>类的继承</h1><p>为什么要针对接口编程？继承不好用吗?难道就因为java是单继承，所以才搞出接口来实现所谓的多继承?<br><strong>首先，继承是把双刃剑。</strong></p>
 <h2 id="继承的好处"><a href="#继承的好处" class="headerlink" title="继承的好处:"></a>继承的好处:</h2><ol>
 <li>代码复用，公共属性和方法可以丢到基类中去，子类只需要关注子类特有的就行。</li>
-<li>通过基类可以方便统一处理不同的子类，如上转型对象。</li>
-</ol>
-<h2 id="继承的痛点"><a href="#继承的痛点" class="headerlink" title="继承的痛点"></a>继承的痛点</h2><ol>
+<li>通过基类可以方便统一处理不同的子类，如上转型对象。<a id="more"></a>
+<h2 id="继承的痛点"><a href="#继承的痛点" class="headerlink" title="继承的痛点"></a>继承的痛点</h2></li>
 <li>破坏了封装，封装可谓面相对象三大特性之一，是面相对象编程基本思维。那怎么破坏封装了呢？子类如果要重写(扩展)父类方法，要知道基类中方法实现的细节，要弄清楚父类中方法之间的依赖，比如子类要重写父类中的A方法，而父类中的A方法调用了这个父类中的B方法，那么就要再看一看B方法中的实现细节。否则会可能有错误，举例先忽略。同样的，父类中如果要修改方法，那也要考虑到子类。这样就破坏了封装性。如图：</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class Father &#123;</span><br><span class="line">    private int[] arr = new int[10];</span><br><span class="line">    private int cnt;</span><br><span class="line">    public void add(int num) &#123;</span><br><span class="line">        arr[cnt++] = num;</span><br><span class="line">    &#125;</span><br><span class="line">    public void addAll(int [] nums) &#123;</span><br><span class="line">        for(int num : nums) &#123;</span><br><span class="line">            add(num);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> public class Child extends Father&#123;</span><br><span class="line">    private int sum;</span><br><span class="line">    @Override</span><br><span class="line">    public void add(int num) &#123;</span><br><span class="line">        super.add(num);</span><br><span class="line">        sum += num;</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public void addAll(int [] nums) &#123;</span><br><span class="line">        super.addAll(nums);</span><br><span class="line">        for(int i = 0 ; i &lt; nums.length ; i++) &#123;</span><br><span class="line">            sum += nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public int getSum() &#123;</span><br><span class="line">        return sum;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Child c = new Child();</span><br><span class="line">        c.addAll(new int[] &#123;1,2,3&#125;);</span><br><span class="line">        System.out.println(c.getSum());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
