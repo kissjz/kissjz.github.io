@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="baishuidongcheng.com">
-  <title>Archives: 2018 | 白水东城</title>
+  <title>Java基础复习(类的继承，接口的本质，抽象类，异常，包装类，泛型) | 白水东城</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个能同时保有两种相反的观念，还能正常行事的人">
-<meta property="og:type" content="website">
-<meta property="og:title" content="白水东城">
-<meta property="og:url" content="baishuidongcheng.com/archives/2018/page/3/index.html">
+  <meta name="description" content="类的继承为什么要针对接口编程？继承不好用吗?难道就因为java是单继承，所以才搞出接口来实现所谓的多继承?首先，继承是把双刃剑。 继承的好处: 代码复用，公共属性和方法可以丢到基类中去，子类只需要关注子类特有的就行。 通过基类可以方便统一处理不同的子类，如上转型对象。  继承的痛点 破坏了封装，封装可谓面相对象三大特性之一，是面相对象编程基本思维。那怎么破坏封装了呢？子类如果要重写(扩展)父类方法">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java基础复习(类的继承，接口的本质，抽象类，异常，包装类，泛型)">
+<meta property="og:url" content="baishuidongcheng.com/2018/07/28/Java基础复习-类的继承，接口的本质，抽象类，异常，包装类，泛型/index.html">
 <meta property="og:site_name" content="白水东城">
-<meta property="og:description" content="一个能同时保有两种相反的观念，还能正常行事的人">
+<meta property="og:description" content="类的继承为什么要针对接口编程？继承不好用吗?难道就因为java是单继承，所以才搞出接口来实现所谓的多继承?首先，继承是把双刃剑。 继承的好处: 代码复用，公共属性和方法可以丢到基类中去，子类只需要关注子类特有的就行。 通过基类可以方便统一处理不同的子类，如上转型对象。  继承的痛点 破坏了封装，封装可谓面相对象三大特性之一，是面相对象编程基本思维。那怎么破坏封装了呢？子类如果要重写(扩展)父类方法">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-28T12:41:05.406Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="白水东城">
-<meta name="twitter:description" content="一个能同时保有两种相反的观念，还能正常行事的人">
+<meta name="twitter:title" content="Java基础复习(类的继承，接口的本质，抽象类，异常，包装类，泛型)">
+<meta name="twitter:description" content="类的继承为什么要针对接口编程？继承不好用吗?难道就因为java是单继承，所以才搞出接口来实现所谓的多继承?首先，继承是把双刃剑。 继承的好处: 代码复用，公共属性和方法可以丢到基类中去，子类只需要关注子类特有的就行。 通过基类可以方便统一处理不同的子类，如上转型对象。  继承的痛点 破坏了封装，封装可谓面相对象三大特性之一，是面相对象编程基本思维。那怎么破坏封装了呢？子类如果要重写(扩展)父类方法">
   
     <link rel="alternative" href="/atom.xml" title="白水东城" type="application/atom+xml">
   
@@ -141,226 +143,87 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Java基础复习-类的继承，接口的本质，抽象类，异常，包装类，泛型" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java基础复习(类的继承，接口的本质，抽象类，异常，包装类，泛型)
+    </h1>
+  
+
+        
+        <a href="/2018/07/28/Java基础复习-类的继承，接口的本质，抽象类，异常，包装类，泛型/" class="archive-article-date">
+  	<time datetime="2018-07-28T12:39:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-28</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="类的继承"><a href="#类的继承" class="headerlink" title="类的继承"></a>类的继承</h1><p>为什么要针对接口编程？继承不好用吗?难道就因为java是单继承，所以才搞出接口来实现所谓的多继承?<br><strong>首先，继承是把双刃剑。</strong></p>
+<h2 id="继承的好处"><a href="#继承的好处" class="headerlink" title="继承的好处:"></a>继承的好处:</h2><ol>
+<li>代码复用，公共属性和方法可以丢到基类中去，子类只需要关注子类特有的就行。</li>
+<li>通过基类可以方便统一处理不同的子类，如上转型对象。</li>
+</ol>
+<h2 id="继承的痛点"><a href="#继承的痛点" class="headerlink" title="继承的痛点"></a>继承的痛点</h2><ol>
+<li>破坏了封装，封装可谓面相对象三大特性之一，是面相对象编程基本思维。那怎么破坏封装了呢？子类如果要重写(扩展)父类方法，要知道基类中方法实现的细节，要弄清楚父类中方法之间的依赖，比如子类要重写父类中的A方法，而父类中的A方法调用了这个父类中的B方法，那么就要再看一看B方法中的实现细节。否则会可能有错误，举例先忽略。同样的，父类中如果要修改方法，那也要考虑到子类。这样就破坏了封装性。如图：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class Father &#123;</span><br><span class="line">    private int[] arr = new int[10];</span><br><span class="line">    private int cnt;</span><br><span class="line">    public void add(int num) &#123;</span><br><span class="line">        arr[cnt++] = num;</span><br><span class="line">    &#125;</span><br><span class="line">    public void addAll(int [] nums) &#123;</span><br><span class="line">        for(int num : nums) &#123;</span><br><span class="line">            add(num);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> public class Child extends Father&#123;</span><br><span class="line">    private int sum;</span><br><span class="line">    @Override</span><br><span class="line">    public void add(int num) &#123;</span><br><span class="line">        super.add(num);</span><br><span class="line">        sum += num;</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public void addAll(int [] nums) &#123;</span><br><span class="line">        super.addAll(nums);</span><br><span class="line">        for(int i = 0 ; i &lt; nums.length ; i++) &#123;</span><br><span class="line">            sum += nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public int getSum() &#123;</span><br><span class="line">        return sum;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Child c = new Child();</span><br><span class="line">        c.addAll(new int[] &#123;1,2,3&#125;);</span><br><span class="line">        System.out.println(c.getSum());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.破坏了is-a的关系，要知道继承关系就是is-a关系。那破坏从何说起?举个例子，比如说有个基类是鸟类，里面有个方法叫fly()，子类要重写这个方法来实现特定的功能。顾名思义，基类中是希望子类是有 飞 这个能力的，但如果子类有个是企鹅，它又不能飞，只会游和走，那该怎么办？就在企鹅的fly()中写游泳吗？这样虽然没问题，但显然是破坏了is-a关系。父类中拥有的属性和行为，子类中不一定都适用，但子类还是可以重写方法，实现和父类中预期不一致的行为。比如，在用基类统一处理的时候 调用fly()是希望出来 飞 这个动作，结果却有一个是 游泳 。。。举例可能不恰当，但明白意思就OK！</p>
+<h2 id="好了，解决办法是什么呢？"><a href="#好了，解决办法是什么呢？" class="headerlink" title="好了，解决办法是什么呢？"></a>好了，解决办法是什么呢？</h2><ol>
+<li>用final，来规定不能被继承的类或者方法。</li>
+<li>用组合来代替继承。可以代码复用，但却不能通过基类统一处理各种子类。</li>
+<li>使用接口<br>终于说到接口了!<br>很多情况下我们只关注实现的功能，而不需要在意是什么类型实现了这个功能。比如加热，电磁炉可以，煤气灶也行，农村的灶也行。所以可以把功能单独抽出来，做成接口，比如 加热接口。<br>使用接口可以降低代码耦合，也就是挽救继承破坏了封装性的痛点，也同时解决破坏is-a关系(因为不用继承了，自然也没is-a了)。使用接口虽然可以实现统一管理，但接口中没有实现方法，所以不能解决代码复用问题。<br>因此，最终解决办法<br><strong>——接口+组合。</strong></li>
+</ol>
+<h1 id="接口的本质"><a href="#接口的本质" class="headerlink" title="接口的本质"></a>接口的本质</h1><p><strong>在什么情况下我们会用到接口?</strong>在一些场景下，我们不需要关心是什么类型，只需要关心实现的功能。比如加热，微波炉，电磁炉，煤气灶都可以加热，但我只要加热这个功能(能力)就OK。<br><strong>Java8和9对接口进行了加强。</strong><br>Java8中允许在接口中定义两类新的方法:1.静态方法 2.默认方法，这两种方法都必须为public。在这之前接口中的方法都是public abstract 开头的。在Java8之前，也就是接口中不能定义静态方法之前，相关的静态方法只能定义在单独的类中。比如，在java API中，Collection接口有一个对应的单独的类Collections。默认方法与原有的抽象方法不同的是，默认方法中有默认的实现，实现类可以改变实现或者不改变，这是为了便于增加接口的功能。<br>Java9中，静态方法和默认方法允许为private。这样可以方便在多个静态方法和默认方法中复用代码，也很好理解，跟之前了解的封装的特性有关，有点不明白为啥一开始在Java8中不这么搞。</p>
+<h1 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h1><p>抽象类中可以包含抽象方法也可包含具体方法。抽象类和接口一样都不能用来直接创建对象，<strong>抽象类表达的是事物的概念</strong>。<br><strong>为什么一定要用抽象类?</strong><br>我刚学的时候也很困惑，直接在具体类中用一个空方法体不就解决了吗？其实，使用抽象类是为了让使用者在继承的时候必须实现抽象方法，不能忽略，同样的，使用抽象类，就必须要用其非抽象类的子类去创建对象，而不是用功能有可能不完整的抽象类，这样做是为了减少失误，可以说是java的一种减少失误的机制。<br>抽象类跟接口很像，都不能直接创建对象，如果抽象类中全是抽象方法那就更像了！其实，他们是配合关系而不是替代。一般接口都会有一个对应的抽象类，比如，Collection接口对应AbstractCollection这个抽象类。<strong>在这个抽象类中全部or部分实现了接口中的所有抽象方法</strong>。在使用者角度，要用这个接口，可以选择直接实现接口，或者是继承它对应的抽象类，再根据需要进一步重写方法和实现抽象类中没有实现的抽象方法。有一种情况，如果要使用接口的这个类已经有继承的类了，那么根据单继承，只能实现接口中所有抽象方法。这里总算打通了。。</p>
+<h1 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h1><p>程序正常退出是用return关键字，有正常就肯定有异常，异常退出就是用throw。return返回给上一级调用者，但throw之后执行的代码是不确定的，根据异常处理机制动态决定。比如空指针异常，程序在执行到某一行发现一个对象的值为null的时候，就不会继续执行，此时启动异常处理机制，首先创建一个异常对象，这里是NullPointerException的对象，然后从当前函数开始查找谁能捕获(处理)这个异常，当前函数没有就查看上一层，直到主函数，如果也没有就采用默认机制，即输出异常栈信息并退出，退出的意思就是异常点之后的代码是不会执行的。<br>异常类，基类是Throwable。它有两个直接子类:Error和Exception。Error是系统错误或资源耗尽 Java自己处理，应用程序中不需要抛出和处理。Exception有三个直接子类:<strong>IOException,RuntimeException,SQLException</strong>。所有异常中只有RuntimeException是未受检异常，其他都是受检异常。<strong>未受检异常表示程序逻辑错误，程序员应该检查bug而不是去想办法处理异常。受检异常是指程序本身没问题，是因为数据库等不可预测的错误导致的，调用者应该进行处理。</strong><br>在catch块也可以重新抛出异常，这个抛出的异常可以是原来的，也可以是新的异常。<br><strong>为什么要重新抛出异常呢？</strong><br>因为当前代码不能完全处理该异常，需要调用者进一步再处理。为什么又要抛出新的异常？因为当前异常不太合适，不合适可能是信息不够，需要补充新的信息。也可能是过于细节，不便于调用者理解和使用，当然如果调用者想知道细节，可以通过getCause()来获取到原始异常。说到getCause()就要说到异常链，Throwable类的几个构造方法中，有两个主要参数，1.message，表示异常信息 2.cause，表示触发该异常的其他异常。上层的异常由底层触发，底层异常就用cause表示，这样就形成了一个异常链。在finally中最好不要写return或抛出异常。<br>总得来说，如果在你这一层捕获到异常，如果不能完全解决就向你的上级抛出，你的上级如果也不能完全解决，就应该把他拿到的信息和新的信息一并抛给更上级，最后直到大boss来进行负责和处理。每一级既不能掩饰问题，也不能逃避应该承担的责任。<br>暑假生活day8学习笔记<br>第7章 常用的基础类浪了几天终于开始看这一章了，估计笔记也不少了，可以发博客了吼吼～</p>
+<h1 id="包装类"><a href="#包装类" class="headerlink" title="包装类"></a>包装类</h1><p>java5之后引入自动装箱和拆箱的技术，可以直接将基本类型赋值给引用变量。自动拆箱和装箱是java编译器提供的，背后是替换为了对应的valueOf/xxxValue。所有的包装类中都重写了Object类中的equals，hashCode,toString方法。equals实际比较的是其包装的基本类型值，要注意只有两个float的二进制完全一致才返回为true。因为hashCode是根据对象来计算的，那么显然如果两个对象的equals相同时，那么hashCode必须一样，反之则不一定，因为可能产生地址冲突，比如会采用链地址法来解决(这个我猜的，具体可能用的其他办法)。子类重写equals必须重写hashCode，这个在很多地方都看到了，但现在不明白为啥这么规定，先记下来呗～<br>Integer中有一些二进制操作，如位翻转和循环移位，CPU能高效实现移位和逻辑运算。<br>Java内部采用UTF-16，提到这个就要说到Unicode,Unicode是为了解决全世界不同文字的问题而出现的，它给百万中字符编了码，但工作也只是编了码而已，并没有规定如何把编号映射为二进制。这也是高明之处，UTF-8,UTF-32,UTF-16等都是编码方式或者叫映射方式。int可以表示任意Unicode字符，整数编号在Unicode中称为代码点(code point)，表示一个Unicode字符，还有一个相对应的叫代码单元(code unit)。好了，其实说的就是Character有一部分处理的就是有关代码点，代码单元，character，Unicode的事情。。。这部分我没细看，有点枯燥，先跳过了。。。<br>String类内部是用字符数组表示字符串的，String会根据参数创建新数组，把参数中内容复制到数组，并不会直接用参数的字符数组，一些有关操作也都是操作这个内部产生的数组。与包装类一样，String类也是不可变类，也不能被继承，内部char数组value也是final。String中那些看似修改的方法实际上是通过创建新数组来完成的。比如，concat()是创建新数组，然后把值赋值到这个新数组中来。当然，这样效率太低，所以一般使用StringBuilder和StringBuffer(线程安全)。String中有一个字符串常量池，通过常量的形式使用字符串时，使用的就是常量池中那个对应的String类型对象。String的+和+=，背后，Java编译器会生成StringBuilder，并转换为append。</p>
+<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><p><strong>泛型就是广泛的类型</strong>，将接口进一步延伸，使代码与它们能够操作的数据类型不再绑定到一起，同一套代码可以用于多种数据类型，复用代码，降低耦合，提高可读性和安全性，至于安全性后面仔细说。<br>泛型是类型参数化，处理的数据类型不是固定，而是可以作为参数传入。<br>一开始接触泛型也有这个困惑，为啥一定要用定义类型参数，定义普通类，直接使用Object不就行了。<br>其实，在内部，编译器会把泛型代码转换为普通非泛型代码，会将类型参数T擦拭掉，替换为Object，再加上必要的强制类型转换，之后java虚拟机执行的时候只知道普通类的代码。那回到问题，既然最后都是转换成Object，为啥要用泛型呢?因为可读性和安全性，比如，public class Pair<u,v>{省略}.Pair pair = new Pair(“哈哈”,1);Integer id = (Integer)pair.getFirst()。这么写，编译没问题，但运行就会报错。此处若使用泛型，就能将错误避免，也有可读性:Pair<string,integer> pair =new Pair&lt;&gt;(“哈哈”,1)。<br><strong>容器类</strong><br>泛型类最常见的用途就是作为容器类，容器类就是容纳管理多项数据的类。<br><strong>泛型方法</strong><br>泛型方法跟它所在的类是不是泛型没关系，调用泛型方法时不需要特意指定类型参数的实际类型，编译器可以自动推断。<br><strong>泛型接口</strong><br>接口也可以是泛型的，在实现接口的类中指定具体类型。<br>在之前的泛型中，类型参数我们只能当做Object，其实可以限定这个参数的一个上界，上界可以是具体的类、具体接口、甚至其他类型参数。都使用关键字extends。</string,integer></u,v></p>
+<h1 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h1><p>待续。。</p>
+<p>文章主要是看了<strong>《Java编程逻辑》</strong>这本书，学习笔记，与大家分享一下~~</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你赞赏给我的买书钱:)<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechatpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/03/查查Z陪你学英语-22/" class="archive-article-date">
-  	<time datetime="2018-05-02T16:42:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/03/查查Z陪你学英语-22/">查查Z陪你学英语-22</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">英语</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/02/leetcode算法题解-Java版-7-循环链表/" class="archive-article-date">
-  	<time datetime="2018-05-02T13:03:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/02/leetcode算法题解-Java版-7-循环链表/">leetcode算法题解(Java版)-7-循环链表</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/02/查查Z陪你学英语-21/" class="archive-article-date">
-  	<time datetime="2018-05-01T16:00:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/02/查查Z陪你学英语-21/">查查Z陪你学英语-21</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">英语</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/01/leetcode算法题解-Java版-6-链表-字符串/" class="archive-article-date">
-  	<time datetime="2018-05-01T15:59:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/01/leetcode算法题解-Java版-6-链表-字符串/">leetcode算法题解(Java版)-6-链表,字符串</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/01/查查Z陪你学英语-20/" class="archive-article-date">
-  	<time datetime="2018-04-30T16:30:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/01/查查Z陪你学英语-20/">查查Z陪你学英语-20</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">英语</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/30/leetcode算法题解-Java版-5-简单模拟-字符串处理/" class="archive-article-date">
-  	<time datetime="2018-04-30T13:16:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/30/leetcode算法题解-Java版-5-简单模拟-字符串处理/">leetcode算法题解(Java版)-5-简单模拟,字符串处理</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -372,174 +235,54 @@
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/29/查查Z陪你学英语-19/" class="archive-article-date">
-  	<time datetime="2018-04-29T15:46:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-29</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/06/01/差点淹死的五月-五月随笔/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">差点淹死的五月-五月随笔</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/29/查查Z陪你学英语-19/">查查Z陪你学英语-19</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">英语</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/29/leetcode算法题解-Java版-4-动态规划-杨辉三角问题/" class="archive-article-date">
-  	<time datetime="2018-04-29T13:38:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/29/leetcode算法题解-Java版-4-动态规划-杨辉三角问题/">leetcode算法题解(Java版)-4-动态规划(杨辉三角问题)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/29/查查Z陪你学英语-18/" class="archive-article-date">
-  	<time datetime="2018-04-28T16:52:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/29/查查Z陪你学英语-18/">查查Z陪你学英语-18</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">英语</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/28/leetcode算法题解-Java版-3-广搜-HashMap/" class="archive-article-date">
-  	<time datetime="2018-04-28T13:03:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/28/leetcode算法题解-Java版-3-广搜-HashMap/">leetcode算法题解(Java版)-3-广搜+HashMap</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2018/page/2/">&laquo; Prev</a><a class="page-number" href="/archives/2018/">1</a><a class="page-number" href="/archives/2018/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/2018/page/4/">4</a><a class="page-number" href="/archives/2018/page/5/">5</a><a class="page-number" href="/archives/2018/page/6/">6</a><a class="extend next" rel="next" href="/archives/2018/page/4/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -564,8 +307,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
