@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="baishuidongcheng.com">
   <title>算法之搜索(Java版)-持续更新补充 | 白水东城</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="算法之搜索 一、顺序查找顺序查找对序列本身没有要求（比如不需要是已经排序好的），也不仅限于数字、字符，也可以用于前缀，对象信息的关键信息的匹配（比如查找指定id的相应信息）。">
+  <meta name="description" content="一、顺序查找顺序查找对序列本身没有要求（比如不需要是已经排序好的），也不仅限于数字、字符，也可以用于前缀，对象信息的关键信息的匹配（比如查找指定id的相应信息）。">
 <meta name="keywords" content="数据结构和算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法之搜索(Java版)-持续更新补充">
 <meta property="og:url" content="baishuidongcheng.com/2018/08/06/算法之搜索-Java版-持续更新补充/index.html">
 <meta property="og:site_name" content="白水东城">
-<meta property="og:description" content="算法之搜索 一、顺序查找顺序查找对序列本身没有要求（比如不需要是已经排序好的），也不仅限于数字、字符，也可以用于前缀，对象信息的关键信息的匹配（比如查找指定id的相应信息）。">
+<meta property="og:description" content="一、顺序查找顺序查找对序列本身没有要求（比如不需要是已经排序好的），也不仅限于数字、字符，也可以用于前缀，对象信息的关键信息的匹配（比如查找指定id的相应信息）。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-06T13:06:12.810Z">
+<meta property="og:updated_time" content="2018-08-06T13:07:46.412Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法之搜索(Java版)-持续更新补充">
-<meta name="twitter:description" content="算法之搜索 一、顺序查找顺序查找对序列本身没有要求（比如不需要是已经排序好的），也不仅限于数字、字符，也可以用于前缀，对象信息的关键信息的匹配（比如查找指定id的相应信息）。">
+<meta name="twitter:description" content="一、顺序查找顺序查找对序列本身没有要求（比如不需要是已经排序好的），也不仅限于数字、字符，也可以用于前缀，对象信息的关键信息的匹配（比如查找指定id的相应信息）。">
   
     <link rel="alternative" href="/atom.xml" title="白水东城" type="application/atom+xml">
   
@@ -186,8 +186,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>算法之搜索</p>
-<h1 id="一、顺序查找"><a href="#一、顺序查找" class="headerlink" title="一、顺序查找"></a>一、顺序查找</h1><p>顺序查找对序列本身没有要求（比如不需要是已经排序好的），也不仅限于数字、字符，也可以用于前缀，对象信息的关键信息的匹配（比如查找指定id的相应信息）。<br><a id="more"></a><br>衡量查找性能的一个指标是————ASL(Average Search Length)，ASL=Pi乘Ci，Pi是查找第i个元素的概率，Ci是找到第i个已经比较过次数。<br><strong>哨兵方式的顺序查找</strong>相比较基础的顺序查找在循环的比较部分减少了一般。</p>
+        <h1 id="一、顺序查找"><a href="#一、顺序查找" class="headerlink" title="一、顺序查找"></a>一、顺序查找</h1><p>顺序查找对序列本身没有要求（比如不需要是已经排序好的），也不仅限于数字、字符，也可以用于前缀，对象信息的关键信息的匹配（比如查找指定id的相应信息）。<br><a id="more"></a><br>衡量查找性能的一个指标是————ASL(Average Search Length)，ASL=Pi乘Ci，Pi是查找第i个元素的概率，Ci是找到第i个已经比较过次数。<br><strong>哨兵方式的顺序查找</strong>相比较基础的顺序查找在循环的比较部分减少了一般。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//1. 顺序查找</span><br><span class="line">public class SequentialSearch &#123;</span><br><span class="line">    private int[] array;</span><br><span class="line">    </span><br><span class="line">    public SequentialSearch(int[] array) &#123;</span><br><span class="line">        this.array = array;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public int search(int key) &#123;</span><br><span class="line">        for(int i = 0; i &lt; array.length; i++) &#123;</span><br><span class="line">            if(array[i] == key) &#123;</span><br><span class="line">                return i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">//2. 哨兵方式顺序查找</span><br><span class="line">public class Search2 &#123;</span><br><span class="line">    private int[] array;</span><br><span class="line">    </span><br><span class="line">    public Search2(int[] array) &#123;</span><br><span class="line">        this.array = array;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public int search(int key) &#123;</span><br><span class="line">        if(key == array[0]) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int temp = array[0];</span><br><span class="line">        array[0] = key;</span><br><span class="line">        int index = array.length-1;</span><br><span class="line">        while(array[index] != key) &#123;</span><br><span class="line">            index--;</span><br><span class="line">        &#125;</span><br><span class="line">        array[0] = temp;</span><br><span class="line">        if(index == 0) &#123;</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            return index;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="二、二分查找"><a href="#二、二分查找" class="headerlink" title="二、二分查找"></a>二、二分查找</h1><p>如果是顺序查找，7个数最多可能会比较7次，但用二分查找，最多只要3次就能OK。时间复杂度是O（logn）(底数为2)。</p>
