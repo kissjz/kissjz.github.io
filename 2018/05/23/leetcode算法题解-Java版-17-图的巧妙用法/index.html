@@ -198,122 +198,19 @@ var _hmt = _hmt || [];
 <li>解：从（0,0）出发到(n,n）的全部路径。</li>
 <li>上面是大神的思路，敲完后，总结一下：题目要求的是各种输出结果，这种题以后可以往图上考虑考虑。找出题目中的隐含的限制条件作为边界条件，然后确定好当前的状态也就是节点，再确定这个节点到下一个节点的路径，也就是边。</li>
 </ul>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="lang-java">import java.util.ArrayList;
-
-public class Solution {
-    public ArrayList&lt;String&gt; generateParenthesis(int n) {
-        ArrayList&lt;String&gt; list = new ArrayList&lt;String&gt;();
-        help(n,0,0,&quot;&quot;,list);
-        return list;
-    }
-    public void help(int n,int x,int y,String tem,ArrayList&lt;String&gt; list){
-        if(y==n){
-            list.add(tem);
-        }
-        if(x&lt;n){
-            help(n,x+1,y,tem+&#39;(&#39;,list);
-        }
-        if(x&gt;y){
-            help(n,x,y+1,tem+&#39;)&#39;,list);
-        }
-    }
-}
-</code></pre>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;String&gt; <span class="title">generateParenthesis</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        help(n,<span class="number">0</span>,<span class="number">0</span>,<span class="string">""</span>,list);</span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">help</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> x,<span class="keyword">int</span> y,String tem,ArrayList&lt;String&gt; list)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(y==n)&#123;</span><br><span class="line">            list.add(tem);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(x&lt;n)&#123;</span><br><span class="line">            help(n,x+<span class="number">1</span>,y,tem+<span class="string">'('</span>,list);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(x&gt;y)&#123;</span><br><span class="line">            help(n,x,y+<span class="number">1</span>,tem+<span class="string">')'</span>,list);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="二、链表"><a href="#二、链表" class="headerlink" title="二、链表"></a>二、链表</h1><h2 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h2><p>Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists. </p>
 <h2 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h2><ul>
 <li>题目意思感觉没说明白，意思就是把两个有序的链表合并（splice）到一起组成一个有序链表。</li>
 <li>开一个空的头节点，或者头指针，搞不清楚。反正明白意思就好，头节点里面不放数值。然后就是循环比较各个节点大小，依次加入新建的链表中。</li>
 </ul>
-<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><pre><code class="lang-java">/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;
- *     }
- * }
- */
-public class Solution {
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        ListNode head = new ListNode(0);
-        ListNode p = head;
-        while(l1!=null&amp;&amp;l2!=null){
-            if(l1.val&lt;l2.val){
-                p.next = l1;
-                l1 = l1.next;
-            }
-            else{
-                p.next = l2;
-                l2 = l2.next;
-            }
-            p = p.next;
-        }
-        if(l1 == null){
-            p.next = l2;
-        }
-        if(l2 == null){
-            p.next = l1;
-        }
-        return head.next;
-    }
-}
-</code></pre>
+<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123;</span></span><br><span class="line"><span class="comment"> *         val = x;</span></span><br><span class="line"><span class="comment"> *         next = null;</span></span><br><span class="line"><span class="comment"> *     &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">mergeTwoLists</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">        ListNode head = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">        ListNode p = head;</span><br><span class="line">        <span class="keyword">while</span>(l1!=<span class="keyword">null</span>&amp;&amp;l2!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(l1.val&lt;l2.val)&#123;</span><br><span class="line">                p.next = l1;</span><br><span class="line">                l1 = l1.next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                p.next = l2;</span><br><span class="line">                l2 = l2.next;</span><br><span class="line">            &#125;</span><br><span class="line">            p = p.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(l1 == <span class="keyword">null</span>)&#123;</span><br><span class="line">            p.next = l2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(l2 == <span class="keyword">null</span>)&#123;</span><br><span class="line">            p.next = l1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> head.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="三、动态规划"><a href="#三、动态规划" class="headerlink" title="三、动态规划"></a>三、动态规划</h1><h2 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h2><p>Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.<br>Note: You can only move either down or right at any point in time. </p>
 <h2 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h2><ul>
 <li>动态规划，老套路，求什么我们就把以什么作为状态数组dp，同样的，先来一个空间复杂度为m*n的，然后再考虑优化空间。</li>
 </ul>
-<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><pre><code class="lang-java">//空间复杂度m*n
-public class Solution {
-    public int minPathSum(int[][] grid) {
-        int m = grid.length;
-        int n = grid[0].length;
-        if(grid == null){
-            return 0;
-        }
-        for(int i=0;i&lt;m;i++){
-            for(int j=0;j&lt;n;j++){
-                if(i==0&amp;&amp;j&gt;0){
-                    grid[i][j]+=grid[i][j-1];
-                }
-                if(j==0&amp;&amp;i&gt;0){
-                    grid[i][j]+=grid[i-1][j];
-                }
-                if(i*j!=0){
-                    grid[i][j]+=Math.min(grid[i-1][j],grid[i][j-1]);
-                }
-            }
-        }
-        return grid[m-1][n-1];
-    }
-}
-</code></pre>
-<pre><code class="lang-java">import java.util.Arrays;
-
-public class Solution {
-    public int minPathSum(int[][] grid) {
-        if(grid == null){
-            return 0;
-        }
-        int m = grid.length;
-        int n = grid[0].length;
-
-        int [] dp = new int [n+1];
-        Arrays.fill(dp,Integer.MAX_VALUE);
-        dp[1]=0;//dp[0]空出来，方便操作
-        for(int i=0;i&lt;m;i++){
-            for(int j=0;j&lt;n;j++){
-                //注意这里dp数组中下标从1开始
-                //dp[j]表示空间复杂度为m*n的代码中的grid[i][j-1]
-                //dp[j+1]表示grid[i-1][j]
-                dp[j+1]=Math.min(dp[j],dp[j+1])+grid[i][j];
-            }
-        }
-        return dp[n];
-    }
-}
-</code></pre>
+<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//空间复杂度m*n</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minPathSum</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> m = grid.length;</span><br><span class="line">        <span class="keyword">int</span> n = grid[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">if</span>(grid == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(i==<span class="number">0</span>&amp;&amp;j&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                    grid[i][j]+=grid[i][j-<span class="number">1</span>];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(j==<span class="number">0</span>&amp;&amp;i&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                    grid[i][j]+=grid[i-<span class="number">1</span>][j];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(i*j!=<span class="number">0</span>)&#123;</span><br><span class="line">                    grid[i][j]+=Math.min(grid[i-<span class="number">1</span>][j],grid[i][j-<span class="number">1</span>]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> grid[m-<span class="number">1</span>][n-<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minPathSum</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(grid == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> m = grid.length;</span><br><span class="line">        <span class="keyword">int</span> n = grid[<span class="number">0</span>].length;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> [] dp = <span class="keyword">new</span> <span class="keyword">int</span> [n+<span class="number">1</span>];</span><br><span class="line">        Arrays.fill(dp,Integer.MAX_VALUE);</span><br><span class="line">        dp[<span class="number">1</span>]=<span class="number">0</span>;<span class="comment">//dp[0]空出来，方便操作</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++)&#123;</span><br><span class="line">                <span class="comment">//注意这里dp数组中下标从1开始</span></span><br><span class="line">                <span class="comment">//dp[j]表示空间复杂度为m*n的代码中的grid[i][j-1]</span></span><br><span class="line">                <span class="comment">//dp[j+1]表示grid[i-1][j]</span></span><br><span class="line">                dp[j+<span class="number">1</span>]=Math.min(dp[j],dp[j+<span class="number">1</span>])+grid[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 

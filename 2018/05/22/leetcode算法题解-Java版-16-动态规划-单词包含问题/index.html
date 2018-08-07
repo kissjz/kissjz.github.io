@@ -194,92 +194,20 @@ var _hmt = _hmt || [];
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul>
 <li>碰到二叉树的问题，差不多就是深搜、广搜，递归那方面想想了，当然如果要考虑一下空间、时间，还需要进行剪枝和压缩处理。这题比较简单：判断两个树是否相等，可以递归的判断子树是否相等，最后找到边界条件就是是否都为空，都不为空时节点里面的值是否相等。</li>
 </ul>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="lang-java">/**
- * Definition for binary tree
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-public class Solution {
-    public boolean isSameTree(TreeNode p, TreeNode q) {
-        if(p==null&amp;&amp;q==null){
-           return true;
-        }
-        else if(p==null||q==null){
-            return false;
-        }
-        else if(q.val!=p.val){
-            return false;
-        }
-        else{
-            return isSameTree(p.left,q.left)&amp;&amp;isSameTree(p.right,q.right);
-        }
-    }
-}
-</code></pre>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for binary tree</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSameTree</span><span class="params">(TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(p==<span class="keyword">null</span>&amp;&amp;q==<span class="keyword">null</span>)&#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(p==<span class="keyword">null</span>||q==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(q.val!=p.val)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> isSameTree(p.left,q.left)&amp;&amp;isSameTree(p.right,q.right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="二、动态规划"><a href="#二、动态规划" class="headerlink" title="二、动态规划"></a>二、动态规划</h1><h2 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h2><p>Given a string s and a dictionary of words dict, determine if s can be segmented into a space-separated sequence of one or more dictionary words.<br>For example, given<br>s =”leetcode”,<br>dict =[“leet”, “code”].<br>Return true because”leetcode”can be segmented as”leet code”. </p>
 <h2 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h2><ul>
 <li>dp的题目，写了几道了。核心无非就是确定dp数组和状态转移方程。这几道题都有明显的特点，那就是dp数组记录的就是所求的答案，所以答案一般都是dp[s.length()]这种形式的。</li>
 <li>有了上面的总结，再来看着道题目。要求一串字母是否可以由所给的字典中的单词拼出来，要求返回布尔型。那好，也同时<strong>提示我们了</strong>dp数组就是记录它的子串是否能满足要求，类型是布尔型：dp[i]表示的是s[0,i-1]这个子串能否满足要求。</li>
 <li>dp[i]=dp[j]&amp;&amp;s[j,i]是否在字典中(0&lt;=j&lt;=i-1)</li>
 </ul>
-<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><pre><code class="lang-java">import java.util.Set;
-
-public class Solution {
-    public boolean wordBreak(String s, Set&lt;String&gt; dict) {
-        if(s==null||s.length()==0||dict==null||dict.size()==0){
-            return false;
-        }
-        boolean [] dp = new boolean [s.length()+2];
-        dp[0] = true;
-
-        for(int i=1;i&lt;=s.length();i++){
-            for(int j=i-1;j&gt;=0;j--){//从尾部扫描单词
-                if(dp[j]==true&amp;&amp;dict.contains(s.substring(j,i))){
-                    dp[i]=true;
-                    break;
-                }
-                else{
-                    dp[i]=false;
-                }
-            }
-        }
-        return dp[s.length()];
-    }
-}
-</code></pre>
+<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">wordBreak</span><span class="params">(String s, Set&lt;String&gt; dict)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(s==<span class="keyword">null</span>||s.length()==<span class="number">0</span>||dict==<span class="keyword">null</span>||dict.size()==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">boolean</span> [] dp = <span class="keyword">new</span> <span class="keyword">boolean</span> [s.length()+<span class="number">2</span>];</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="keyword">true</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=s.length();i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=i-<span class="number">1</span>;j&gt;=<span class="number">0</span>;j--)&#123;<span class="comment">//从尾部扫描单词</span></span><br><span class="line">                <span class="keyword">if</span>(dp[j]==<span class="keyword">true</span>&amp;&amp;dict.contains(s.substring(j,i)))&#123;</span><br><span class="line">                    dp[i]=<span class="keyword">true</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    dp[i]=<span class="keyword">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[s.length()];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="三、深搜"><a href="#三、深搜" class="headerlink" title="三、深搜"></a>三、深搜</h2><h2 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h2><p>Given a string s and a dictionary of words dict, add spaces in s to construct a sentence where each word is a valid dictionary word.<br>Return all such possible sentences.<br>For example, given<br>s =”catsanddog”,<br>dict =[“cat”, “cats”, “and”, “sand”, “dog”].<br>A solution is[“cats and dog”, “cat sand dog”]. </p>
 <h2 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h2><ul>
 <li>题目是上一道题的加强版，为了考察动态规划。感觉有点复杂，没想出来怎么在上一道的基础上改进。</li>
 <li>深搜可以解决问题！直接看代码了</li>
 </ul>
-<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><pre><code class="lang-java">import java.util.ArrayList;
-import java.util.Set;
-
-public class Solution {
-    public ArrayList&lt;String&gt; res = new ArrayList&lt;&gt;();
-    public ArrayList&lt;String&gt; wordBreak(String s, Set&lt;String&gt; dict) {
-         dfs(s,s.length(),dict,&quot;&quot;);
-        return res;
-    }
-    public void dfs(String s,int index,Set&lt;String&gt; dict,String temp){
-        if(index==0){
-            if(temp.length()&gt;0){
-                res.add(temp.substring(0,temp.length()-1));//如果写成res.add(temp)则末尾会多一个空格，小细节
-            }
-        }
-        for(int i=index-1;i&gt;=0;i--){
-            if(dict.contains(s.substring(i,index))){
-                dfs(s,i,dict,s.substring(i,index)+&quot; &quot;+temp);
-            }
-        }
-    }
-}
-</code></pre>
-
+<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> ArrayList&lt;String&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;String&gt; <span class="title">wordBreak</span><span class="params">(String s, Set&lt;String&gt; dict)</span> </span>&#123;</span><br><span class="line">         dfs(s,s.length(),dict,<span class="string">""</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(String s,<span class="keyword">int</span> index,Set&lt;String&gt; dict,String temp)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(index==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(temp.length()&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                res.add(temp.substring(<span class="number">0</span>,temp.length()-<span class="number">1</span>));<span class="comment">//如果写成res.add(temp)则末尾会多一个空格，小细节</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=index-<span class="number">1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(dict.contains(s.substring(i,index)))&#123;</span><br><span class="line">                dfs(s,i,dict,s.substring(i,index)+<span class="string">" "</span>+temp);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
       

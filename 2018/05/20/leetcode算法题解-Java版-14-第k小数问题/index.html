@@ -195,105 +195,17 @@ var _hmt = _hmt || [];
 <li>题目要求在O(log(m+n))时间内完成，可以转换为找到假设两个数组合并后的第（m+n)/2小的数。</li>
 <li>这里先忽略奇偶问题，具体实现代码中会有不同。先假设A和B中的数都大于k/2,比较A[k/2-1]和B[k/2-1]（减1是因为数组下标从零开始）如果A[k/2-1]&lt;B[k/2-1]说明A[0]~A[k/2-1]这些数都是在合并A、B后前k小的元素之中，也就是说A[0]~A[k/2-1]不可能大于数组合并后的第k小值，故将其抛弃。</li>
 </ul>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="lang-java">public class Solution {
-    public double findMedianSortedArrays(int A[], int B[]) {
-        //奇偶数不会有影响，最后中位数就是平均值
-        int m = A.length,n = B.length;
-        int l = (m+n+1)/2;
-        int r = (m+n+2)/2;
-
-        return (findKthNum(A,B,0,0,l)+findKthNum(A,B,0,0,r))/2.0;
-    }
-    private double findKthNum(int [] A,int [] B,int Astart,int Bstart,int k){
-        int lenA = A.length;
-        int lenB = B.length;
-        if(Astart&gt;=lenA){
-            return B[Bstart+k-1];
-        }
-        if(Bstart&gt;=lenB){
-            return A[Astart+k-1];
-        }
-        if(k==1){
-            return Math.min(A[Astart],B[Bstart]);
-        }
-        int minA = Integer.MAX_VALUE;
-        int minB = Integer.MAX_VALUE;
-        if(Astart+k/2-1&lt;A.length){
-            //如果这里超过了A数组的范围，那就说明A中有将A、B合并后一半以上的
-            //数，也就是说中位数肯定在A中。那后面的minB&lt;minA(MAX_VALUE)，就会成立，从而舍弃B中的前一些无关的数
-            minA = A[Astart+k/2-1];
-        }
-        if(Bstart+k/2-1&lt;B.length){
-            minB = B[Bstart+k/2-1];
-        }
-        if(minA&lt;minB){
-            return findKthNum(A,B,Astart+k/2,Bstart,k-k/2);
-        }
-        else{
-            return findKthNum(A,B,Astart,Bstart+k/2,k-k/2);
-        }
-    }
-}
-</code></pre>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">findMedianSortedArrays</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> B[])</span> </span>&#123;</span><br><span class="line">        <span class="comment">//奇偶数不会有影响，最后中位数就是平均值</span></span><br><span class="line">        <span class="keyword">int</span> m = A.length,n = B.length;</span><br><span class="line">        <span class="keyword">int</span> l = (m+n+<span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> r = (m+n+<span class="number">2</span>)/<span class="number">2</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> (findKthNum(A,B,<span class="number">0</span>,<span class="number">0</span>,l)+findKthNum(A,B,<span class="number">0</span>,<span class="number">0</span>,r))/<span class="number">2.0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">double</span> <span class="title">findKthNum</span><span class="params">(<span class="keyword">int</span> [] A,<span class="keyword">int</span> [] B,<span class="keyword">int</span> Astart,<span class="keyword">int</span> Bstart,<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> lenA = A.length;</span><br><span class="line">        <span class="keyword">int</span> lenB = B.length;</span><br><span class="line">        <span class="keyword">if</span>(Astart&gt;=lenA)&#123;</span><br><span class="line">            <span class="keyword">return</span> B[Bstart+k-<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(Bstart&gt;=lenB)&#123;</span><br><span class="line">            <span class="keyword">return</span> A[Astart+k-<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(k==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> Math.min(A[Astart],B[Bstart]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> minA = Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">int</span> minB = Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">if</span>(Astart+k/<span class="number">2</span>-<span class="number">1</span>&lt;A.length)&#123;</span><br><span class="line">            <span class="comment">//如果这里超过了A数组的范围，那就说明A中有将A、B合并后一半以上的</span></span><br><span class="line">            <span class="comment">//数，也就是说中位数肯定在A中。那后面的minB&lt;minA(MAX_VALUE)，就会成立，从而舍弃B中的前一些无关的数</span></span><br><span class="line">            minA = A[Astart+k/<span class="number">2</span>-<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(Bstart+k/<span class="number">2</span>-<span class="number">1</span>&lt;B.length)&#123;</span><br><span class="line">            minB = B[Bstart+k/<span class="number">2</span>-<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(minA&lt;minB)&#123;</span><br><span class="line">            <span class="keyword">return</span> findKthNum(A,B,Astart+k/<span class="number">2</span>,Bstart,k-k/<span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> findKthNum(A,B,Astart,Bstart+k/<span class="number">2</span>,k-k/<span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="二、map映射"><a href="#二、map映射" class="headerlink" title="二、map映射"></a>二、map映射</h1><h2 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h2><p>Given an array of integers, find two numbers such that they add up to a specific target number.<br>The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.<br>You may assume that each input would have exactly one solution.<br>Input: numbers={2, 7, 11, 15}, target=9<br>Output: index1=1, index2=2</p>
 <h2 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h2><ul>
 <li>给一列数，给一个目标值，找出数列中两个数和为这个值的下标。因为数没有排序，可以考虑用map来构建数值和下标的映射，更狠一点，在遍历数组的同时，用map构建目标值减去当前这个数的值与当前下标的映射，然后对每一个遍历到的数判断是否已存在在map中。</li>
 </ul>
-<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><pre><code class="lang-java">import java.util.HashMap;
-
-public class Solution {
-    public int[] twoSum(int[] numbers, int target) {
-        int n = numbers.length;
-        int [] res = new int [2];
-        HashMap&lt;Integer,Integer&gt; map = new HashMap&lt;Integer,Integer&gt;();
-        for(int i=0 ;i&lt;n;i++){
-            if(map.containsKey(numbers[i])){
-                res[0]=map.get(numbers[i])+1;
-                res[1]=i+1;
-                break;
-            }
-            else{
-                map.put(target-numbers[i],i);
-            }
-        }
-        return res;
-    }
-}
-</code></pre>
+<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] numbers, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        <span class="keyword">int</span> n = numbers.length;</span><br><span class="line">        <span class="keyword">int</span> [] res = <span class="keyword">new</span> <span class="keyword">int</span> [<span class="number">2</span>];</span><br><span class="line">        HashMap&lt;Integer,Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Integer,Integer&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span> ;i&lt;n;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(map.containsKey(numbers[i]))&#123;</span><br><span class="line">                res[<span class="number">0</span>]=map.get(numbers[i])+<span class="number">1</span>;</span><br><span class="line">                res[<span class="number">1</span>]=i+<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                map.put(target-numbers[i],i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="三、动态规划"><a href="#三、动态规划" class="headerlink" title="三、动态规划"></a>三、动态规划</h1><h2 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h2><p>You are climbing a stair case. It takes n steps to reach to the top.<br>Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top? </p>
 <h2 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h2><ul>
 <li>题目提示了用动态规划来解，那自然想到从step 1,2,3,.。于是慢慢推了看看，看是否能得到状态转移方程。写了几个，发现：dp[i]=dp[i-1]+dp[i-2];</li>
 </ul>
-<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><pre><code class="lang-java">public class Solution {
-    public int climbStairs(int n) {
-        int [] dp = new int[n+2];
-        dp[1]=1;
-        dp[2]=2;
-        for(int i=3;i&lt;=n;i++){
-            dp[i]=dp[i-1]+dp[i-2];
-        }
-        return dp[n];
-    }
-}
-
-//优化一下空间复杂度
-public class Solution {
-    public int climbStairs(int n) {
-        if(n&lt;=2){
-            return n;
-        }
-        int one_step_before=2;
-        int two_step_before=1;
-        for(int i=3;i&lt;=n;i++){
-            int cur = one_step_before+two_step_before;
-            two_step_before = one_step_before;
-            one_step_before = cur;
-        }
-        return one_step_before;
-    }
-}
-</code></pre>
-
+<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">climbStairs</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> [] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n+<span class="number">2</span>];</span><br><span class="line">        dp[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">        dp[<span class="number">2</span>]=<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">3</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            dp[i]=dp[i-<span class="number">1</span>]+dp[i-<span class="number">2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//优化一下空间复杂度</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">climbStairs</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n&lt;=<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> n;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> one_step_before=<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> two_step_before=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">3</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> cur = one_step_before+two_step_before;</span><br><span class="line">            two_step_before = one_step_before;</span><br><span class="line">            one_step_before = cur;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> one_step_before;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
       

@@ -252,58 +252,7 @@ var _hmt = _hmt || [];
 </ul>
 <h1 id="线程的通信"><a href="#线程的通信" class="headerlink" title="线程的通信"></a>线程的通信</h1><h1 id="线程组-amp-amp-线程池"><a href="#线程组-amp-amp-线程池" class="headerlink" title="线程组&amp;&amp;线程池"></a>线程组&amp;&amp;线程池</h1><p>略（以后学明白了再补充）</p>
 <h1 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h1><p>使用3个线程，要求三个线程顺序执行，不允许使用sleep()强制让线程有顺序。<br>线程A输出1、2、3，<br>线程B输出4、5、6，<br>线程C输出7、8、9，<br>线程A输出10、11、12，<br>线程B输出13、14、15，<br>以此类推，一直输出到1000为止。</p>
-<p><strong>我的解答</strong>：</p>
-<pre><code class="lang-java">package thread_package;
-
-public class ThreadHomeWork2 {
-    public static void main(String [] args) {
-        Num num = new Num();
-        SynchronizedThread r = new SynchronizedThread(num);
-
-
-        while(num.cnt&lt;20) {
-            new Thread(r).start();
-            new Thread(r).start();
-            new Thread(r).start();
-
-        }
-    }
-}
-
-class Num{
-    String flag = &quot;A&quot;;
-    int cnt = 1;
-}
-
-
-class SynchronizedThread implements Runnable{
-    Num num;
-    public SynchronizedThread(Num num) {
-        this.num = num;
-    }
-    public void run() {
-        synchronized(num) {
-            for(int i=0;i&lt;3;i++) {
-                if(num.cnt &lt;=20) {
-                    System.out.println(&quot;线程:&quot;+num.flag+&quot; &quot;+num.cnt++);
-                }
-                else {
-                    break;
-                }
-            }
-            if(&quot;A&quot;.equals(num.flag)) {
-                num.flag = &quot;B&quot;;
-            }
-            else if(&quot;B&quot;.equals(num.flag)) {
-                num.flag = &quot;C&quot;;
-            }
-            else {
-                num.flag = &quot;A&quot;;
-            }
-        }
-    }
-}
-</code></pre>
+<p><strong>我的解答</strong>：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> thread_package;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadHomeWork2</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String [] args)</span> </span>&#123;</span><br><span class="line">		Num num = <span class="keyword">new</span> Num();</span><br><span class="line">		SynchronizedThread r = <span class="keyword">new</span> SynchronizedThread(num);</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span>(num.cnt&lt;<span class="number">20</span>) &#123;</span><br><span class="line">			<span class="keyword">new</span> Thread(r).start();</span><br><span class="line">			<span class="keyword">new</span> Thread(r).start();</span><br><span class="line">			<span class="keyword">new</span> Thread(r).start();</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Num</span></span>&#123;</span><br><span class="line">	String flag = <span class="string">"A"</span>;</span><br><span class="line">	<span class="keyword">int</span> cnt = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SynchronizedThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">	Num num;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">SynchronizedThread</span><span class="params">(Num num)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.num = num;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">synchronized</span>(num) &#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++) &#123;</span><br><span class="line">				<span class="keyword">if</span>(num.cnt &lt;=<span class="number">20</span>) &#123;</span><br><span class="line">					System.out.println(<span class="string">"线程:"</span>+num.flag+<span class="string">" "</span>+num.cnt++);</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span> &#123;</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(<span class="string">"A"</span>.equals(num.flag)) &#123;</span><br><span class="line">				num.flag = <span class="string">"B"</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">"B"</span>.equals(num.flag)) &#123;</span><br><span class="line">				num.flag = <span class="string">"C"</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				num.flag = <span class="string">"A"</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
 

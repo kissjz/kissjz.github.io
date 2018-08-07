@@ -210,46 +210,7 @@ var _hmt = _hmt || [];
 <p>输入1则抛出空指针异常；<br>输入2则抛出数组下标越界异常；<br>输入3则抛出IO异常；<br>否则不抛异常，输出:”今天没有异常耶”。</p>
 <p>不管是否有异常，都要输出：”方法正在呗调用”<br>异常需要在调用者的方法处理，</p>
 <p>空指针异常则输出”给jack打电话”<br>IO指针异常则输出”给sean打电话”<br>数组下标越界异常则输出”给clarck打电话”</p>
-<h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><p>直接看代码吧！</p>
-<pre><code class="lang-java">import java.io.IOException;
-import java.util.Scanner;
-
-public class TestFunction {
-    public static void main(String [] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        sc.close();
-
-        try{
-            function(n);
-        }catch(NullPointerException e) {
-            System.out.println(&quot;给jack打电话&quot;);
-        }catch(ArrayIndexOutOfBoundsException e) {
-            System.out.println(&quot;给Sean打电话&quot;);
-        }catch(IOException e) {
-            System.out.println(&quot;给clarck打电话&quot;);
-        }finally {
-            System.out.println(&quot;方法正在被调用&quot;);
-        }
-
-    }
-    public static void function(int n) throws NullPointerException,ArrayIndexOutOfBoundsException,IOException {
-            if(n==1) {
-                throw new NullPointerException();
-            }
-            else if(n==2) {
-                throw new ArrayIndexOutOfBoundsException();
-            }
-            else if(n==3) {
-                throw new IOException();
-            }
-            else {
-                System.out.println(&quot;今天没有异常耶&quot;);
-            }
-
-    }
-}
-</code></pre>
+<h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><p>直接看代码吧！<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestFunction</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String [] args)</span> </span>&#123;</span><br><span class="line">		Scanner sc = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		<span class="keyword">int</span> n = sc.nextInt();</span><br><span class="line">		sc.close();</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">try</span>&#123;</span><br><span class="line">			function(n);</span><br><span class="line">		&#125;<span class="keyword">catch</span>(NullPointerException e) &#123;</span><br><span class="line">			System.out.println(<span class="string">"给jack打电话"</span>);</span><br><span class="line">		&#125;<span class="keyword">catch</span>(ArrayIndexOutOfBoundsException e) &#123;</span><br><span class="line">			System.out.println(<span class="string">"给Sean打电话"</span>);</span><br><span class="line">		&#125;<span class="keyword">catch</span>(IOException e) &#123;</span><br><span class="line">			System.out.println(<span class="string">"给clarck打电话"</span>);</span><br><span class="line">		&#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">			System.out.println(<span class="string">"方法正在被调用"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">function</span><span class="params">(<span class="keyword">int</span> n)</span> <span class="keyword">throws</span> NullPointerException,ArrayIndexOutOfBoundsException,IOException </span>&#123;</span><br><span class="line">			<span class="keyword">if</span>(n==<span class="number">1</span>) &#123;</span><br><span class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(n==<span class="number">2</span>) &#123;</span><br><span class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> ArrayIndexOutOfBoundsException();</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(n==<span class="number">3</span>) &#123;</span><br><span class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> IOException();</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				System.out.println(<span class="string">"今天没有异常耶"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
 

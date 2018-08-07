@@ -194,75 +194,14 @@ var _hmt = _hmt || [];
 <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>Given a binary tree, return the zigzag level order traversal of its nodes’ values. (ie, from left to right, then right to left for the next level and alternate between). </p>
 <a id="more"></a>
 <p>For example:<br>Given binary tree{3,9,20,#,#,15,7}, </p>
-<pre><code>    3
-   / \
-  9  20
-    /  \
-   15   7
-</code></pre><p>return its zigzag level order traversal as:<br>[<br>  [3],<br>  [20,9],<br>  [15,7]<br>]</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  3</span><br><span class="line"> / \</span><br><span class="line">9  20</span><br><span class="line">  /  \</span><br><span class="line"> 15   7</span><br></pre></td></tr></table></figure>
+<p>return its zigzag level order traversal as:<br>[<br>  [3],<br>  [20,9],<br>  [15,7]<br>]</p>
 <p>confused what”{1,#,2,3}”means? &gt; read more on how binary tree is serialized on OJ.</p>
 <p><strong>OJ’s Binary Tree Serialization</strong>:<br>The serialization of a binary tree follows a level order traversal, where ‘#’ signifies a path terminator where no node exists below.<br>Here’s an example: </p>
-<pre><code>   1
-  / \
- 2   3
-    /
-   4
-    \
-     5
-</code></pre><p>The above binary tree is serialized as”{1,2,3,#,#,4,#,#,5}”. </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  1</span><br><span class="line"> / \</span><br><span class="line">2   3</span><br><span class="line">   /</span><br><span class="line">  4</span><br><span class="line">   \</span><br><span class="line">    5</span><br></pre></td></tr></table></figure>
+<p>The above binary tree is serialized as”{1,2,3,#,#,4,#,#,5}”. </p>
 <p><strong>我的解答</strong>：</p>
-<pre><code class="lang-Java">/**
- * Definition for binary tree
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Collections;
-import java.util.Queue;
-
-public class Solution {
-    public ArrayList&lt;ArrayList&lt;Integer&gt;&gt; zigzagLevelOrder(TreeNode root) {
-        ArrayList&lt;ArrayList&lt;Integer&gt;&gt; ans=new ArrayList&lt;&gt;();
-        if(root==null){
-            return ans;
-        }
-        ArrayList&lt;Integer&gt; tem=new ArrayList&lt;&gt;();
-        TreeNode lastNode=root;
-        TreeNode levelNode=root;
-        Queue&lt;TreeNode&gt; q=new LinkedList&lt;&gt;();
-        q.add(root);
-        int cnt=0;
-        while(q.size()!=0){
-            TreeNode poll=q.poll();
-            tem.add((Integer)poll.val);
-            if(poll.left!=null){
-                q.offer(poll.left);
-                lastNode=poll.left;
-            }
-            if(poll.right!=null){
-                q.offer(poll.right);
-                lastNode=poll.right;
-            }
-            if(levelNode==poll){
-                if(cnt%2!=0){
-                    Collections.reverse(tem);
-                }
-                levelNode=lastNode;
-                ans.add(new ArrayList&lt;&gt;(tem));
-                tem.clear();
-                cnt++;
-            }
-        }
-        return ans;
-    }
-}
-</code></pre>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for binary tree</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.LinkedList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> java.util.Queue;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> ArrayList&lt;ArrayList&lt;Integer&gt;&gt; zigzagLevelOrder(TreeNode root) &#123;</span><br><span class="line">        ArrayList&lt;ArrayList&lt;Integer&gt;&gt; ans=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> ans;</span><br><span class="line">        &#125;</span><br><span class="line">        ArrayList&lt;Integer&gt; tem=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        TreeNode lastNode=root;</span><br><span class="line">        TreeNode levelNode=root;</span><br><span class="line">        Queue&lt;TreeNode&gt; q=<span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        q.add(root);</span><br><span class="line">        <span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(q.size()!=<span class="number">0</span>)&#123;</span><br><span class="line">            TreeNode poll=q.poll();</span><br><span class="line">            tem.add((Integer)poll.val);</span><br><span class="line">            <span class="keyword">if</span>(poll.left!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                q.offer(poll.left);</span><br><span class="line">                lastNode=poll.left;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(poll.right!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                q.offer(poll.right);</span><br><span class="line">                lastNode=poll.right;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(levelNode==poll)&#123;</span><br><span class="line">                <span class="keyword">if</span>(cnt%<span class="number">2</span>!=<span class="number">0</span>)&#123;</span><br><span class="line">                    Collections.reverse(tem);</span><br><span class="line">                &#125;</span><br><span class="line">                levelNode=lastNode;</span><br><span class="line">                ans.add(<span class="keyword">new</span> ArrayList&lt;&gt;(tem));</span><br><span class="line">                tem.clear();</span><br><span class="line">                cnt++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="遇到的坑-amp-amp-小结："><a href="#遇到的坑-amp-amp-小结：" class="headerlink" title="遇到的坑&amp;&amp;小结："></a>遇到的坑&amp;&amp;小结：</h2><ul>
 <li>把Collections当成了Collection。实际上，<strong>Collections是一个包装类，可以当成专门为Collection中的类服务的工具类，不能被实例化；而Collection是根接口</strong></li>
 <li>Java引用变量有两个类型:一个是编译时的类型，一个是运行时的类型。编译时由声明该变量时使用的类型决定，运行时由实际赋值给它的对象的类型决定，<strong>当编译时的类型和运行时的类型不一样时，就产生了所谓的多态</strong></li>

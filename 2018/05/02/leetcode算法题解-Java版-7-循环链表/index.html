@@ -196,108 +196,13 @@ var _hmt = _hmt || [];
 <ul>
 <li>不能用多余空间，刚开始没有考虑多个指针什么，一下子想到个歪点子：循环就是重复走，那我可以标记一下每次走过的路，如果遇到标记过的路，那说明就是有回路了。</li>
 </ul>
-<p><strong>代码一</strong></p>
-<pre><code class="lang-java">/**
- * Definition for singly-linked list.
- * class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;
- *     }
- * }
- */
-public class Solution {
-    public boolean hasCycle(ListNode head) {
-        if(head==null){
-            return false;
-        }
-        ListNode p=new ListNode(0);
-        p=head;
-        int u=-987123;
-        while(p.val!=u&amp;&amp;p.next!=null){
-            p.val=u;
-            p=p.next;
-        }
-        if(p.val==u){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-}
-</code></pre>
+<p><strong>代码一</strong><br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123;</span></span><br><span class="line"><span class="comment"> *         val = x;</span></span><br><span class="line"><span class="comment"> *         next = null;</span></span><br><span class="line"><span class="comment"> *     &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode p=<span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">        p=head;</span><br><span class="line">        <span class="keyword">int</span> u=-<span class="number">987123</span>;</span><br><span class="line">        <span class="keyword">while</span>(p.val!=u&amp;&amp;p.next!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            p.val=u;</span><br><span class="line">            p=p.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(p.val==u)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><strong>思路二</strong></p>
 <ul>
 <li>当然标准的是应该用两个指针来“追赶”，前提是这两个指针走的速度不一样，一前一后如果相遇了则说明有回路。</li>
 </ul>
-<p><strong>代码二</strong></p>
-<pre><code class="lang-java">/**
- * Definition for singly-linked list.
- * class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;
- *     }
- * }
- */
-public class Solution {
-    public boolean hasCycle(ListNode head) {
-        if(head==null){
-            return false;
-        }
-        ListNode p=head;
-        ListNode q=head.next;
-        while(p!=q&amp;&amp;q!=null&amp;&amp;p!=null){
-            q=q.next;
-            if(q!=null){
-                q=q.next;
-            }
-            p=p.next;
-        }
-        if(p==q&amp;&amp;p!=null){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-}
-</code></pre>
-<p>优化过的代码：</p>
-<pre><code class="lang-java">/**
- * Definition for singly-linked list.
- * class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;
- *     }
- * }
- */
-public class Solution {
-    public boolean hasCycle(ListNode head) {
-        if(head==null){
-            return false;
-        }
-        ListNode fastNode=head;
-        ListNode lowNode=head;
-        while(fastNode!=null&amp;&amp;fastNode.next!=null){
-            fastNode=fastNode.next.next;
-            lowNode=lowNode.next;
-            if(fastNode==lowNode){
-                return true;
-            }
-        }
-        return false;
-    }
-}
-</code></pre>
+<p><strong>代码二</strong><br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123;</span></span><br><span class="line"><span class="comment"> *         val = x;</span></span><br><span class="line"><span class="comment"> *         next = null;</span></span><br><span class="line"><span class="comment"> *     &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode p=head;</span><br><span class="line">        ListNode q=head.next;</span><br><span class="line">        <span class="keyword">while</span>(p!=q&amp;&amp;q!=<span class="keyword">null</span>&amp;&amp;p!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            q=q.next;</span><br><span class="line">            <span class="keyword">if</span>(q!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                q=q.next;</span><br><span class="line">            &#125;</span><br><span class="line">            p=p.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(p==q&amp;&amp;p!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>优化过的代码：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123;</span></span><br><span class="line"><span class="comment"> *         val = x;</span></span><br><span class="line"><span class="comment"> *         next = null;</span></span><br><span class="line"><span class="comment"> *     &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode fastNode=head;</span><br><span class="line">        ListNode lowNode=head;</span><br><span class="line">        <span class="keyword">while</span>(fastNode!=<span class="keyword">null</span>&amp;&amp;fastNode.next!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            fastNode=fastNode.next.next;</span><br><span class="line">            lowNode=lowNode.next;</span><br><span class="line">            <span class="keyword">if</span>(fastNode==lowNode)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>今天有场考试，到七点半才结束，就刷这么多了。</p>
 
       

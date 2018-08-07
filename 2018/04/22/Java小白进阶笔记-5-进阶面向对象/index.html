@@ -248,25 +248,8 @@ var _hmt = _hmt || [];
 <li>package语句必须写在第一行，不写的话，默认放在默认路径下，也就是src根目录</li>
 <li>使用import访问第三方或者其他包中的类，如果这个类与本类在同一个包中则不需要import</li>
 </ul>
-<pre><code>//package 包名;
-//package 包名.子包名.子子包名;
-
-package com.webi.hwj.weixin.controller;
-
-public class WeixinHandleController {
-
-}
-
-import 包名;
-import 包名.子包名.子子包名;
-package com.webi.hwj.weixin.controller;
-
-import org.apache.log4j.Logger;
-
-public class WeixinHandleController {
-  Logger logger = Logger.getLogger(WeixinHandleController.class);
-}
-</code></pre><h1 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h1><p>将对象实现的细节（属性和方法）隐藏起来，然后通过一些公用方法来暴露该对象的功能。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//package 包名;</span><br><span class="line">//package 包名.子包名.子子包名;</span><br><span class="line"></span><br><span class="line">package com.webi.hwj.weixin.controller;</span><br><span class="line"></span><br><span class="line">public class WeixinHandleController &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">import 包名;</span><br><span class="line">import 包名.子包名.子子包名;</span><br><span class="line">package com.webi.hwj.weixin.controller;</span><br><span class="line"></span><br><span class="line">import org.apache.log4j.Logger;</span><br><span class="line"></span><br><span class="line">public class WeixinHandleController &#123;</span><br><span class="line">  Logger logger = Logger.getLogger(WeixinHandleController.class);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h1><p>将对象实现的细节（属性和方法）隐藏起来，然后通过一些公用方法来暴露该对象的功能。</p>
 <h2 id="为什么要封装"><a href="#为什么要封装" class="headerlink" title="为什么要封装"></a>为什么要封装</h2><p>开发者让使用者只能通过事先定制好的方法来访问数据，可以方便地加入控制逻辑，限制对属性的不合理操作。</p>
 <h2 id="如何实现封装"><a href="#如何实现封装" class="headerlink" title="如何实现封装"></a>如何实现封装</h2><p><strong>Java的访问控制符</strong><br>从小到大：private，default，protected，public<br>范围：同一类，同一包，子类，全局范围（同一项目）</p>
 <h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ul>
