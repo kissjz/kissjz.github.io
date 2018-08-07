@@ -47,6 +47,11 @@ var _hmt = _hmt || [];
 </script>
 
 
+
+
+  
+  <link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
+
 </head>
 
 <body>
@@ -193,14 +198,68 @@ var _hmt = _hmt || [];
 <li>多了一个条件，就是有重复数字出现。那可以考虑先排序，然后递归选择在相应位置放置数字的时候，可以添加判断是否被用过，也就是和前面那个比较一下：如果前面那个数和它一样值，而且目前的used 显示false那说明这个数已经在这个位置被用过了，而且已经计入了结果res中。</li>
 </ul>
 <p><strong>代码</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> ArrayList&lt;ArrayList&lt;Integer&gt;&gt; permuteUnique(<span class="keyword">int</span>[] num) &#123;</span><br><span class="line">        ArrayList&lt;ArrayList&lt;Integer&gt;&gt; res=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> len=num.length;</span><br><span class="line">        <span class="keyword">if</span>(num==<span class="keyword">null</span>||len==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">boolean</span> [] used=<span class="keyword">new</span> <span class="keyword">boolean</span>[len];</span><br><span class="line">        ArrayList&lt;Integer&gt; list=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        Arrays.sort(num);</span><br><span class="line">        dfs(list,num,used,res);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(ArrayList&lt;Integer&gt; list,<span class="keyword">int</span> [] num,<span class="keyword">boolean</span> [] used,ArrayList&lt;ArrayList&lt;Integer&gt;&gt; res)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(list.size()==num.length)&#123;</span><br><span class="line">            res.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;(list));</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;num.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i&gt;<span class="number">0</span>&amp;&amp;num[i]==num[i-<span class="number">1</span>]&amp;&amp;!used[i-<span class="number">1</span>])&#123;<span class="comment">//如果它前一个和它一样的数现在没有被用过，那就跳过，</span></span><br><span class="line">                <span class="comment">//说明之前那个数已经形成过结果list之一了，目前这个分支处于回溯阶段。。。有点绕，希望能明白</span></span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(!used[i])&#123;</span><br><span class="line">                used[i]=<span class="keyword">true</span>;</span><br><span class="line">                list.add(num[i]);</span><br><span class="line">                dfs(list,num,used,res);</span><br><span class="line">                list.remove(list.size()-<span class="number">1</span>);</span><br><span class="line">                used[i]=<span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-java">import java.util.ArrayList;
+import java.util.Arrays;
+
+public class Solution {
+    public ArrayList&lt;ArrayList&lt;Integer&gt;&gt; permuteUnique(int[] num) {
+        ArrayList&lt;ArrayList&lt;Integer&gt;&gt; res=new ArrayList&lt;&gt;();
+        int len=num.length;
+        if(num==null||len==0){
+            return res;
+        }
+        boolean [] used=new boolean[len];
+        ArrayList&lt;Integer&gt; list=new ArrayList&lt;&gt;();
+        Arrays.sort(num);
+        dfs(list,num,used,res);
+        return res;
+    }
+
+    public void dfs(ArrayList&lt;Integer&gt; list,int [] num,boolean [] used,ArrayList&lt;ArrayList&lt;Integer&gt;&gt; res){
+        if(list.size()==num.length){
+            res.add(new ArrayList&lt;Integer&gt;(list));
+            return ;
+        }
+        for(int i=0;i&lt;num.length;i++){
+            if(i&gt;0&amp;&amp;num[i]==num[i-1]&amp;&amp;!used[i-1]){//如果它前一个和它一样的数现在没有被用过，那就跳过，
+                //说明之前那个数已经形成过结果list之一了，目前这个分支处于回溯阶段。。。有点绕，希望能明白
+                continue;
+            }
+            if(!used[i]){
+                used[i]=true;
+                list.add(num[i]);
+                dfs(list,num,used,res);
+                list.remove(list.size()-1);
+                used[i]=false;
+            }
+        }
+    }
+}
+</code></pre>
 <h1 id="二、贪心"><a href="#二、贪心" class="headerlink" title="二、贪心"></a>二、贪心</h1><p><strong>题目描述</strong></p>
 <p>Given an array of non-negative integers, you are initially positioned at the first index of the array.<br>Each element in the array represents your maximum jump length at that position.<br>Determine if you are able to reach the last index.<br>For example:<br>A =[2,3,1,1,4], returntrue.<br>A =[3,2,1,0,4], returnfalse</p>
 <p><strong>思路</strong></p>
 <ul>
 <li>贪心的题，每走一步，跟新一下从当前这个位置所能到达的最大距离。这就是这题的贪心，贪心一般证明很难，但是可以逻辑简单想一下，肯定是能走的距离越大越好，越有可能到达终点，再说，如果最大距离都不能到终点，那其他情况更加不可能了。</li>
 </ul>
-<p><strong>代码</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canJump</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> maxlen=A[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;A.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(maxlen==<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            maxlen-=<span class="number">1</span>;</span><br><span class="line">            maxlen=Math.max(maxlen,A[i]);</span><br><span class="line">            <span class="comment">//if(maxlen+i==A.length-1)&#123;//剪枝</span></span><br><span class="line">            <span class="comment">//    return true;</span></span><br><span class="line">           <span class="comment">// &#125;</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>代码</strong></p>
+<pre><code class="lang-java">public class Solution {
+    public boolean canJump(int[] A) {
+        int maxlen=A[0];
+        for(int i=1;i&lt;A.length;i++){
+            if(maxlen==0){
+                return false;
+            }
+            maxlen-=1;
+            maxlen=Math.max(maxlen,A[i]);
+            //if(maxlen+i==A.length-1){//剪枝
+            //    return true;
+           // }
+        }
+        return true;
+    }
+}
+</code></pre>
 <h1 id="三、动态规划or贪心"><a href="#三、动态规划or贪心" class="headerlink" title="三、动态规划or贪心"></a>三、动态规划or贪心</h1><p><strong>题目描述</strong></p>
 <p>Given an array of non-negative integers, you are initially positioned at the first index of the array.<br>Each element in the array represents your maximum jump length at that position.<br>Your goal is to reach the last index in the minimum number of jumps.<br>For example:<br>Given array A =[2,3,1,1,4]<br>The minimum number of jumps to reach the last index is2. (Jump1step from index 0 to 1, then3steps to the last index</p>
 <p><strong>思路</strong></p>
@@ -209,7 +268,25 @@ var _hmt = _hmt || [];
 <li>题目想考察的是贪心，想了一下，思绪有点乱。先看一下动态规划的解法。</li>
 <li>首先，满足dp的条件：1.子问题的最优解也是全局的最优解，有最优子结构；2.当前状态只依赖于它上一个状态，与怎么到达它上一个状态的路径无关。</li>
 </ul>
-<p><strong>代码</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">jump</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> [] dp=<span class="keyword">new</span> <span class="keyword">int</span>[A.length];<span class="comment">//存放起点到各点的最小步数</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;A.length;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> maxpos=Math.min(i+A[i],A.length-<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;=maxpos;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(dp[j]==<span class="number">0</span>)&#123;</span><br><span class="line">                    dp[j]=dp[i]+<span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(dp[A.length-<span class="number">1</span>]!=<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[A.length-<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>代码</strong></p>
+<pre><code class="lang-java">public class Solution {
+    public int jump(int[] A) {
+        int [] dp=new int[A.length];//存放起点到各点的最小步数
+        for(int i=0;i&lt;A.length;i++){
+            int maxpos=Math.min(i+A[i],A.length-1);
+            for(int j=i+1;j&lt;=maxpos;j++){
+                if(dp[j]==0){
+                    dp[j]=dp[i]+1;
+                }
+            }
+            if(dp[A.length-1]!=0){
+                break;
+            }
+        }
+        return dp[A.length-1];
+    }
+}
+</code></pre>
 <p><strong>思路二</strong></p>
 <ul>
 <li>贪心解法：</li>
@@ -219,9 +296,32 @@ var _hmt = _hmt || [];
 <li>如果能一步到最大位置<code>furthest_pre</code>，那肯定能到一步到它前面那块区域的某一位置，实行下一步跳，跳到<code>furthest_cur</code>。</li>
 <li>给一个测试用例，可以在纸上画画：</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4 1 6 9 7 4 5 0 6 8 1 2 3 5 8 0 2 1 2</span><br></pre></td></tr></table></figure>
-<p><strong>代码</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">jump</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len=A.length;</span><br><span class="line">        <span class="keyword">if</span>(len==<span class="number">0</span>||A==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> furthest_cur=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> furthest_pre=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> steps=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(furthest_pre&gt;=len)&#123;</span><br><span class="line">                <span class="keyword">return</span> steps;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(i&gt;furthest_pre)&#123;</span><br><span class="line">                furthest_pre=furthest_cur;</span><br><span class="line">                steps++;</span><br><span class="line">            &#125;</span><br><span class="line">            furthest_cur=Math.max(furthest_cur,A[i]+i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> steps;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>4 1 6 9 7 4 5 0 6 8 1 2 3 5 8 0 2 1 2
+</code></pre><p><strong>代码</strong></p>
+<pre><code class="lang-java">public class Solution {
+    public int jump(int[] A) {
+        int len=A.length;
+        if(len==0||A==null){
+            return 0;
+        }
+        int furthest_cur=0;
+        int furthest_pre=0;
+        int steps=0;
+        for(int i=0;i&lt;len;i++){
+            if(furthest_pre&gt;=len){
+                return steps;
+            }
+            if(i&gt;furthest_pre){
+                furthest_pre=furthest_cur;
+                steps++;
+            }
+            furthest_cur=Math.max(furthest_cur,A[i]+i);
+        }
+        return steps;
+    }
+}
+</code></pre>
+
       
 
       
@@ -324,6 +424,9 @@ var _hmt = _hmt || [];
       	</div>
     </div>
 	</div>
+
+	<script src="/js/prettify.js"></script>
+
 </footer>
 
     </div>

@@ -47,6 +47,11 @@ var _hmt = _hmt || [];
 </script>
 
 
+
+
+  
+  <link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
+
 </head>
 
 <body>
@@ -194,8 +199,62 @@ var _hmt = _hmt || [];
 <li>就像这道题，因为要求的是最大的子串和，那显然负数是起到反作用的，所以如果当前和是负的，那就果断舍去，这也是贪心的思路。</li>
 <li>这样的解法时间复杂度是O(n）题目中说明了，可以使用分治进一步优化，请看代码二。</li>
 </ul>
-<p><strong>代码一</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len=A.length;</span><br><span class="line">        <span class="keyword">if</span>(len==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> sum=A[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> max=A[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(sum&lt;<span class="number">0</span>)&#123;</span><br><span class="line">                sum=<span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            sum+=A[i];</span><br><span class="line">            <span class="keyword">if</span>(sum&gt;max)&#123;</span><br><span class="line">                max=sum;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>代码二</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">div</span><span class="params">(<span class="keyword">int</span> [] A,<span class="keyword">int</span> left,<span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">            <span class="keyword">int</span> mid=(left+right)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(left==right)&#123;</span><br><span class="line">                <span class="keyword">return</span> A[left];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> max1=div(A,left,mid);</span><br><span class="line">            <span class="keyword">int</span> max2=div(A,mid+<span class="number">1</span>,right);</span><br><span class="line">            <span class="keyword">int</span> max3=-<span class="number">999999</span>;<span class="comment">//这里不严谨，但不能用Integer.MIN_VALUE。</span></span><br><span class="line">            <span class="comment">//否则max3+max4如果是负数和Integer.MIN_VALUE相加会溢出</span></span><br><span class="line">            <span class="keyword">int</span> max4=-<span class="number">999999</span>;</span><br><span class="line">            <span class="keyword">int</span> tem=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=mid;i&gt;=left;i--)&#123;</span><br><span class="line">                tem+=A[i];</span><br><span class="line">                max3=Math.max(max3,tem);</span><br><span class="line">            &#125;</span><br><span class="line">            tem=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=mid+<span class="number">1</span>;i&lt;=right;i++)&#123;</span><br><span class="line">                tem+=A[i];</span><br><span class="line">                max4=Math.max(max4,tem);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> Math.max(Math.max(max1,max2),max3+max4);        </span><br><span class="line">        &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len=A.length;</span><br><span class="line">        <span class="keyword">if</span>(len==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> div(A,<span class="number">0</span>,len-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>代码一</strong></p>
+<pre><code class="lang-java">public class Solution {
+    public int maxSubArray(int[] A) {
+        int len=A.length;
+        if(len==0){
+            return 0;
+        }
+        int sum=A[0];
+        int max=A[0];
+        for(int i=1;i&lt;len;i++){
+            if(sum&lt;0){
+                sum=0;
+            }
+            sum+=A[i];
+            if(sum&gt;max){
+                max=sum;
+            }
+        }
+        return max;
+    }
+}
+</code></pre>
+<p><strong>代码二</strong></p>
+<pre><code class="lang-java">public class Solution {
+        public int div(int [] A,int left,int right){
+            int mid=(left+right)/2;
+            if(left==right){
+                return A[left];
+            }
+            int max1=div(A,left,mid);
+            int max2=div(A,mid+1,right);
+            int max3=-999999;//这里不严谨，但不能用Integer.MIN_VALUE。
+            //否则max3+max4如果是负数和Integer.MIN_VALUE相加会溢出
+            int max4=-999999;
+            int tem=0;
+            for(int i=mid;i&gt;=left;i--){
+                tem+=A[i];
+                max3=Math.max(max3,tem);
+            }
+            tem=0;
+            for(int i=mid+1;i&lt;=right;i++){
+                tem+=A[i];
+                max4=Math.max(max4,tem);
+            }
+            return Math.max(Math.max(max1,max2),max3+max4);        
+        }
+    public int maxSubArray(int[] A) {
+        int len=A.length;
+        if(len==0){
+            return 0;
+        }
+        return div(A,0,len-1);
+    }
+
+}
+</code></pre>
 <h1 id="二、N皇后问题"><a href="#二、N皇后问题" class="headerlink" title="二、N皇后问题"></a>二、N皇后问题</h1><p><strong>题目描述</strong></p>
 <p>Follow up for N-Queens problem.<br>Now, instead outputting board configurations, return the total number of distinct solutions. </p>
 <p><strong>思路</strong></p>
@@ -203,15 +262,106 @@ var _hmt = _hmt || [];
 <li>经典的老题目了，存储当然是用一个数组map解决：下标表示行号，每个map[i]中存放的数字表示列号。</li>
 <li>然后就是写一个判断函数：1.判断行是否重复：这个不需要判定，因为数组下标即使行。2.判断列是否重复，即map[t]!=map[i]。3.判断对角线是否重复：即map[t]-map[i]!=t-i。</li>
 </ul>
-<p><strong>代码</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> [] map=<span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">30</span>];</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> count=<span class="number">0</span>;<span class="comment">//注意！！不能写成public static int count=0;</span></span><br><span class="line">    <span class="comment">//否则全局静态变量的话，内存地址是一个，</span></span><br><span class="line">    <span class="comment">//也就是当前测试用例会受到上一个测试用例中count的影响</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">totalNQueens</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        backtrack(<span class="number">1</span>,n);</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="keyword">int</span> t,<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(t&gt;n)&#123;</span><br><span class="line">            count++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">                map[t]=i;</span><br><span class="line">                <span class="keyword">if</span>(valid(t))&#123;</span><br><span class="line">                    backtrack(t+<span class="number">1</span>,n);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">valid</span><span class="params">(<span class="keyword">int</span> t)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;t;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(Math.abs(t-i)==Math.abs(map[t]-map[i])||map[i]==map[t])&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>代码</strong></p>
+<pre><code class="lang-java">public class Solution {
+    public int [] map=new int[30];
+    public int count=0;//注意！！不能写成public static int count=0;
+    //否则全局静态变量的话，内存地址是一个，
+    //也就是当前测试用例会受到上一个测试用例中count的影响
+    public int totalNQueens(int n) {
+        backtrack(1,n);
+        return count;
+    }
+    public void backtrack(int t,int n){
+        if(t&gt;n){
+            count++;
+        }
+        else{
+            for(int i=1;i&lt;=n;i++){
+                map[t]=i;
+                if(valid(t)){
+                    backtrack(t+1,n);
+                }
+            }
+        }
+    }
+    public boolean valid(int t){
+        for(int i=1;i&lt;t;i++){
+            if(Math.abs(t-i)==Math.abs(map[t]-map[i])||map[i]==map[t]){
+                return false;
+            }
+        }
+        return true;
+    }
+}
+</code></pre>
 <h1 id="三、N皇后问题再度升级"><a href="#三、N皇后问题再度升级" class="headerlink" title="三、N皇后问题再度升级"></a>三、N皇后问题再度升级</h1><p><strong>题目描述</strong></p>
 <p>The n-queens puzzle is the problem of placing n queens on an n×n chessboard such that no two queens attack each other. </p>
-<p>Given an integer n, return all distinct solutions to the n-queens puzzle.<br>Each solution contains a distinct board configuration of the n-queens’ placement, where’Q’and’.’both indicate a queen and an empty space respectively.<br>For example,<br>There exist two distinct solutions to the 4-queens puzzle:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line"> [&quot;.Q..&quot;,  // Solution 1</span><br><span class="line">  &quot;...Q&quot;,</span><br><span class="line">  &quot;Q...&quot;,</span><br><span class="line">  &quot;..Q.&quot;],</span><br><span class="line"></span><br><span class="line"> [&quot;..Q.&quot;,  // Solution 2</span><br><span class="line">  &quot;Q...&quot;,</span><br><span class="line">  &quot;...Q&quot;,</span><br><span class="line">  &quot;.Q..&quot;]</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
-<p><strong>思路</strong></p>
+<p>Given an integer n, return all distinct solutions to the n-queens puzzle.<br>Each solution contains a distinct board configuration of the n-queens’ placement, where’Q’and’.’both indicate a queen and an empty space respectively.<br>For example,<br>There exist two distinct solutions to the 4-queens puzzle: </p>
+<pre><code>[
+ [&quot;.Q..&quot;,  // Solution 1
+  &quot;...Q&quot;,
+  &quot;Q...&quot;,
+  &quot;..Q.&quot;],
+
+ [&quot;..Q.&quot;,  // Solution 2
+  &quot;Q...&quot;,
+  &quot;...Q&quot;,
+  &quot;.Q..&quot;]
+]
+</code></pre><p><strong>思路</strong></p>
 <ul>
 <li>和上一道只需要输出个数，这道题也需要把所有的图输出来。只需要改动一个地方就OK。具体的看代码，写的很清楚。</li>
 </ul>
-<p><strong>代码</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> [] mark=<span class="keyword">new</span> <span class="keyword">int</span> [<span class="number">30</span>];</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> count=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> ArrayList&lt;String[]&gt; resList=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">public</span> ArrayList&lt;String[]&gt; solveNQueens(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        backtrack(<span class="number">1</span>,n);</span><br><span class="line">        <span class="keyword">return</span> resList;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> StringBuilder <span class="title">drawOneLine</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        StringBuilder sb=<span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            sb.append(<span class="string">'.'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sb;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">valid</span><span class="params">(<span class="keyword">int</span> t)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;t;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(Math.abs(mark[i]-mark[t])==Math.abs(i-t)||mark[i]==mark[t])&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span>  <span class="title">backtrack</span><span class="params">(<span class="keyword">int</span> t,<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(t&gt;n)&#123;</span><br><span class="line">            String [] tem=<span class="keyword">new</span> String[n];</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">                StringBuilder line=drawOneLine(n);</span><br><span class="line">                line.setCharAt(mark[i+<span class="number">1</span>]-<span class="number">1</span>,<span class="string">'Q'</span>);<span class="comment">//因为String从0开始而我的mark是从1开始记的</span></span><br><span class="line">                <span class="comment">//这里下标有点乱：mark数组是从1开始的，而tem是从0开始的。</span></span><br><span class="line">                tem[i]=line.toString();</span><br><span class="line">            &#125;</span><br><span class="line">            resList.add(tem);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">                mark[t]=i;</span><br><span class="line">                <span class="keyword">if</span>(valid(t))&#123;</span><br><span class="line">                    backtrack(t+<span class="number">1</span>,n);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>代码</strong></p>
+<pre><code class="lang-java">import java.util.ArrayList;
+
+public class Solution {
+    public int [] mark=new int [30];
+    public int count=0;
+    public ArrayList&lt;String[]&gt; resList=new ArrayList&lt;&gt;();
+    public ArrayList&lt;String[]&gt; solveNQueens(int n) {
+        backtrack(1,n);
+        return resList;
+    }
+    public StringBuilder drawOneLine(int n){
+        StringBuilder sb=new StringBuilder();
+        for(int i=0;i&lt;n;i++){
+            sb.append(&#39;.&#39;);
+        }
+        return sb;
+    }
+    public boolean valid(int t){
+        for(int i=1;i&lt;t;i++){
+            if(Math.abs(mark[i]-mark[t])==Math.abs(i-t)||mark[i]==mark[t]){
+                return false;
+            }
+        }
+        return true;
+    }
+    public void  backtrack(int t,int n){
+        if(t&gt;n){
+            String [] tem=new String[n];
+            for(int i=0;i&lt;n;i++){
+                StringBuilder line=drawOneLine(n);
+                line.setCharAt(mark[i+1]-1,&#39;Q&#39;);//因为String从0开始而我的mark是从1开始记的
+                //这里下标有点乱：mark数组是从1开始的，而tem是从0开始的。
+                tem[i]=line.toString();
+            }
+            resList.add(tem);
+        }
+        else{
+            for(int i=1;i&lt;=n;i++){
+                mark[t]=i;
+                if(valid(t)){
+                    backtrack(t+1,n);
+                }
+            }
+        }
+    }
+
+}
+</code></pre>
 
       
 
@@ -315,6 +465,9 @@ var _hmt = _hmt || [];
       	</div>
     </div>
 	</div>
+
+	<script src="/js/prettify.js"></script>
+
 </footer>
 
     </div>

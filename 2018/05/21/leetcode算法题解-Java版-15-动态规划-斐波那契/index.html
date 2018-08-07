@@ -47,6 +47,11 @@ var _hmt = _hmt || [];
 </script>
 
 
+
+
+  
+  <link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
+
 </head>
 
 <body>
@@ -190,18 +195,127 @@ var _hmt = _hmt || [];
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul>
 <li>两种思路，都是递归。第一种是递归的判断每个节点的左右子树的深度是否只相差一以内。第二种做了剪枝处理，当判断到一个子树已经不满足时就返回结果。</li>
 </ul>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//思路一</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for binary tree</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isBalanced</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(Math.abs(maxDepth(root.left)-maxDepth(root.right))&gt;<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//如果这个节点的左右子树高度差小于等于一，那就递归看它的左右子树节点是否合格</span></span><br><span class="line">        <span class="keyword">return</span> isBalanced(root.left)&amp;&amp;isBalanced(root.right);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">maxDepth</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> Math.max(maxDepth(root.left),maxDepth(root.right))+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//思路二</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for binary tree</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isBalanced</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> getHeight(root)!=-<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getHeight</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> left = getHeight(root.left);</span><br><span class="line">        <span class="keyword">if</span>(left==-<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> right = getHeight(root.right);</span><br><span class="line">        <span class="keyword">if</span>(right==-<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(left-right&gt;<span class="number">1</span>||right-left&gt;<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>+Math.max(left,right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="二、动态规划（斐波那契）"><a href="#二、动态规划（斐波那契）" class="headerlink" title="二、动态规划（斐波那契）"></a>二、动态规划（斐波那契）</h1><h2 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h2><p>A message containing letters fromA-Zis being encoded to numbers using the following mapping:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&apos;A&apos; -&gt; 1</span><br><span class="line">&apos;B&apos; -&gt; 2</span><br><span class="line">...</span><br><span class="line">&apos;Z&apos; -&gt; 26</span><br></pre></td></tr></table></figure></p>
-<p>Given an encoded message containing digits, determine the total number of ways to decode it.<br>For example,<br>Given encoded message”12”, it could be decoded as”AB”(1 2) or”L”(12).<br>The number of ways decoding”12”is 2. </p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="lang-java">//思路一
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public boolean isBalanced(TreeNode root) {
+        if(root==null){
+            return true;
+        }
+        if(Math.abs(maxDepth(root.left)-maxDepth(root.right))&gt;1){
+            return false;
+        }
+
+        //如果这个节点的左右子树高度差小于等于一，那就递归看它的左右子树节点是否合格
+        return isBalanced(root.left)&amp;&amp;isBalanced(root.right);
+    }
+    private int maxDepth(TreeNode root){
+        if(root==null){
+            return 0;
+        }
+        return Math.max(maxDepth(root.left),maxDepth(root.right))+1;
+    }
+}
+
+//思路二
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public boolean isBalanced(TreeNode root) {
+        if(root==null){
+            return true;
+        }
+
+        return getHeight(root)!=-1;
+    }
+    private int getHeight(TreeNode root){
+        if(root==null){
+            return 0;
+        }
+        int left = getHeight(root.left);
+        if(left==-1){
+            return -1;
+        }
+        int right = getHeight(root.right);
+        if(right==-1){
+            return -1;
+        }
+        if(left-right&gt;1||right-left&gt;1){
+            return -1;
+        }
+
+        return 1+Math.max(left,right);
+    }
+}
+</code></pre>
+<h1 id="二、动态规划（斐波那契）"><a href="#二、动态规划（斐波那契）" class="headerlink" title="二、动态规划（斐波那契）"></a>二、动态规划（斐波那契）</h1><h2 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h2><p>A message containing letters fromA-Zis being encoded to numbers using the following mapping: </p>
+<pre><code>&#39;A&#39; -&gt; 1
+&#39;B&#39; -&gt; 2
+...
+&#39;Z&#39; -&gt; 26
+</code></pre><p>Given an encoded message containing digits, determine the total number of ways to decode it.<br>For example,<br>Given encoded message”12”, it could be decoded as”AB”(1 2) or”L”(12).<br>The number of ways decoding”12”is 2. </p>
 <h2 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h2><ul>
 <li>这题有点意思，和之前做过的一道动态规划题很相似。多了判断条件，难度稍微提高了一些。老样子，碰到动态规划，拿出dp数组,大概思路：<code>dp[i]=dp[i-1]+dp[i-2]</code></li>
 </ul>
-<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numDecodings</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = s.length();</span><br><span class="line">        <span class="keyword">if</span>(len==<span class="number">0</span>||s.charAt(<span class="number">0</span>)==<span class="string">'0'</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> [] dp = <span class="keyword">new</span> <span class="keyword">int</span>[len+<span class="number">1</span>];</span><br><span class="line">        <span class="comment">//dp[i]表示s字符前i个构成的子串的解码的种数</span></span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">1</span>;<span class="comment">//这个为了后面好计算,不理解可以到后面再回来看</span></span><br><span class="line">        dp[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;len;i++)&#123;</span><br><span class="line">            String num = s.substring(i-<span class="number">1</span>,i+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span>(Integer.valueOf(num)&lt;=<span class="number">26</span>&amp;&amp;s.charAt(i-<span class="number">1</span>)!=<span class="string">'0'</span>)&#123;</span><br><span class="line">                dp[i+<span class="number">1</span>]=dp[i+<span class="number">1</span>-<span class="number">2</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(i)!=<span class="string">'0'</span>)&#123;</span><br><span class="line">                dp[i+<span class="number">1</span>]+=dp[i+<span class="number">1</span>-<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[len];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><pre><code class="lang-java">
+public class Solution {
+    public int numDecodings(String s) {
+        int len = s.length();
+        if(len==0||s.charAt(0)==&#39;0&#39;){
+            return 0;
+        }
+
+        int [] dp = new int[len+1];
+        //dp[i]表示s字符前i个构成的子串的解码的种数
+        dp[0] = 1;//这个为了后面好计算,不理解可以到后面再回来看
+        dp[1] = 1;
+        for(int i=1;i&lt;len;i++){
+            String num = s.substring(i-1,i+1);
+            if(Integer.valueOf(num)&lt;=26&amp;&amp;s.charAt(i-1)!=&#39;0&#39;){
+                dp[i+1]=dp[i+1-2];
+            }
+            if(s.charAt(i)!=&#39;0&#39;){
+                dp[i+1]+=dp[i+1-1];
+            }
+        }
+        return dp[len];
+    }
+}
+</code></pre>
 <h1 id="三、排序"><a href="#三、排序" class="headerlink" title="三、排序"></a>三、排序</h1><h2 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h2><p>Given two sorted integer arrays A and B, merge B into A as one sorted array.<br>Note:<br>You may assume that A has enough space to hold additional elements from B. The number of elements initialized in A and B are m and n respectively. </p>
 <h2 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h2><ul>
 <li>不能开辟新空间，考虑从后往前插入A中。</li>
 </ul>
-<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> m, <span class="keyword">int</span> B[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = m-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> j = n-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> index = m+n-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(i&gt;=<span class="number">0</span>&amp;&amp;j&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">            A[index--]=A[i]&gt;B[j]?A[i--]:B[j--];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(j&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">            A[index--]=B[j--];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><pre><code class="lang-java">public class Solution {
+    public void merge(int A[], int m, int B[], int n) {
+        int i = m-1;
+        int j = n-1;
+        int index = m+n-1;
+        while(i&gt;=0&amp;&amp;j&gt;=0){
+            A[index--]=A[i]&gt;B[j]?A[i--]:B[j--];
+        }
+        while(j&gt;=0){
+            A[index--]=B[j--];
+        }
+    }
+}
+</code></pre>
+
       
 
       
@@ -304,6 +418,9 @@ var _hmt = _hmt || [];
       	</div>
     </div>
 	</div>
+
+	<script src="/js/prettify.js"></script>
+
 </footer>
 
     </div>

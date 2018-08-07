@@ -47,6 +47,11 @@ var _hmt = _hmt || [];
 </script>
 
 
+
+
+  
+  <link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
+
 </head>
 
 <body>
@@ -193,7 +198,17 @@ var _hmt = _hmt || [];
 <ul>
 <li>题目很简单，考到了一个知识点——异或：比较两个操作数的二进制的各个位置，相同则为0不同则为1。所以，1.与0异或是本身2.与和自己一样的异或是0.</li>
 </ul>
-<p><strong>代码</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;A.length;i++)&#123;</span><br><span class="line">            res^=A[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>代码</strong></p>
+<pre><code class="lang-java">public class Solution {
+    public int singleNumber(int[] A) {
+        int res=0;
+        for(int i=0;i&lt;A.length;i++){
+            res^=A[i];
+        }
+        return res;
+    }
+}
+</code></pre>
 <h1 id="二、动态规划"><a href="#二、动态规划" class="headerlink" title="二、动态规划"></a>二、动态规划</h1><p><strong>题目描述</strong></p>
 <p>There are N children standing in a line. Each child is assigned a rating value.<br>You are giving candies to these children subjected to the following requirements:<br>Each child must have at least one candy.<br>Children with a higher rating get more candies than their neighbors.<br>What is the minimum candies you must give? </p>
 <p><strong>思路</strong>：</p>
@@ -201,14 +216,62 @@ var _hmt = _hmt || [];
 <li>一开始看错题了，孩子们本来站好队了，我按权重从大到小排了一下。。。看了别人的代码，思路并不难：先给每人一个糖果，两个循环解决问题，一，从前往后扫一遍，如果下一个比上一个权重大就在上一个基础上加一；再从后往前扫一遍，如果前面的比后面的权重大且糖果比他少就再后面的基础上加一刷新原有的值。</li>
 <li>语法点：<code>Arrays.fill(array,val);Arrays.sort(array);</code></li>
 </ul>
-<p><strong>代码</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">candy</span><span class="params">(<span class="keyword">int</span>[] ratings)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(ratings==<span class="keyword">null</span>||ratings.length==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> len=ratings.length;</span><br><span class="line">        <span class="keyword">int</span> [] cnt=<span class="keyword">new</span> <span class="keyword">int</span> [len];</span><br><span class="line">        Arrays.fill(cnt,<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(ratings[i]&gt;ratings[i-<span class="number">1</span>])&#123;</span><br><span class="line">                cnt[i]=cnt[i-<span class="number">1</span>]+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=len-<span class="number">1</span>;i&gt;<span class="number">0</span>;i--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(ratings[i-<span class="number">1</span>]&gt;ratings[i]&amp;&amp;cnt[i-<span class="number">1</span>]&lt;=cnt[i])&#123;</span><br><span class="line">                cnt[i-<span class="number">1</span>]=cnt[i]+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            sum+=cnt[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum+cnt[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>代码</strong></p>
+<pre><code class="lang-java">import java.util.Arrays;
+
+public class Solution {
+    public int candy(int[] ratings) {
+        if(ratings==null||ratings.length==0){
+            return 0;
+        }
+        int len=ratings.length;
+        int [] cnt=new int [len];
+        Arrays.fill(cnt,1);
+        for(int i=1;i&lt;len;i++){
+            if(ratings[i]&gt;ratings[i-1]){
+                cnt[i]=cnt[i-1]+1;
+            }
+        }
+        int sum=0;
+        for(int i=len-1;i&gt;0;i--){
+            if(ratings[i-1]&gt;ratings[i]&amp;&amp;cnt[i-1]&lt;=cnt[i]){
+                cnt[i-1]=cnt[i]+1;
+            }
+            sum+=cnt[i];
+        }
+        return sum+cnt[0];
+    }
+}
+</code></pre>
 <h1 id="三、模拟题（环状）"><a href="#三、模拟题（环状）" class="headerlink" title="三、模拟题（环状）"></a>三、模拟题（环状）</h1><p><strong>题目描述</strong></p>
 <p>There are N gas stations along a circular route, where the amount of gas at station i isgas[i].<br>You have a car with an unlimited gas tank and it costscost[i]of gas to travel from station i to its next station (i+1). You begin the journey with an empty tank at one of the gas stations.<br>Return the starting gas station’s index if you can travel around the circuit once, otherwise return -1.<br>Note:<br>The solution is guaranteed to be unique. </p>
 <p><strong>思路</strong></p>
 <ul>
 <li>设置start和end，分别放在首尾。如果能继续走就让end++,不能则让start退一个。结束while循环有两种可能结果，一个是sum&gt;=0，则最后相会的点就是出发点，另一个则不可能。</li>
 </ul>
-<p><strong>代码</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">canCompleteCircuit</span><span class="params">(<span class="keyword">int</span>[] gas, <span class="keyword">int</span>[] cost)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len=gas.length;</span><br><span class="line">        <span class="keyword">int</span> start=len-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> end=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">        sum=gas[start]-cost[start];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(end&lt;start)&#123;</span><br><span class="line">            <span class="keyword">if</span>(sum&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">                sum+=gas[end]-cost[end];</span><br><span class="line">                end++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                start--;</span><br><span class="line">                sum+=gas[start]-cost[start];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum&gt;=<span class="number">0</span>?start:-<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>代码</strong></p>
+<pre><code class="lang-java">public class Solution {
+    public int canCompleteCircuit(int[] gas, int[] cost) {
+        int len=gas.length;
+        int start=len-1;
+        int end=0;
+        int sum=0;
+        sum=gas[start]-cost[start];
+
+        while(end&lt;start){
+            if(sum&gt;=0){
+                sum+=gas[end]-cost[end];
+                end++;
+            }
+            else{
+                start--;
+                sum+=gas[start]-cost[start];
+            }
+        }
+        return sum&gt;=0?start:-1;
+    }
+}
+</code></pre>
 <h1 id="四、BFS-HashMap"><a href="#四、BFS-HashMap" class="headerlink" title="四、BFS+HashMap"></a>四、BFS+HashMap</h1><p><strong>题目描述</strong></p>
 <p>Clone an undirected graph. Each node in the graph contains alabeland a list of itsneighbors. </p>
 <p><strong>思路</strong></p>
@@ -217,7 +280,48 @@ var _hmt = _hmt || [];
 <li>HashMap中通过get()来获取value，通过put()来插入value，containsKey()则用来检验对象是否已经存在</li>
 <li>Stack：<code>st.push(node);st.pop();st.empty();</code></li>
 </ul>
-<p><strong>代码</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for undirected graph.</span></span><br><span class="line"><span class="comment"> * class UndirectedGraphNode &#123;</span></span><br><span class="line"><span class="comment"> *     int label;</span></span><br><span class="line"><span class="comment"> *     ArrayList&lt;UndirectedGraphNode&gt; neighbors;</span></span><br><span class="line"><span class="comment"> *     UndirectedGraphNode(int x) &#123; label = x; neighbors = new ArrayList&lt;UndirectedGraphNode&gt;(); &#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Stack;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> UndirectedGraphNode <span class="title">cloneGraph</span><span class="params">(UndirectedGraphNode node)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(node==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        HashMap&lt;UndirectedGraphNode,UndirectedGraphNode&gt; map=<span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        Stack&lt;UndirectedGraphNode&gt; stackNode=<span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        stackNode.push(node);</span><br><span class="line">        <span class="keyword">while</span>(!stackNode.empty())&#123;</span><br><span class="line">            UndirectedGraphNode tempNode=stackNode.pop();</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(map.containsKey(tempNode))&#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            UndirectedGraphNode copyNode=<span class="keyword">new</span> UndirectedGraphNode(tempNode.label);</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span>(UndirectedGraphNode uNode:tempNode.neighbors)&#123;</span><br><span class="line">                copyNode.neighbors.add(uNode);</span><br><span class="line">                <span class="keyword">if</span>(map.containsKey(uNode))&#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                stackNode.push(uNode);</span><br><span class="line">            &#125;</span><br><span class="line">            map.put(tempNode,copyNode);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> map.get(node);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>代码</strong></p>
+<pre><code class="lang-java">/**
+ * Definition for undirected graph.
+ * class UndirectedGraphNode {
+ *     int label;
+ *     ArrayList&lt;UndirectedGraphNode&gt; neighbors;
+ *     UndirectedGraphNode(int x) { label = x; neighbors = new ArrayList&lt;UndirectedGraphNode&gt;(); }
+ * };
+ */
+
+import java.util.Stack;
+import java.util.HashMap;
+
+public class Solution {
+    public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
+        if(node==null){
+            return null;
+        }
+        HashMap&lt;UndirectedGraphNode,UndirectedGraphNode&gt; map=new HashMap&lt;&gt;();
+        Stack&lt;UndirectedGraphNode&gt; stackNode=new Stack&lt;&gt;();
+        stackNode.push(node);
+        while(!stackNode.empty()){
+            UndirectedGraphNode tempNode=stackNode.pop();
+
+            if(map.containsKey(tempNode)){
+                continue;
+            }
+            UndirectedGraphNode copyNode=new UndirectedGraphNode(tempNode.label);
+
+            for(UndirectedGraphNode uNode:tempNode.neighbors){
+                copyNode.neighbors.add(uNode);
+                if(map.containsKey(uNode)){
+                    continue;
+                }
+                stackNode.push(uNode);
+            }
+            map.put(tempNode,copyNode);
+        }
+        return map.get(node);
+    }
+}
+</code></pre>
 
       
 
@@ -321,6 +425,9 @@ var _hmt = _hmt || [];
       	</div>
     </div>
 	</div>
+
+	<script src="/js/prettify.js"></script>
+
 </footer>
 
     </div>

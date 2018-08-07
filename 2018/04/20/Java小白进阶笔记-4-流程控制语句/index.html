@@ -47,6 +47,11 @@ var _hmt = _hmt || [];
 </script>
 
 
+
+
+  
+  <link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
+
 </head>
 
 <body>
@@ -229,34 +234,142 @@ var _hmt = _hmt || [];
 </ul>
 <hr>
 <h1 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h1><ol>
-<li>编写一个方法，需要传1个整型变量作为参数，方法中先把参数输出，再判断参数为偶数就返回true，非偶数返回false。在main方法中调用该方法3次，分别传入参数为3、4、5，并将方法的返回值输出。<br><strong>答</strong>：<br>代码：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Getodd</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">judge</span><span class="params">(<span class="keyword">int</span> tem)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(tem%<span class="number">2</span>==<span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String [] args)</span> </span>&#123;</span><br><span class="line">		Scanner sc=<span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">3</span>;i++)&#123;</span><br><span class="line">			<span class="keyword">int</span> tem=sc.nextInt();</span><br><span class="line">			<span class="keyword">boolean</span> ans=judge(tem);</span><br><span class="line">			System.out.println(<span class="string">"the"</span>+i+<span class="string">" 's ans: "</span>+ans);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li>编写一个方法，需要传1个整型变量作为参数，方法中先把参数输出，再判断参数为偶数就返回true，非偶数返回false。在main方法中调用该方法3次，分别传入参数为3、4、5，并将方法的返回值输出。<br><strong>答</strong>：<br>代码：<br>```java<br>package test;</li>
 </ol>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">the1 &apos;s ans: false</span><br><span class="line">4</span><br><span class="line">the2 &apos;s ans: true</span><br><span class="line">5</span><br><span class="line">the3 &apos;s ans: false</span><br></pre></td></tr></table></figure></p>
-<ol>
-<li>编写一个方法，需要传入2个整型变量作为参数，方法中返回数值较大的参数，在main方法中调用该方法几次，参数自定义，并将方法的返回值输出。<br><strong>答</strong>：<br>代码：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WhoIsMax</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">judge</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(a&gt;b) &#123;</span><br><span class="line">			<span class="keyword">return</span> a;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> b;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Scanner sc=<span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++) &#123;</span><br><span class="line">			<span class="keyword">int</span> a=sc.nextInt();</span><br><span class="line">			<span class="keyword">int</span> b=sc.nextInt();</span><br><span class="line">			<span class="keyword">int</span> ans=judge(a,b);</span><br><span class="line">			System.out.println(<span class="string">"the max between "</span>+a+<span class="string">" and "</span>+b+<span class="string">" is "</span>+ans);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">2 3</span><br><span class="line">the max between 2 and 3 is 3</span><br><span class="line">5 8</span><br><span class="line">the max between 5 and 8 is 8</span><br><span class="line">99 22</span><br><span class="line">the max between 99 and 22 is 99</span><br></pre></td></tr></table></figure></p>
-<ol>
-<li>编写一个方法，需要传入1个整型变量作为参数，方法中使用switch做判断，如果参数值为1则输出”星期一”，如果参数值为2则输出”星期二”，依此类推，如果参数值不在1-7的范围内则输出”参数错误”，在main方法中调用该方法几次，参数自定义。<br><strong>答</strong>：<br>代码：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DateShow</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">judge</span><span class="params">(<span class="keyword">int</span> tem)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">switch</span>(tem) &#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">			System.out.println(<span class="string">"Monday"</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">			System.out.println(<span class="string">"Tuesday"</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">			System.out.println(<span class="string">"Wednesday"</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">			System.out.println(<span class="string">"Thursday"</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">			System.out.println(<span class="string">"Friday"</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">6</span>:</span><br><span class="line">			System.out.println(<span class="string">"Saturday"</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">7</span>:</span><br><span class="line">			System.out.println(<span class="string">"Sunday"</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">default</span>:System.out.println(<span class="string">"Wrong input!"</span>);</span><br><span class="line">		</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span> <span class="params">(String [] args)</span></span>&#123;</span><br><span class="line">		Scanner sc=<span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++) &#123;</span><br><span class="line">			<span class="keyword">int</span> tem=sc.nextInt();</span><br><span class="line">			judge(tem);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">Wednesday</span><br><span class="line">5</span><br><span class="line">Friday</span><br><span class="line">9</span><br><span class="line">Wrong input!</span><br></pre></td></tr></table></figure></p>
-<ol>
-<li>编写一个方法，打印出一个菱形（这道题比较难，不允许搜百度上的答案）。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">   *</span><br><span class="line">  ***</span><br><span class="line"> *****</span><br><span class="line">*******</span><br><span class="line"> *****</span><br><span class="line">  ***</span><br><span class="line">   *</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><strong>友情提示</strong>：</p>
-<ul>
-<li>System.out.println();输出是带换行的</li>
-<li>System.out.print();输出是不带换行的</li>
-<li>需要使用嵌套for循环</li>
-<li>一个循环输出空格，一个循环输出星号；一个循环输出换行<br><strong>答</strong>：<br>代码：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DrawPic</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">drawPic</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> half=num/<span class="number">2</span>+<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;half;i++) &#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;half-<span class="number">1</span>-i;j++) &#123;</span><br><span class="line">				System.out.print(<span class="string">' '</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;<span class="number">2</span>*i+<span class="number">1</span>;k++) &#123;</span><br><span class="line">				System.out.print(<span class="string">'*'</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println();</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;half-<span class="number">1</span>;i++) &#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;i+<span class="number">1</span>;j++) &#123;</span><br><span class="line">				System.out.print(<span class="string">' '</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;num-<span class="number">2</span>*(i+<span class="number">1</span>);k++) &#123;</span><br><span class="line">				System.out.print(<span class="string">'*'</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String [] args)</span> </span>&#123;</span><br><span class="line">		Scanner sc=<span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		<span class="keyword">int</span> tem = sc.nextInt();</span><br><span class="line">		drawPic(tem);	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">17</span><br><span class="line">        *</span><br><span class="line">       ***</span><br><span class="line">      *****</span><br><span class="line">     *******</span><br><span class="line">    *********</span><br><span class="line">   ***********</span><br><span class="line">  *************</span><br><span class="line"> ***************</span><br><span class="line">*****************</span><br><span class="line"> ***************</span><br><span class="line">  *************</span><br><span class="line">   ***********</span><br><span class="line">    *********</span><br><span class="line">     *******</span><br><span class="line">      *****</span><br><span class="line">       ***</span><br><span class="line">        *</span><br></pre></td></tr></table></figure></p>
+<p>import java.util.Scanner;</p>
+<p>public class Getodd {<br>    public static boolean judge(int tem) {<br>        if(tem%2==0) {<br>            return true;<br>        }<br>        else {<br>            return false;<br>        }<br>    }<br>    public static void main(String [] args) {<br>        Scanner sc=new Scanner(System.in);<br>        for(int i=1;i&lt;=3;i++){<br>            int tem=sc.nextInt();<br>            boolean ans=judge(tem);<br>            System.out.println(“the”+i+” ‘s ans: “+ans);<br>        }<br>    }<br>}</p>
+<pre><code>输出：
+</code></pre><p>3<br>the1 ‘s ans: false<br>4<br>the2 ‘s ans: true<br>5<br>the3 ‘s ans: false</p>
+<pre><code>
 
+2. 编写一个方法，需要传入2个整型变量作为参数，方法中返回数值较大的参数，在main方法中调用该方法几次，参数自定义，并将方法的返回值输出。
+**答**：
+代码：
+```java
+package test;
+
+import java.util.Scanner;
+
+public class WhoIsMax {
+    public static int judge(int a,int b) {
+        if(a&gt;b) {
+            return a;
+        }
+        else {
+            return b;
+        }
+    }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        for(int i=0;i&lt;3;i++) {
+            int a=sc.nextInt();
+            int b=sc.nextInt();
+            int ans=judge(a,b);
+            System.out.println(&quot;the max between &quot;+a+&quot; and &quot;+b+&quot; is &quot;+ans);
+        }
+    }
+}
+</code></pre><p>输出：</p>
+<pre><code>2 3
+the max between 2 and 3 is 3
+5 8
+the max between 5 and 8 is 8
+99 22
+the max between 99 and 22 is 99
+</code></pre><ol>
+<li>编写一个方法，需要传入1个整型变量作为参数，方法中使用switch做判断，如果参数值为1则输出”星期一”，如果参数值为2则输出”星期二”，依此类推，如果参数值不在1-7的范围内则输出”参数错误”，在main方法中调用该方法几次，参数自定义。<br><strong>答</strong>：<br>代码：<br>```java<br>package test;</li>
+</ol>
+<p>import java.util.Scanner;</p>
+<p>public class DateShow {<br>    public static void judge(int tem) {<br>        switch(tem) {<br>        case 1:<br>            System.out.println(“Monday”);<br>        break;<br>        case 2:<br>            System.out.println(“Tuesday”);<br>        break;<br>        case 3:<br>            System.out.println(“Wednesday”);<br>        break;<br>        case 4:<br>            System.out.println(“Thursday”);<br>        break;<br>        case 5:<br>            System.out.println(“Friday”);<br>        break;<br>        case 6:<br>            System.out.println(“Saturday”);<br>        break;<br>        case 7:<br>            System.out.println(“Sunday”);<br>        break;</p>
+<pre><code>    default:System.out.println(&quot;Wrong input!&quot;);
+
+    }
+}
+public static void main (String [] args){
+    Scanner sc=new Scanner(System.in);
+    for(int i=0;i&lt;3;i++) {
+        int tem=sc.nextInt();
+        judge(tem);
+    }
+}
+</code></pre><p>}</p>
+<pre><code>输出：
+</code></pre><p>3<br>Wednesday<br>5<br>Friday<br>9<br>Wrong input!</p>
+<pre><code>
+
+4. 编写一个方法，打印出一个菱形（这道题比较难，不允许搜百度上的答案）。
+</code></pre><p>   *</p>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<p>   *</p>
+<pre><code>
+
+**友情提示**：
+
+- System.out.println();输出是带换行的
+- System.out.print();输出是不带换行的
+- 需要使用嵌套for循环
+- 一个循环输出空格，一个循环输出星号；一个循环输出换行
+**答**：
+代码：
+```java
+package test;
+
+import java.util.Scanner;
+
+public class DrawPic {
+    public static void drawPic(int num) {
+        int half=num/2+1;
+        for(int i=0;i&lt;half;i++) {
+            for(int j=0;j&lt;half-1-i;j++) {
+                System.out.print(&#39; &#39;);
+            }
+            for(int k=0;k&lt;2*i+1;k++) {
+                System.out.print(&#39;*&#39;);
+            }
+            System.out.println();
+        }
+
+        for(int i=0;i&lt;half-1;i++) {
+            for(int j=0;j&lt;i+1;j++) {
+                System.out.print(&#39; &#39;);
+            }
+            for(int k=0;k&lt;num-2*(i+1);k++) {
+                System.out.print(&#39;*&#39;);
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String [] args) {
+        Scanner sc=new Scanner(System.in);
+        int tem = sc.nextInt();
+        drawPic(tem);    
+    }
+}
+</code></pre><p>输出：</p>
+<pre><code>17
+        *
+       ***
+      *****
+     *******
+    *********
+   ***********
+  *************
+ ***************
+*****************
+ ***************
+  *************
+   ***********
+    *********
+     *******
+      *****
+       ***
+        *
+</code></pre>
       
 
       
@@ -359,6 +472,9 @@ var _hmt = _hmt || [];
       	</div>
     </div>
 	</div>
+
+	<script src="/js/prettify.js"></script>
+
 </footer>
 
     </div>

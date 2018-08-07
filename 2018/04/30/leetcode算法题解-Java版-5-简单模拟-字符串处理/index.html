@@ -47,6 +47,11 @@ var _hmt = _hmt || [];
 </script>
 
 
+
+
+  
+  <link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
+
 </head>
 
 <body>
@@ -193,13 +198,66 @@ var _hmt = _hmt || [];
 <li>这题在一分钟内就想了个笨方法，迅速敲完，KO！</li>
 <li>因为题目还是很简单，不考虑将装水的容器倾斜，所以只要考虑梯形中最短的边和底边的乘积就行了：正反两遍循环数组，第一遍从0~len，先固定最左边的边，从右往左遍历数组，如果碰到大于等于最左边边长的边，那就判断是否大于当前的最大盛水体积并跟新，然后就停止这次循环，将最左边的边向右移动一格，重复操作；第二遍从len~0,和第一遍一样。</li>
 </ul>
-<p><strong>代码</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len=height.length;</span><br><span class="line">        <span class="keyword">if</span>(len==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> maxW=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=len-<span class="number">1</span>;j&gt;i;j--)&#123;</span><br><span class="line">                <span class="keyword">if</span>(height[j]&gt;=height[i])&#123;</span><br><span class="line">                    <span class="keyword">if</span>(height[i]*(j-i)&gt;maxW)&#123;</span><br><span class="line">                        maxW=height[i]*(j-i);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=len-<span class="number">1</span>;i&gt;<span class="number">0</span>;i--)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;i;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(height[j]&gt;=height[i])&#123;</span><br><span class="line">                    <span class="keyword">if</span>(height[i]*(i-j)&gt;maxW)&#123;</span><br><span class="line">                        maxW=height[i]*(i-j);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> maxW;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>代码</strong></p>
+<pre><code class="lang-java">public class Solution {
+    public int maxArea(int[] height) {
+        int len=height.length;
+        if(len==0){
+            return 0;
+        }
+        int maxW=0;
+        for(int i=0;i&lt;len;i++){
+            for(int j=len-1;j&gt;i;j--){
+                if(height[j]&gt;=height[i]){
+                    if(height[i]*(j-i)&gt;maxW){
+                        maxW=height[i]*(j-i);
+                    }
+                    break;
+                }
+            }
+        }
+        for(int i=len-1;i&gt;0;i--){
+            for(int j=0;j&lt;i;j++){
+                if(height[j]&gt;=height[i]){
+                    if(height[i]*(i-j)&gt;maxW){
+                        maxW=height[i]*(i-j);
+                    }
+                    break;
+                }
+            }
+        }
+        return maxW;
+    }
+}
+</code></pre>
 <p><strong>思路2</strong></p>
 <ul>
 <li>好吧，虚心学习，看了一下其他人的代码。发现一个好方法：</li>
 <li>从两边往中间走，每次舍弃较短的边，因为宽度减小，要通过高度的增加来弥补</li>
 </ul>
-<p><strong>代码</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len=height.length;</span><br><span class="line">        <span class="keyword">if</span>(len==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> l=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> r=len-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> maxW=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(l&lt;r)&#123;</span><br><span class="line">            maxW=Math.max(maxW,Math.min(height[l],height[r])*(r-l));</span><br><span class="line">            <span class="keyword">if</span>(height[l]&lt;height[r])&#123;</span><br><span class="line">                l++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                r--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> maxW;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>代码</strong></p>
+<pre><code class="lang-java">public class Solution {
+    public int maxArea(int[] height) {
+        int len=height.length;
+        if(len==0){
+            return 0;
+        }
+        int l=0;
+        int r=len-1;
+        int maxW=0;
+        while(l&lt;r){
+            maxW=Math.max(maxW,Math.min(height[l],height[r])*(r-l));
+            if(height[l]&lt;height[r]){
+                l++;
+            }
+            else{
+                r--;
+            }
+        }
+        return maxW;
+    }
+}
+</code></pre>
 <h1 id="二、简单回文数字"><a href="#二、简单回文数字" class="headerlink" title="二、简单回文数字"></a>二、简单回文数字</h1><p><strong>题目描述</strong></p>
 <p>Determine whether an integer is a palindrome. Do this without extra space.<br>click to show spoilers.<br>Some hints:<br>Could negative integers be palindromes? (ie, -1)<br>If you are thinking of converting the integer to string, note the restriction of using extra space.<br>You could also try reversing an integer. However, if you have solved the problem “Reverse Integer”, you know that the reversed integer might overflow. How would you handle such case?<br>There is a more generic way of solving this problem. </p>
 <p><strong>思路</strong></p>
@@ -208,13 +266,66 @@ var _hmt = _hmt || [];
 <li>那就和一般的回文串做法不同了，可以这么来搞：干脆求出它翻转过来的整型，最后比较是否值相等。</li>
 <li>想到这个思路，是因为int型的特殊基本数据类型，特别对待，哈哈哈</li>
 </ul>
-<p><strong>代码</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(x&lt;<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> reverse=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> x_rel=x;</span><br><span class="line">        <span class="keyword">while</span>(x!=<span class="number">0</span>)&#123;</span><br><span class="line">            reverse=reverse*<span class="number">10</span>+x%<span class="number">10</span>;</span><br><span class="line">            x/=<span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>  reverse==x_rel;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>代码</strong></p>
+<pre><code class="lang-java">public class Solution {
+    public boolean isPalindrome(int x) {
+        if(x&lt;0){
+            return false;
+        }
+        int reverse=0;
+        int x_rel=x;
+        while(x!=0){
+            reverse=reverse*10+x%10;
+            x/=10;
+        }
+        return  reverse==x_rel;
+    }
+}
+</code></pre>
 <h1 id="三、字符串，模拟"><a href="#三、字符串，模拟" class="headerlink" title="三、字符串，模拟"></a>三、字符串，模拟</h1><p><strong>题目描述</strong><br>Implement atoi to convert a string to an integer.<br>Hint: Carefully consider all possible input cases. If you want a challenge, please do not see below and ask yourself what are the possible input cases.<br>Notes: It is intended for this problem to be specified vaguely (ie, no given input specs). You are responsible to gather all the input requirements up front.<br>spoilers alert… click to show requirements for atoi.<br>Requirements for atoi:<br>The function first discards as many whitespace characters as necessary until the first non-whitespace character is found. Then, starting from this character, takes an optional initial plus or minus sign followed by as many numerical digits as possible, and interprets them as a numerical value.<br>The string can contain additional characters after those that form the integral number, which are ignored and have no effect on the behavior of this function.<br>If the first sequence of non-whitespace characters in str is not a valid integral number, or if no such sequence exists because either str is empty or it contains only whitespace characters, no conversion is performed.<br>If no valid conversion could be performed, a zero value is returned. If the correct value is out of the range of representable values, INT_MAX (2147483647) or INT_MIN (-2147483648) is returned.<br><strong>思路</strong></p>
 <ul>
 <li>细节要求比较多，正负号，非法字符，溢出等都要考虑。</li>
 </ul>
 <p><strong>代码</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">atoi</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(str==<span class="keyword">null</span>||str.length()==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> pos=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(str.charAt(pos)==<span class="string">' '</span>)&#123;</span><br><span class="line">            pos++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> flag=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(str.charAt(pos)==<span class="string">'-'</span>)&#123;</span><br><span class="line">            flag=-<span class="number">1</span>;</span><br><span class="line">            pos++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(str.charAt(pos)==<span class="string">'+'</span>)&#123;</span><br><span class="line">            flag=<span class="number">1</span>;</span><br><span class="line">            pos++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> len=str.length();</span><br><span class="line">        <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=pos;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="keyword">char</span> c=str.charAt(i);</span><br><span class="line">            <span class="keyword">if</span>(c&lt;<span class="string">'0'</span>||c&gt;<span class="string">'9'</span>)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(res&gt;Integer.MAX_VALUE/<span class="number">10</span>||(res==Integer.MAX_VALUE/<span class="number">10</span>&amp;&amp;c&gt;<span class="string">'7'</span>))&#123;</span><br><span class="line">                <span class="keyword">if</span>(flag&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="keyword">return</span> Integer.MAX_VALUE;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> Integer.MIN_VALUE;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            res=res*<span class="number">10</span>+(c-<span class="string">'0'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res*flag;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-java">public class Solution {
+    public int atoi(String str) {
+        if(str==null||str.length()==0){
+            return 0;
+        }
+        int pos=0;
+        while(str.charAt(pos)==&#39; &#39;){
+            pos++;
+        }
+        int flag=1;
+        if(str.charAt(pos)==&#39;-&#39;){
+            flag=-1;
+            pos++;
+        }
+        if(str.charAt(pos)==&#39;+&#39;){
+            flag=1;
+            pos++;
+        }
+        int len=str.length();
+        int res=0;
+        for(int i=pos;i&lt;len;i++){
+            char c=str.charAt(i);
+            if(c&lt;&#39;0&#39;||c&gt;&#39;9&#39;){
+                break;
+            }
+            if(res&gt;Integer.MAX_VALUE/10||(res==Integer.MAX_VALUE/10&amp;&amp;c&gt;&#39;7&#39;)){
+                if(flag&gt;0){
+                    return Integer.MAX_VALUE;
+                }
+                else{
+                    return Integer.MIN_VALUE;
+                }
+            }
+            res=res*10+(c-&#39;0&#39;);
+        }
+        return res*flag;
+    }
+}
+</code></pre>
 
       
 
@@ -318,6 +429,9 @@ var _hmt = _hmt || [];
       	</div>
     </div>
 	</div>
+
+	<script src="/js/prettify.js"></script>
+
 </footer>
 
     </div>

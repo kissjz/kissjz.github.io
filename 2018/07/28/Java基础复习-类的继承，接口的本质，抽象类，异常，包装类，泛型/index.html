@@ -47,6 +47,11 @@ var _hmt = _hmt || [];
 </script>
 
 
+
+
+  
+  <link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
+
 </head>
 
 <body>
@@ -193,8 +198,45 @@ var _hmt = _hmt || [];
 <h2 id="继承的痛点"><a href="#继承的痛点" class="headerlink" title="继承的痛点"></a>继承的痛点</h2></li>
 <li>破坏了封装，封装可谓面相对象三大特性之一，是面相对象编程基本思维。那怎么破坏封装了呢？子类如果要重写(扩展)父类方法，要知道基类中方法实现的细节，要弄清楚父类中方法之间的依赖，比如子类要重写父类中的A方法，而父类中的A方法调用了这个父类中的B方法，那么就要再看一看B方法中的实现细节。否则会可能有错误，举例先忽略。同样的，父类中如果要修改方法，那也要考虑到子类。这样就破坏了封装性。如图：</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class Father &#123;</span><br><span class="line">    private int[] arr = new int[10];</span><br><span class="line">    private int cnt;</span><br><span class="line">    public void add(int num) &#123;</span><br><span class="line">        arr[cnt++] = num;</span><br><span class="line">    &#125;</span><br><span class="line">    public void addAll(int [] nums) &#123;</span><br><span class="line">        for(int num : nums) &#123;</span><br><span class="line">            add(num);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> public class Child extends Father&#123;</span><br><span class="line">    private int sum;</span><br><span class="line">    @Override</span><br><span class="line">    public void add(int num) &#123;</span><br><span class="line">        super.add(num);</span><br><span class="line">        sum += num;</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public void addAll(int [] nums) &#123;</span><br><span class="line">        super.addAll(nums);</span><br><span class="line">        for(int i = 0 ; i &lt; nums.length ; i++) &#123;</span><br><span class="line">            sum += nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public int getSum() &#123;</span><br><span class="line">        return sum;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Child c = new Child();</span><br><span class="line">        c.addAll(new int[] &#123;1,2,3&#125;);</span><br><span class="line">        System.out.println(c.getSum());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>2.破坏了is-a的关系，要知道继承关系就是is-a关系。那破坏从何说起?举个例子，比如说有个基类是鸟类，里面有个方法叫fly()，子类要重写这个方法来实现特定的功能。顾名思义，基类中是希望子类是有 飞 这个能力的，但如果子类有个是企鹅，它又不能飞，只会游和走，那该怎么办？就在企鹅的fly()中写游泳吗？这样虽然没问题，但显然是破坏了is-a关系。父类中拥有的属性和行为，子类中不一定都适用，但子类还是可以重写方法，实现和父类中预期不一致的行为。比如，在用基类统一处理的时候 调用fly()是希望出来 飞 这个动作，结果却有一个是 游泳 。。。举例可能不恰当，但明白意思就OK！</p>
+<pre><code>
+class Father {
+    private int[] arr = new int[10];
+    private int cnt;
+    public void add(int num) {
+        arr[cnt++] = num;
+    }
+    public void addAll(int [] nums) {
+        for(int num : nums) {
+            add(num);
+        }
+    }
+}
+
+ public class Child extends Father{
+    private int sum;
+    @Override
+    public void add(int num) {
+        super.add(num);
+        sum += num;
+    }
+    @Override
+    public void addAll(int [] nums) {
+        super.addAll(nums);
+        for(int i = 0 ; i &lt; nums.length ; i++) {
+            sum += nums[i];
+        }
+    }
+    public int getSum() {
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        Child c = new Child();
+        c.addAll(new int[] {1,2,3});
+        System.out.println(c.getSum());
+    }
+}
+</code></pre><p>2.破坏了is-a的关系，要知道继承关系就是is-a关系。那破坏从何说起?举个例子，比如说有个基类是鸟类，里面有个方法叫fly()，子类要重写这个方法来实现特定的功能。顾名思义，基类中是希望子类是有 飞 这个能力的，但如果子类有个是企鹅，它又不能飞，只会游和走，那该怎么办？就在企鹅的fly()中写游泳吗？这样虽然没问题，但显然是破坏了is-a关系。父类中拥有的属性和行为，子类中不一定都适用，但子类还是可以重写方法，实现和父类中预期不一致的行为。比如，在用基类统一处理的时候 调用fly()是希望出来 飞 这个动作，结果却有一个是 游泳 。。。举例可能不恰当，但明白意思就OK！</p>
 <h2 id="好了，解决办法是什么呢？"><a href="#好了，解决办法是什么呢？" class="headerlink" title="好了，解决办法是什么呢？"></a>好了，解决办法是什么呢？</h2><ol>
 <li>用final，来规定不能被继承的类或者方法。</li>
 <li>用组合来代替继承。可以代码复用，但却不能通过基类统一处理各种子类。</li>
@@ -310,6 +352,9 @@ var _hmt = _hmt || [];
       	</div>
     </div>
 	</div>
+
+	<script src="/js/prettify.js"></script>
+
 </footer>
 
     </div>

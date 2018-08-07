@@ -47,6 +47,11 @@ var _hmt = _hmt || [];
 </script>
 
 
+
+
+  
+  <link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
+
 </head>
 
 <body>
@@ -191,21 +196,109 @@ var _hmt = _hmt || [];
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul>
 <li>题目很简单，二分就能通过</li>
 </ul>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">searchInsert</span><span class="params">(<span class="keyword">int</span>[] A, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//二分查找</span></span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right = A.length-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(left&lt;=right)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid = (left+right)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(A[mid]==target)&#123;</span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(A[mid]&lt;target)&#123;</span><br><span class="line">                left = mid+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                right = mid-<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="lang-java">public class Solution {
+    public int searchInsert(int[] A, int target) {
+        //二分查找
+        int left = 0;
+        int right = A.length-1;
+        while(left&lt;=right){
+            int mid = (left+right)/2;
+            if(A[mid]==target){
+                return mid;
+            }
+            else if(A[mid]&lt;target){
+                left = mid+1;
+            }
+            else{
+                right = mid-1;
+            }
+        }
+        return left;
+    }
+}
+</code></pre>
 <h1 id="二、反转链表"><a href="#二、反转链表" class="headerlink" title="二、反转链表"></a>二、反转链表</h1><h2 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h2><p>Reverse a linked list from position m to n. Do it in-place and in one-pass.<br>For example:<br>Given1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL, m = 2 and n = 4,<br>return1-&gt;4-&gt;3-&gt;2-&gt;5-&gt;NULL.<br>Note:<br>Given m, n satisfy the following condition:<br>1 ≤ m ≤ n ≤ length of list. </p>
 <h2 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h2><ul>
 <li>经典的题目，值得反复推敲。设置两个指针，一个指向m的位置，一个指向m之前的那个位置，不断刷新这两个指针的next，达到反转的效果。</li>
 <li>注意，这两个指针本身不变化，变化的是他们的next.</li>
 <li>这样做，满足了题意中的：do it in-place and in one-place</li>
 </ul>
-<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123;</span></span><br><span class="line"><span class="comment"> *         val = x;</span></span><br><span class="line"><span class="comment"> *         next = null;</span></span><br><span class="line"><span class="comment"> *     &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseBetween</span><span class="params">(ListNode head, <span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        ListNode dummy = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">        dummy.next = head;</span><br><span class="line">        ListNode start = head;</span><br><span class="line">        ListNode prestart = dummy;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;m;i++)&#123;</span><br><span class="line">            prestart = start;</span><br><span class="line">            start = start.next;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        ListNode tem;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n-m;i++)&#123;</span><br><span class="line">            tem = start.next;</span><br><span class="line">            start.next = tem.next;</span><br><span class="line">            tem.next = prestart.next;</span><br><span class="line">            prestart.next = tem;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><pre><code class="lang-java">/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode reverseBetween(ListNode head, int m, int n) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode start = head;
+        ListNode prestart = dummy;
+        for(int i=1;i&lt;m;i++){
+            prestart = start;
+            start = start.next;
+        }
+
+        ListNode tem;
+        for(int i=0;i&lt;n-m;i++){
+            tem = start.next;
+            start.next = tem.next;
+            tem.next = prestart.next;
+            prestart.next = tem;
+        }
+        return dummy.next;
+    }
+}
+</code></pre>
 <h1 id="三、深搜"><a href="#三、深搜" class="headerlink" title="三、深搜"></a>三、深搜</h1><h2 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h2><p>Given a collection of integers that might contain duplicates, S, return all possible subsets.<br>Note:<br>Elements in a subset must be in non-descending order.<br>The solution set must not contain duplicate subsets. </p>
-<p>For example,<br>If S =[1,2,2], a solution is:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [2],</span><br><span class="line">  [1],</span><br><span class="line">  [1,2,2],</span><br><span class="line">  [2,2],</span><br><span class="line">  [1,2],</span><br><span class="line">  []</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
-<h2 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h2><ul>
+<p>For example,<br>If S =[1,2,2], a solution is: </p>
+<pre><code>[
+  [2],
+  [1],
+  [1,2,2],
+  [2,2],
+  [1,2],
+  []
+]
+</code></pre><h2 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h2><ul>
 <li>题目要列出所有不重复的，用所给数组中数字组成的非递减数列。</li>
 <li>深搜解决问题：注意到不能有重复的数字，之前好像做过类似的题目，今天又碰到了，也就是要让拿的数字不能和已经拿过的一样。<code>if(start&gt;i&amp;&amp;num[i]==num[i-1]</code></li>
 </ul>
-<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    ArrayList&lt;ArrayList&lt;Integer&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;ArrayList&lt;Integer&gt;&gt;();</span><br><span class="line">    <span class="keyword">public</span> ArrayList&lt;ArrayList&lt;Integer&gt;&gt; subsetsWithDup(<span class="keyword">int</span>[] num) &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(num==<span class="keyword">null</span>||num.length==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(num);</span><br><span class="line">        findAll(num,<span class="number">0</span>,<span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">findAll</span><span class="params">(<span class="keyword">int</span> [] num,<span class="keyword">int</span> start,ArrayList&lt;Integer&gt; list)</span></span>&#123;</span><br><span class="line">        res.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;(list));</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=start;i&lt;num.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i&gt;start&amp;&amp;num[i]==num[i-<span class="number">1</span>])&#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            list.add(num[i]);</span><br><span class="line">            findAll(num,i+<span class="number">1</span>,list);</span><br><span class="line">            list.remove(list.size()-<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><pre><code class="lang-java">import java.util.ArrayList;
+import java.util.Arrays;
+
+public class Solution {
+    ArrayList&lt;ArrayList&lt;Integer&gt;&gt; res = new ArrayList&lt;ArrayList&lt;Integer&gt;&gt;();
+    public ArrayList&lt;ArrayList&lt;Integer&gt;&gt; subsetsWithDup(int[] num) {
+
+        if(num==null||num.length==0){
+            return res;
+        }
+        Arrays.sort(num);
+        findAll(num,0,new ArrayList&lt;&gt;());
+        return res;
+    }
+    public void findAll(int [] num,int start,ArrayList&lt;Integer&gt; list){
+        res.add(new ArrayList&lt;Integer&gt;(list));
+
+        for(int i=start;i&lt;num.length;i++){
+            if(i&gt;start&amp;&amp;num[i]==num[i-1]){
+                continue;
+            }
+            list.add(num[i]);
+            findAll(num,i+1,list);
+            list.remove(list.size()-1);
+        }
+    }
+}
+</code></pre>
+
       
 
       
@@ -308,6 +401,9 @@ var _hmt = _hmt || [];
       	</div>
     </div>
 	</div>
+
+	<script src="/js/prettify.js"></script>
+
 </footer>
 
     </div>

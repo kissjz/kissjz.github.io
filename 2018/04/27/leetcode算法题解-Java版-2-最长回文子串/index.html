@@ -47,6 +47,11 @@ var _hmt = _hmt || [];
 </script>
 
 
+
+
+  
+  <link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
+
 </head>
 
 <body>
@@ -193,18 +198,73 @@ var _hmt = _hmt || [];
 <li>题目很简单，需要注意的是：int型是32位的。1000000003 反转后就超了！所以需要包装类Integer中的最大值和最小值</li>
 <li>小技巧：为了实现反转，可以先把符号保存到flag中。</li>
 </ul>
-<p><strong>代码</strong>：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">reverse</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> flag=x&gt;<span class="number">0</span>?<span class="number">1</span>:-<span class="number">1</span>;</span><br><span class="line">        x=x*flag;</span><br><span class="line">        <span class="keyword">while</span>(x&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            res=<span class="number">10</span>*res+x%<span class="number">10</span>;</span><br><span class="line">            x/=<span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        res=res*flag;</span><br><span class="line">        <span class="keyword">if</span>(res&gt;Integer.MAX_VALUE)&#123;</span><br><span class="line">            res=Integer.MAX_VALUE;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(res&lt;Integer.MIN_VALUE)&#123;</span><br><span class="line">            res=Integer.MIN_VALUE;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>)res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>代码</strong>：</p>
+<pre><code class="lang-java">public class Solution {
+    public int reverse(int x) {
+        int res=0;
+        int flag=x&gt;0?1:-1;
+        x=x*flag;
+        while(x&gt;0){
+            res=10*res+x%10;
+            x/=10;
+        }
+        res=res*flag;
+        if(res&gt;Integer.MAX_VALUE){
+            res=Integer.MAX_VALUE;
+        }
+        if(res&lt;Integer.MIN_VALUE){
+            res=Integer.MIN_VALUE;
+        }
+        return (int)res;
+    }
+}
+</code></pre>
 <h1 id="二、简单模拟、StringBuffer类"><a href="#二、简单模拟、StringBuffer类" class="headerlink" title="二、简单模拟、StringBuffer类"></a>二、简单模拟、StringBuffer类</h1><p><strong>题目描述</strong></p>
-<p>The string”PAYPALISHIRING”is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">P   A   H   N</span><br><span class="line">A P L S I I G</span><br><span class="line">Y   I   R</span><br></pre></td></tr></table></figure></p>
-<p>And then read line by line:”PAHNAPLSIIGYIR” </p>
-<p>Write the code that will take a string and make this conversion given a number of rows:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string convert(string text, int nRows);</span><br></pre></td></tr></table></figure></p>
-<p>convert(“PAYPALISHIRING”, 3)should return”PAHNAPLSIIGYIR”. </p>
+<p>The string”PAYPALISHIRING”is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility) </p>
+<pre><code>P   A   H   N
+A P L S I I G
+Y   I   R
+</code></pre><p>And then read line by line:”PAHNAPLSIIGYIR” </p>
+<p>Write the code that will take a string and make this conversion given a number of rows: </p>
+<pre><code>string convert(string text, int nRows);
+</code></pre><p>convert(“PAYPALISHIRING”, 3)should return”PAHNAPLSIIGYIR”. </p>
 <p><strong>思路</strong>：</p>
 <ul>
 <li>这题考到了StringBuffer类，虽然是将原字符“Z“字型排开，然后按每行输出得到结果。观察发现：从上到下（0~nRows)，然后再从下到上（nRows-2~0），依次把字符添加到每行对应的sb后面。最后再按行输出就行。</li>
 <li>语法点：<code>sb.append(char c);sb.toString();sb.length;s.charAt(int index);s.length();</code></li>
 </ul>
-<p><strong>代码</strong>:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">convert</span><span class="params">(String s, <span class="keyword">int</span> nRows)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(s==<span class="keyword">null</span>||s.length()&lt;=<span class="number">0</span>||nRows&lt;=<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> s;</span><br><span class="line">        &#125;</span><br><span class="line">        StringBuffer [] sb=<span class="keyword">new</span> StringBuffer[nRows];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nRows;i++)&#123;</span><br><span class="line">            sb[i]=<span class="keyword">new</span> StringBuffer();</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> len=s.length();</span><br><span class="line">        <span class="keyword">int</span> tot=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(tot&lt;len)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nRows&amp;&amp;tot&lt;len;i++)&#123;</span><br><span class="line">                sb[i].append(s.charAt(tot++));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=nRows-<span class="number">2</span>;j&gt;<span class="number">0</span>&amp;&amp;tot&lt;len;j--)&#123;</span><br><span class="line">                sb[j].append(s.charAt(tot++));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;nRows;i++)&#123;</span><br><span class="line">            sb[<span class="number">0</span>].append(sb[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> sb[<span class="number">0</span>].toString();</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>代码</strong>:</p>
+<pre><code class="lang-java">public class Solution {
+    public String convert(String s, int nRows) {
+
+        if(s==null||s.length()&lt;=0||nRows&lt;=1){
+            return s;
+        }
+        StringBuffer [] sb=new StringBuffer[nRows];
+        for(int i=0;i&lt;nRows;i++){
+            sb[i]=new StringBuffer();
+        }
+
+        int len=s.length();
+        int tot=0;
+        while(tot&lt;len){
+            for(int i=0;i&lt;nRows&amp;&amp;tot&lt;len;i++){
+                sb[i].append(s.charAt(tot++));
+            }
+            for(int j=nRows-2;j&gt;0&amp;&amp;tot&lt;len;j--){
+                sb[j].append(s.charAt(tot++));
+            }
+        }
+
+        for(int i=1;i&lt;nRows;i++){
+            sb[0].append(sb[i]);
+        }
+
+        return sb[0].toString();
+
+    }
+}
+</code></pre>
 <h1 id="三、最长回文子串"><a href="#三、最长回文子串" class="headerlink" title="三、最长回文子串"></a>三、最长回文子串</h1><p><strong>题目描述</strong></p>
 <p>Given a string S, find the longest palindromic substring in S. You may assume that the maximum length of S is 1000, and there exists one unique longest palindromic substring. </p>
 <p><strong>思路</strong></p>
@@ -212,8 +272,81 @@ var _hmt = _hmt || [];
 <li>中间扩散法：因为回文串是中心对称的。不妨找到回文串的中心，往两边扩散来看是否符合回文串定义。奇数：一个中心字符；偶数：两个中心字符</li>
 <li>dp大法：设置一个dp状态数组，dp(i,j)=true如果子串i~j是回文串，那么子串i-1~j+1是不是回文串跟i~j有关，所以可以用dp。状态转移方程：<strong>dp(i,j)=(s[i]==s[j]&amp;&amp;dp(i+1,j-1))</strong></li>
 </ul>
-<p><strong>代码</strong>：<br>中间扩散：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">longestPalindrome</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(s==<span class="keyword">null</span>||s.length()&lt;=<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> s;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> len=s.length();</span><br><span class="line">        <span class="keyword">int</span> beg=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="comment">//odd</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> m=i-<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">int</span> n=i+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span>(m&gt;=<span class="number">0</span>&amp;&amp;n&lt;len&amp;&amp;s.charAt(m)==s.charAt(n))&#123;</span><br><span class="line">                <span class="keyword">if</span>(n-m+<span class="number">1</span>&gt;ans)&#123;</span><br><span class="line">                    ans=n-m+<span class="number">1</span>;</span><br><span class="line">                    beg=m;</span><br><span class="line">                &#125;</span><br><span class="line">                m--;</span><br><span class="line">                n++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//even</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> m=i;</span><br><span class="line">            <span class="keyword">int</span> n=i+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span>(m&gt;=<span class="number">0</span>&amp;&amp;n&lt;len&amp;&amp;s.charAt(m)==s.charAt(n))&#123;</span><br><span class="line">                <span class="keyword">if</span>(n-m+<span class="number">1</span>&gt;ans)&#123;</span><br><span class="line">                    ans=n-m+<span class="number">1</span>;</span><br><span class="line">                    beg=m;</span><br><span class="line">                &#125;</span><br><span class="line">                m--;</span><br><span class="line">                n++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(beg==<span class="number">0</span>&amp;&amp;ans==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> s.charAt(<span class="number">0</span>)+<span class="string">""</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s.substring(beg,beg+ans);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>dp大法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">longestPalindrome</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len=s.length();</span><br><span class="line">        <span class="keyword">if</span>(len&lt;<span class="number">2</span>||s==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> s;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">boolean</span> [][] dp=<span class="keyword">new</span> <span class="keyword">boolean</span> [len][len];</span><br><span class="line">        <span class="keyword">int</span> maxlen=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> beg=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;<span class="comment">//dp解题，初始化dp状态数组</span></span><br><span class="line">            dp[i][i]=<span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;i;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(s.charAt(i)==s.charAt(j))&#123;</span><br><span class="line">                    <span class="keyword">if</span>(j+<span class="number">1</span>&lt;len&amp;&amp;i-<span class="number">1</span>&gt;=<span class="number">0</span>&amp;&amp;(dp[j+<span class="number">1</span>][i-<span class="number">1</span>]==<span class="keyword">true</span>||i-j==<span class="number">1</span>))&#123;<span class="comment">//注意！i-j==1小细节，一开始不过就是因为没有考虑它</span></span><br><span class="line">                        dp[j][i]=<span class="keyword">true</span>;</span><br><span class="line">                        <span class="keyword">if</span>(maxlen&lt;i-j+<span class="number">1</span>)&#123;</span><br><span class="line">                            maxlen=i-j+<span class="number">1</span>;</span><br><span class="line">                            beg=j;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(maxlen==<span class="number">0</span>&amp;&amp;beg==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> s.charAt(<span class="number">0</span>)+<span class="string">""</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s.substring(beg,beg+maxlen);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>代码</strong>：<br>中间扩散：</p>
+<pre><code class="lang-java">public class Solution {
+    public String longestPalindrome(String s) {
+        if(s==null||s.length()&lt;=1){
+            return s;
+        }
+        int len=s.length();
+        int beg=0;
+        int ans=0;
+        //odd
+        for(int i=1;i&lt;len;i++){
+            int m=i-1;
+            int n=i+1;
+            while(m&gt;=0&amp;&amp;n&lt;len&amp;&amp;s.charAt(m)==s.charAt(n)){
+                if(n-m+1&gt;ans){
+                    ans=n-m+1;
+                    beg=m;
+                }
+                m--;
+                n++;
+            }
+        }
+        //even
+        for(int i=0;i&lt;len;i++){
+            int m=i;
+            int n=i+1;
+            while(m&gt;=0&amp;&amp;n&lt;len&amp;&amp;s.charAt(m)==s.charAt(n)){
+                if(n-m+1&gt;ans){
+                    ans=n-m+1;
+                    beg=m;
+                }
+                m--;
+                n++;
+            }
+        }
+        if(beg==0&amp;&amp;ans==1){
+            return s.charAt(0)+&quot;&quot;;
+        }
+        return s.substring(beg,beg+ans);
+    }
+}
+</code></pre>
+<p>dp大法：</p>
+<pre><code class="lang-java">public class Solution {
+    public String longestPalindrome(String s) {
+        int len=s.length();
+        if(len&lt;2||s==null){
+            return s;
+        }
+        boolean [][] dp=new boolean [len][len];
+        int maxlen=0;
+        int beg=0;
+        for(int i=0;i&lt;len;i++){//dp解题，初始化dp状态数组
+            dp[i][i]=true;
+        }
+        for(int i=0;i&lt;len;i++){
+            for(int j=0;j&lt;i;j++){
+                if(s.charAt(i)==s.charAt(j)){
+                    if(j+1&lt;len&amp;&amp;i-1&gt;=0&amp;&amp;(dp[j+1][i-1]==true||i-j==1)){//注意！i-j==1小细节，一开始不过就是因为没有考虑它
+                        dp[j][i]=true;
+                        if(maxlen&lt;i-j+1){
+                            maxlen=i-j+1;
+                            beg=j;
+                        }
+                    }
+                }
+            }
+        }
+        if(maxlen==0&amp;&amp;beg==0){
+            return s.charAt(0)+&quot;&quot;;
+        }
+        return s.substring(beg,beg+maxlen);
+    }
+}
+</code></pre>
 
       
 
@@ -317,6 +450,9 @@ var _hmt = _hmt || [];
       	</div>
     </div>
 	</div>
+
+	<script src="/js/prettify.js"></script>
+
 </footer>
 
     </div>

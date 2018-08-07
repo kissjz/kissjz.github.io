@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="baishuidongcheng.com">
   <title>leetcode算法题解(Java版)-8-动态规划+状态压缩 | 白水东城</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、树题目描述123456Given a binary tree     struct TreeLinkNode &amp;#123;      TreeLinkNode *left;      TreeLinkNode *right;      TreeLinkNode *next;    &amp;#125;">
+  <meta name="description" content="一、树题目描述 Given a binary tree      struct TreeLinkNode {       TreeLinkNode *left;       TreeLinkNode *right;       TreeLinkNode *next;     }">
 <meta name="keywords" content="leetcode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode算法题解(Java版)-8-动态规划+状态压缩">
 <meta property="og:url" content="baishuidongcheng.com/2018/05/03/leetcode算法题解-Java版-8-动态规划-状态压缩/index.html">
 <meta property="og:site_name" content="白水东城">
-<meta property="og:description" content="一、树题目描述123456Given a binary tree     struct TreeLinkNode &amp;#123;      TreeLinkNode *left;      TreeLinkNode *right;      TreeLinkNode *next;    &amp;#125;">
+<meta property="og:description" content="一、树题目描述 Given a binary tree      struct TreeLinkNode {       TreeLinkNode *left;       TreeLinkNode *right;       TreeLinkNode *next;     }">
 <meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2018-05-03T14:10:41.750Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode算法题解(Java版)-8-动态规划+状态压缩">
-<meta name="twitter:description" content="一、树题目描述123456Given a binary tree     struct TreeLinkNode &amp;#123;      TreeLinkNode *left;      TreeLinkNode *right;      TreeLinkNode *next;    &amp;#125;">
+<meta name="twitter:description" content="一、树题目描述 Given a binary tree      struct TreeLinkNode {       TreeLinkNode *left;       TreeLinkNode *right;       TreeLinkNode *next;     }">
   
     <link rel="alternative" href="/atom.xml" title="白水东城" type="application/atom+xml">
   
@@ -46,6 +46,11 @@ var _hmt = _hmt || [];
 })();
 </script>
 
+
+
+
+  
+  <link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
 
 </head>
 
@@ -186,17 +191,64 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="一、树"><a href="#一、树" class="headerlink" title="一、树"></a>一、树</h1><p><strong>题目描述</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Given a binary tree </span><br><span class="line">    struct TreeLinkNode &#123;</span><br><span class="line">      TreeLinkNode *left;</span><br><span class="line">      TreeLinkNode *right;</span><br><span class="line">      TreeLinkNode *next;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+        <h1 id="一、树"><a href="#一、树" class="headerlink" title="一、树"></a>一、树</h1><p><strong>题目描述</strong></p>
+<pre><code class="lang-java">Given a binary tree 
+    struct TreeLinkNode {
+      TreeLinkNode *left;
+      TreeLinkNode *right;
+      TreeLinkNode *next;
+    }
+</code></pre>
 <a id="more"></a>
 <p>Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set toNULL.<br>Initially, all next pointers are set toNULL.<br>Note:<br>You may only use constant extra space.<br>You may assume that it is a perfect binary tree (ie, all leaves are at the same level, and every parent has two children). </p>
-<p>For example,<br>Given the following perfect binary tree,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">     1</span><br><span class="line">   /  \</span><br><span class="line">  2    3</span><br><span class="line"> / \  / \</span><br><span class="line">4  5  6  7</span><br></pre></td></tr></table></figure></p>
-<p>After calling your function, the tree should look like:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">     1 -&gt; NULL</span><br><span class="line">   /  \</span><br><span class="line">  2 -&gt; 3 -&gt; NULL</span><br><span class="line"> / \  / \</span><br><span class="line">4-&gt;5-&gt;6-&gt;7 -&gt; NULL</span><br></pre></td></tr></table></figure></p>
-<p><strong>思路</strong></p>
+<p>For example,<br>Given the following perfect binary tree, </p>
+<pre><code>         1
+       /  \
+      2    3
+     / \  / \
+    4  5  6  7
+</code></pre><p>After calling your function, the tree should look like: </p>
+<pre><code>         1 -&gt; NULL
+       /  \
+      2 -&gt; 3 -&gt; NULL
+     / \  / \
+    4-&gt;5-&gt;6-&gt;7 -&gt; NULL
+</code></pre><p><strong>思路</strong></p>
 <ul>
 <li>题目的意思可能看文字有点不明白，没关系！看明白它给的两个图就行了，就是图上描绘的意思。</li>
 <li>这道题有点像链表，二叉树中多了个链表，其实解法也应该往链表上去想，一般考虑用<strong>两个指针</strong>一个当前的，控制外部循环，一个是移动的，控制内部小循环。二叉树不断往下走，一边走一边从左向右实现同一层节点之间链表的链接</li>
 </ul>
-<p><strong>代码</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for binary tree with next pointer.</span></span><br><span class="line"><span class="comment"> * public class TreeLinkNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeLinkNode left, right, next;</span></span><br><span class="line"><span class="comment"> *     TreeLinkNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connect</span><span class="params">(TreeLinkNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        TreeLinkNode p=root;</span><br><span class="line">        TreeLinkNode q=root;</span><br><span class="line">        <span class="keyword">while</span>(p.left!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            q=p;</span><br><span class="line">            <span class="keyword">while</span>(q!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                q.left.next=q.right;</span><br><span class="line">                <span class="keyword">if</span>(q.next!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                    q.right.next=q.next.left; </span><br><span class="line">                &#125;</span><br><span class="line">                q=q.next;</span><br><span class="line">            &#125;</span><br><span class="line">            p=p.left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>代码</strong></p>
+<pre><code class="lang-java">/**
+ * Definition for binary tree with next pointer.
+ * public class TreeLinkNode {
+ *     int val;
+ *     TreeLinkNode left, right, next;
+ *     TreeLinkNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public void connect(TreeLinkNode root) {
+        if(root==null){
+            return;
+        }
+        TreeLinkNode p=root;
+        TreeLinkNode q=root;
+        while(p.left!=null){
+            q=p;
+            while(q!=null){
+                q.left.next=q.right;
+                if(q.next!=null){
+                    q.right.next=q.next.left; 
+                }
+                q=q.next;
+            }
+            p=p.left;
+        }
+        return;
+    }
+}
+</code></pre>
 <h1 id="二、动态规划"><a href="#二、动态规划" class="headerlink" title="二、动态规划"></a>二、动态规划</h1><p><strong>题目描述</strong></p>
 <p>Given a string S and a string T, count the number of distinct subsequences of T in S.<br>A subsequence of a string is a new string which is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (ie,”ACE”is a subsequence of”ABCDE”while”AEC”is not).<br>Here is an example:<br>S =”rabbbit”, T =”rabbit”<br>Return3. </p>
 <p><strong>思路</strong></p>
@@ -219,9 +271,75 @@ var _hmt = _hmt || [];
 <li>dp[i][j]就是所谓的子问题，也是<strong>状态空间</strong>，表示S[0~i-1]中包含的T[0~j-1]的subsequences（这个定义看题目）数目。然后具体分析请看代码</li>
 <li>推荐在草稿画出dp数组，一边看代码一边填dp。</li>
 </ul>
-<p><strong>代码</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numDistinct</span><span class="params">(String S, String T)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> lenS=S.length();</span><br><span class="line">        <span class="keyword">int</span> lenT=T.length();</span><br><span class="line">        <span class="keyword">if</span>(lenS==<span class="number">0</span>||lenT==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> row=lenS+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> col=lenT+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> [][] dp=<span class="keyword">new</span> <span class="keyword">int</span> [row][col];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;col;i++)&#123;</span><br><span class="line">            dp[<span class="number">0</span>][i]=<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;row;j++)&#123;</span><br><span class="line">            dp[j][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;row;i++)&#123;</span><br><span class="line">            <span class="comment">//这里在纸上画字符串数组分析的时候，把字符串的下表可以从“1”开始，便于思维理解</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;col;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(S.charAt(i-<span class="number">1</span>)==T.charAt(j-<span class="number">1</span>))&#123;</span><br><span class="line">                    dp[i][j]=dp[i-<span class="number">1</span>][j-<span class="number">1</span>]+dp[i-<span class="number">1</span>][j];<span class="comment">//这里可能稍微难理解，</span></span><br><span class="line">                    <span class="comment">//要记住这一步的目的是解决字符串可以是不连续的，只要满足在原来串中顺序不变即可称为subsequence</span></span><br><span class="line">                    <span class="comment">//结合这个区想这一步为啥这么相加，就能理解了，我是用这个笨方法想的。。。</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    dp[i][j]=dp[i-<span class="number">1</span>][j];<span class="comment">//既然S[i-1]和T[j-1]不一样，那么不妨不要S[i]，</span></span><br><span class="line">                    <span class="comment">//可不能也不要T[j]噢，因为我们的目标是找到S中包含T的所有subsequences</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[row-<span class="number">1</span>][col-<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>代码</strong></p>
+<pre><code class="lang-java">public class Solution {
+    public int numDistinct(String S, String T) {
+        int lenS=S.length();
+        int lenT=T.length();
+        if(lenS==0||lenT==0){
+            return 0;
+        }
+        int row=lenS+1;
+        int col=lenT+1;
+        int [][] dp=new int [row][col];
+        for(int i=1;i&lt;col;i++){
+            dp[0][i]=0;
+        }
+        for(int j=0;j&lt;row;j++){
+            dp[j][0]=1;
+        }
+        for(int i=1;i&lt;row;i++){
+            //这里在纸上画字符串数组分析的时候，把字符串的下表可以从“1”开始，便于思维理解
+            for(int j=1;j&lt;col;j++){
+                if(S.charAt(i-1)==T.charAt(j-1)){
+                    dp[i][j]=dp[i-1][j-1]+dp[i-1][j];//这里可能稍微难理解，
+                    //要记住这一步的目的是解决字符串可以是不连续的，只要满足在原来串中顺序不变即可称为subsequence
+                    //结合这个区想这一步为啥这么相加，就能理解了，我是用这个笨方法想的。。。
+                }
+                else{
+                    dp[i][j]=dp[i-1][j];//既然S[i-1]和T[j-1]不一样，那么不妨不要S[i]，
+                    //可不能也不要T[j]噢，因为我们的目标是找到S中包含T的所有subsequences
+                }
+            }
+        }
+        return dp[row-1][col-1];
+    }
+}
+</code></pre>
 <p><strong>状态压缩+细节优化过的代码</strong><br>详细见代码注释，动态规划一般都是可以压缩一下状态的。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numDistinct</span><span class="params">(String S, String T)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> lenS=S.length();</span><br><span class="line">        <span class="keyword">int</span> lenT=T.length();</span><br><span class="line">        <span class="keyword">if</span>(lenS==<span class="number">0</span>||lenT==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> col=lenT+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> row=lenS+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> dp[]=<span class="keyword">new</span> <span class="keyword">int</span>[col];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;col;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i==<span class="number">0</span>)&#123;</span><br><span class="line">                dp[i]=<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            dp[i]=<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;row;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=j=Math.min(i,col-<span class="number">1</span>);j&gt;<span class="number">0</span>;j--)&#123;</span><br><span class="line">                <span class="comment">//其实这里还能再优化，写成 "j=Math.min(i,col-1)"</span></span><br><span class="line">                <span class="comment">//因为S[0~i]不可能包含长度比他大的T[0~j]</span></span><br><span class="line">                <span class="keyword">if</span>(S.charAt(i-<span class="number">1</span>)==T.charAt(j-<span class="number">1</span>))&#123;</span><br><span class="line">                    dp[j]=dp[j-<span class="number">1</span>]+dp[j];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    dp[j]=dp[j];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[col-<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-java">public class Solution {
+    public int numDistinct(String S, String T) {
+        int lenS=S.length();
+        int lenT=T.length();
+        if(lenS==0||lenT==0){
+            return 0;
+        }
+        int col=lenT+1;
+        int row=lenS+1;
+        int dp[]=new int[col];
+        for(int i=0;i&lt;col;i++){
+            if(i==0){
+                dp[i]=1;
+                continue;
+            }
+            dp[i]=0;
+        }
+        for(int i=1;i&lt;row;i++){
+            for(int j=j=Math.min(i,col-1);j&gt;0;j--){
+                //其实这里还能再优化，写成 &quot;j=Math.min(i,col-1)&quot;
+                //因为S[0~i]不可能包含长度比他大的T[0~j]
+                if(S.charAt(i-1)==T.charAt(j-1)){
+                    dp[j]=dp[j-1]+dp[j];
+                }
+                else{
+                    dp[j]=dp[j];
+                }
+            }
+        }
+        return dp[col-1];
+    }
+}
+</code></pre>
 
       
 
@@ -325,6 +443,9 @@ var _hmt = _hmt || [];
       	</div>
     </div>
 	</div>
+
+	<script src="/js/prettify.js"></script>
+
 </footer>
 
     </div>

@@ -47,6 +47,11 @@ var _hmt = _hmt || [];
 </script>
 
 
+
+
+  
+  <link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
+
 </head>
 
 <body>
@@ -215,10 +220,51 @@ var _hmt = _hmt || [];
 <p>需要在main方法中实例化三个人类的对象，分别设置与输出三个属性（名字、体重、年龄），并调用三个方法，其中把打豆豆方法的返回值打印出来。</p>
 <hr>
 <h2 id="我的解答"><a href="#我的解答" class="headerlink" title="我的解答"></a>我的解答</h2><p>ps:Java初学者，如果你是高手就不用看（xiao）了(hua)(ノへ￣、)</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span> </span>&#123;</span><br><span class="line">	String name;</span><br><span class="line">	<span class="keyword">int</span> weight;</span><br><span class="line">	<span class="keyword">int</span> age;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">People</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">People</span><span class="params">(String name,<span class="keyword">int</span> weight,<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name=name;</span><br><span class="line">		<span class="keyword">this</span>.weight=weight;</span><br><span class="line">		<span class="keyword">this</span>.age=age;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">(String food)</span> </span>&#123;</span><br><span class="line">		System.out.println(name+<span class="string">"is eating"</span>+food+<span class="string">"now !"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sleep</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(name+<span class="string">"is sleeping now!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">hitdoudou</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name+<span class="string">"的体重是"</span>+weight+<span class="string">"，年龄是"</span>+age;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		People p1 = <span class="keyword">new</span> People(<span class="string">"Jack"</span>,<span class="number">152</span>,<span class="number">21</span>);</span><br><span class="line">		p1.eat(<span class="string">"apple"</span>);</span><br><span class="line">		p1.sleep();</span><br><span class="line">		String hit = p1.hitdoudou();</span><br><span class="line">		System.out.println(hit);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>输出结果</strong>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Jackis eatingapplenow !</span><br><span class="line">Jackis sleeping now!</span><br><span class="line">Jack的体重是152，年龄是21</span><br></pre></td></tr></table></figure></p>
+<pre><code class="lang-java">package test;
 
+public class People {
+    String name;
+    int weight;
+    int age;
+
+    public People() {
+
+    }
+    public People(String name,int weight,int age) {
+        this.name=name;
+        this.weight=weight;
+        this.age=age;
+    }
+
+    public void eat(String food) {
+        System.out.println(name+&quot;is eating&quot;+food+&quot;now !&quot;);
+    }
+    public void sleep() {
+        System.out.println(name+&quot;is sleeping now!&quot;);
+    }
+    public String hitdoudou() {
+        return name+&quot;的体重是&quot;+weight+&quot;，年龄是&quot;+age;
+    }
+}
+</code></pre>
+<pre><code class="lang-java">package test;
+
+public class Test {
+    public static void main(String[] args) {
+        People p1 = new People(&quot;Jack&quot;,152,21);
+        p1.eat(&quot;apple&quot;);
+        p1.sleep();
+        String hit = p1.hitdoudou();
+        System.out.println(hit);
+    }
+
+}
+</code></pre>
+<p><strong>输出结果</strong>：</p>
+<pre><code>Jackis eatingapplenow !
+Jackis sleeping now!
+Jack的体重是152，年龄是21
+</code></pre>
       
 
       
@@ -321,6 +367,9 @@ var _hmt = _hmt || [];
       	</div>
     </div>
 	</div>
+
+	<script src="/js/prettify.js"></script>
+
 </footer>
 
     </div>
