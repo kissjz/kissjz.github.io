@@ -17,7 +17,7 @@
 <meta property="og:description" content="接着来搞树！ 一、B+树B+树的特征 有k个子树的中间节点包含有k个元素（B树中是k-1个元素），每个元素不保存数据，只用来索引，所有数据都保存在叶子节点。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/WeChat%20Image_20180812150928.jpg_wm">
-<meta property="og:updated_time" content="2018-08-16T05:31:13.991Z">
+<meta property="og:updated_time" content="2018-08-16T05:33:35.639Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法之树（二，B+树、哈夫曼树、堆、红黑树）(Java版)-持续更新补充">
 <meta name="twitter:description" content="接着来搞树！ 一、B+树B+树的特征 有k个子树的中间节点包含有k个元素（B树中是k-1个元素），每个元素不保存数据，只用来索引，所有数据都保存在叶子节点。">
@@ -202,7 +202,7 @@ var _hmt = _hmt || [];
 <li><p>所有的<strong>中间节点元素</strong>都同时存在于子节点，在<strong>子节点元素中是最大（或最小）元素</strong>。<br>如图（图片来自程序员小灰）<br><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/WeChat%20Image_20180812150928.jpg_wm" alt="此处输入图片的描述"></p>
 </li>
 </ol>
-<p>在程序员小灰的公众号里提到了一个概念——卫星数据：索引元素指向的数据记录，比如数据库中的某一行。在B+树中只有叶子节点带卫星数据，其他的中间节点只是索引，没有任何数据关联。在数据库的聚集索引（Clustered Index）中，叶子节点直接包含卫星数据。在非聚集索引（NonClustered Index）中，叶子节点带有指向卫星数据的指针。 吧</p>
+<p>在程序员小灰的公众号里提到了一个概念——卫星数据：索引元素指向的数据记录，比如数据库中的某一行。在B+树中只有叶子节点带卫星数据，其他的中间节点只是索引，没有任何数据关联。在数据库的聚集索引（Clustered Index）中，叶子节点直接包含卫星数据。在非聚集索引（NonClustered Index）中，叶子节点带有指向卫星数据的指针。 </p>
 <h2 id="B-树的优势"><a href="#B-树的优势" class="headerlink" title="B+树的优势"></a>B+树的优势</h2><ol>
 <li><strong>单一节点存储更多元素</strong>。B+树中间节点没有卫星数据（也就是说只包含索引信息），所以<strong>每个非叶子节点可以包含更多的内容，同样大小的磁盘页可以容纳更多的节点元素</strong>。也就是说B+树会在相同数据量的情况下比B树更加“矮胖”，查询的IO次数更少。</li>
 <li><strong>查询效率稳定</strong>。B+树的查询必须最终找到叶子节点，而B树如果在中间节点找到匹配的即可（最好情况是只查根节点，最差是查到叶子节点），而B+树每一次都是稳定的。<strong>B-树的好处是，虽然查询性能不稳定，但平均的查询速度快一些</strong>。试想一个数据库的查询，有时候执行10毫秒，有时候执行100毫秒，肯定是不太合适的。还不如每次都执行30毫秒。</li>
