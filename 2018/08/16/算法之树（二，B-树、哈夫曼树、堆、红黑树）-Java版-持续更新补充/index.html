@@ -6,25 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="baishuidongcheng.com">
-  <title>支持向量机-3 | 白水东城</title>
+  <title>算法之树（二，B+树、哈夫曼树、堆、红黑树）(Java版)-持续更新补充 | 白水东城</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="已经是大二新学期的第六周周末了，一番瞎折腾之后，还是想抽出一部分精力来搞一搞机器学习的理论部分，趁年轻，万一哪天开悟了。。。好了，除了废话不多了，博客以后正常更新噢，不光是机器学习的，还有其他方面的系列学习笔记，希望能有所收获（￣︶￣）↗　  接着之前的两篇博客：  机器学习入门|支持向量机（一） 机器学习入门|支持向量机（二）-核函数的引入  现在来说说软间隔和正则化。">
-<meta name="keywords" content="机器学习">
+  <meta name="description" content="接着来搞树！ 一、B+树B+树的特征 有k个子树的中间节点包含有k个元素（B树中是k-1个元素），每个元素不保存数据，只用来索引，所有数据都保存在叶子节点。">
+<meta name="keywords" content="数据结构和算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="支持向量机-3">
-<meta property="og:url" content="baishuidongcheng.com/2018/04/08/支持向量机-3/index.html">
+<meta property="og:title" content="算法之树（二，B+树、哈夫曼树、堆、红黑树）(Java版)-持续更新补充">
+<meta property="og:url" content="baishuidongcheng.com/2018/08/16/算法之树（二，B-树、哈夫曼树、堆、红黑树）-Java版-持续更新补充/index.html">
 <meta property="og:site_name" content="白水东城">
-<meta property="og:description" content="已经是大二新学期的第六周周末了，一番瞎折腾之后，还是想抽出一部分精力来搞一搞机器学习的理论部分，趁年轻，万一哪天开悟了。。。好了，除了废话不多了，博客以后正常更新噢，不光是机器学习的，还有其他方面的系列学习笔记，希望能有所收获（￣︶￣）↗　  接着之前的两篇博客：  机器学习入门|支持向量机（一） 机器学习入门|支持向量机（二）-核函数的引入  现在来说说软间隔和正则化。">
+<meta property="og:description" content="接着来搞树！ 一、B+树B+树的特征 有k个子树的中间节点包含有k个元素（B树中是k-1个元素），每个元素不保存数据，只用来索引，所有数据都保存在叶子节点。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/WeChat%20Image_20180408163547.png_wm">
-<meta property="og:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/WeChat%20Image_20180408173036.png_wm">
-<meta property="og:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/WeChat%20Image_20180408193015.png
-_wm">
-<meta property="og:updated_time" content="2018-07-24T12:36:54.641Z">
+<meta property="og:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/WeChat%20Image_20180812150928.jpg_wm">
+<meta property="og:updated_time" content="2018-08-16T05:31:13.991Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="支持向量机-3">
-<meta name="twitter:description" content="已经是大二新学期的第六周周末了，一番瞎折腾之后，还是想抽出一部分精力来搞一搞机器学习的理论部分，趁年轻，万一哪天开悟了。。。好了，除了废话不多了，博客以后正常更新噢，不光是机器学习的，还有其他方面的系列学习笔记，希望能有所收获（￣︶￣）↗　  接着之前的两篇博客：  机器学习入门|支持向量机（一） 机器学习入门|支持向量机（二）-核函数的引入  现在来说说软间隔和正则化。">
-<meta name="twitter:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/WeChat%20Image_20180408163547.png_wm">
+<meta name="twitter:title" content="算法之树（二，B+树、哈夫曼树、堆、红黑树）(Java版)-持续更新补充">
+<meta name="twitter:description" content="接着来搞树！ 一、B+树B+树的特征 有k个子树的中间节点包含有k个元素（B树中是k-1个元素），每个元素不保存数据，只用来索引，所有数据都保存在叶子节点。">
+<meta name="twitter:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/WeChat%20Image_20180812150928.jpg_wm">
   
     <link rel="alternative" href="/atom.xml" title="白水东城" type="application/atom+xml">
   
@@ -175,80 +172,64 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-支持向量机-3" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-算法之树（二，B-树、哈夫曼树、堆、红黑树）-Java版-持续更新补充" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      支持向量机-3
+      算法之树（二，B+树、哈夫曼树、堆、红黑树）(Java版)-持续更新补充
     </h1>
   
 
         
-        <a href="/2018/04/08/支持向量机-3/" class="archive-article-date">
-  	<time datetime="2018-04-08T13:21:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-08</time>
+        <a href="/2018/08/16/算法之树（二，B-树、哈夫曼树、堆、红黑树）-Java版-持续更新补充/" class="archive-article-date">
+  	<time datetime="2018-08-16T05:30:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-16</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>已经是大二新学期的第六周周末了，一番瞎折腾之后，还是想抽出一部分精力来搞一搞机器学习的理论部分，趁年轻，万一哪天开悟了。。。好了，除了废话不多了，博客以后正常更新噢，不光是机器学习的，还有其他方面的系列学习笔记，希望能有所收获（￣︶￣）↗　</p>
-</blockquote>
-<p>接着之前的两篇博客：</p>
-<ul>
-<li><a href="https://baishuidongcheng.com/2018/04/07/支持向量机/">机器学习入门|支持向量机（一）</a></li>
-<li><a href="https://baishuidongcheng.com/2018/04/08/支持向量机-2/">机器学习入门|支持向量机（二）-核函数的引入</a></li>
-</ul>
-<p>现在来说说软间隔和正则化。</p>
+        <p>接着来搞树！</p>
+<h1 id="一、B-树"><a href="#一、B-树" class="headerlink" title="一、B+树"></a>一、B+树</h1><h2 id="B-树的特征"><a href="#B-树的特征" class="headerlink" title="B+树的特征"></a>B+树的特征</h2><ol>
+<li><p>有k个子树的<strong>中间节点</strong>包含有k个元素（B树中是k-1个元素），<strong>每个元素不保存数据，只用来索引，所有数据都保存在叶子节点</strong>。</p>
 <a id="more"></a>
-<h1 id="软间隔"><a href="#软间隔" class="headerlink" title="软间隔"></a>软间隔</h1><h2 id="软间隔要解决的问题"><a href="#软间隔要解决的问题" class="headerlink" title="软间隔要解决的问题"></a>软间隔要解决的问题</h2><p>SVM是解决线性可分问题的，如果线性不可分，那就引入核函数，使其在更高的维度上可分，虽说一定存在一个超平面使其可分（不出任何差错，这即是之前所说的“硬间隔”），但容易发生<strong>过拟合的风险</strong>，训练效果反而不好。所以，缓解的办法就是允许支持向量在一些样本上出错，这便引入了“软间隔”。<br><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/WeChat%20Image_20180408163547.png_wm" alt="wechat001"></p>
-<p>如上图，“软间隔”允许某些样本不满足约束：</p>
-<script type="math/tex; mode=display">y_{i} (\boldsymbol{\omega^{T}}\boldsymbol{x}+b ) >=1\;(2)</script><p>当然，在最大化间隔的同时，也需要让不满足约束的样本尽可能的少，于是，优化目标可以些为：</p>
-<script type="math/tex; mode=display">min_{\boldsymbol{\omega},b}\frac{1}{2}||\boldsymbol{\omega}||^{2} + C\sum_{i = 1}^{m}l_{0/1}(y_{i}(\omega^{T}x_{i}+b)-1)\;(1)</script><p>其中，$C$是一个常数，$l_{0/1}$是一个“0/1损失函数”</p>
-<script type="math/tex; mode=display">l_{0/1}(z) = \left\{\begin{matrix}1 &if \;z<0 \\ 0 & otherwise \end{matrix}\right.</script><p>$C&gt;0$为<strong>惩罚参数</strong>，和逻辑回归等其他算法模型中的正则化参数一样，<strong>都是用于调节分类误差和模型复杂度代价的权重，使模型在保证分类误差最小的情况得到最大间隔超平面</strong>。$C$越大，对分类错误的惩罚越大（因为(1)式要求的是最小值，而$C$的增大产生了阻碍），C为无穷大时，式(1)迫使所有样本均满足约束条件(2)。$C$取有限值时，允许一些样本不满足约束。</p>
-<p>然而，一般不使用$l_{0/1}$作为损失函数，因为它非凸，不连续，通常采用下面的函数来代替它，称为“替代损失”（surrogate loss）：<br>hinge损失：$l_{hinge}(z) = max(0,1-z)$<br>指数损失（exponential loss）：$l_{exp}(z) = exp(-z)$<br>对率损失（logistic loss）：$l_{log}(z) = log(1+exp(-z))$<br><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/WeChat%20Image_20180408173036.png_wm" alt="WeChat_Image_20180408173036"></p>
-<p>若采用hinge损失，则式（1）变成：</p>
-<script type="math/tex; mode=display">min_{\boldsymbol{\omega},b}\frac{1}{2}||\boldsymbol{\omega}||^{2} + C\sum_{i = 1}^{m}max(0,1-y_{i}(\omega^{T}x_{i}+b)).\;(3)</script><h2 id="松弛变量"><a href="#松弛变量" class="headerlink" title="松弛变量"></a>松弛变量</h2><p><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/WeChat%20Image_20180408193015.png
-_wm" alt="WeChat_Image_20180408193015"></p>
-<p>SVM对训练集里面的每个样本$(x_i,y_i)$引入了一个松弛变量$\xi_i \geq 0$,使函数间隔加上松弛变量大于等于1，也就是说:</p>
-<script type="math/tex; mode=display">y_i(\omega\bullet x_i +b) \geq 1- \xi_i</script><p>对比硬间隔最大化，可以看到我们对样本到超平面的函数距离的要求放松了，之前是一定要大于等于1，现在只需要加上一个大于等于0的松弛变量能大于等于1就可以了。当然，松弛变量不能白加，这是有成本的，每一个松弛变量$\xi_i$, 对应了一个代价$\xi_i$，这个就得到了我们的软间隔最大化的SVM学习条件,也就是把(3)重写为：</p>
-<script type="math/tex; mode=display">\underset{\omega,b,\xi_i}{min}\;\; \frac{1}{2}||\omega||_2^2 +C\sum\limits_{i=1}^{m}\xi_i</script><script type="math/tex; mode=display">s.t.  \;\; y_i(\omega^Tx_i + b)  \geq 1 - \xi_i \;\;(i =1,2,...m)</script><script type="math/tex; mode=display">\xi_i \geq 0 \;\;(i =1,2,...m)</script><p>这就是<strong>“软间隔支持向量机”</strong></p>
-<p><strong>注意：</strong></p>
-<ul>
-<li><strong>并非所有的样本点都有一个松弛变量与其对应</strong>。实际上只有“离群点”才有，或者也可以这么看，所有没离群的点松弛变量都等于0（对负类来说，离群点就是在前面图中，跑到H2右侧的那些负样本点，对正类来说，就是跑到H1左侧的那些正样本点）。</li>
-<li><strong>松弛变量的值实际上标示出了对应的点到底离群有多远，值越大，点就越远。</strong></li>
-<li><strong>惩罚因子C决定了你有多重视离群点带来的损失</strong>，显然当所有离群点的松弛变量的和一定时，你定的C越大，对目标函数的损失也越大，此时就暗示着你非常不愿意放弃这些离群点，最极端的情况是你把C定为无限大，这样只要稍有一个点离群，目标函数的值马上变成无限大，马上让问题变成无解，这就退化成了硬间隔问题。</li>
-<li><strong>惩罚因子C不是一个变量</strong>，整个优化问题在解的时候，C是一个你必须事先指定的值，指定这个值以后，解一下，得到一个分类器，然后用测试数据看看结果怎么样，如果不够好，换一个C的值，再解一次优化问题，得到另一个分类器，再看看效果，如此就是一个参数寻优的过程，但这和优化问题本身决不是一回事，优化问题在解的过程中，C一直是定值，要记住。</li>
-<li>尽管加了松弛变量这么一说，但这个优化问题仍然是一个优化问题（汗，这不废话么），<strong>解它的过程比起原始的硬间隔问题来说，没有任何更加特殊的地方</strong>。</li>
-</ul>
-<h2 id="引入拉格朗日乘子"><a href="#引入拉格朗日乘子" class="headerlink" title="引入拉格朗日乘子"></a>引入拉格朗日乘子</h2><p>那么，问题就和之前的一样了，通过引入拉格朗日乘子，来将有不等式约束条件的转化为无约束的：</p>
-<script type="math/tex; mode=display">L(\omega,b,\xi,\alpha,\mu) = \frac{1}{2}||\omega||_2^2 +C\sum\limits_{i=1}^{m}\xi_i - \sum\limits_{i=1}^{m}\alpha_i[y_i(\omega^Tx_i + b) - 1 + \xi_i] - \sum\limits_{i=1}^{m}\mu_i\xi_i</script><p>其中，$\mu_i \geq 0, \alpha_i \geq 0$是拉格朗日乘子。</p>
-<p>令$L$对$\omega, b, \xi$的偏导为零可得：</p>
-<script type="math/tex; mode=display">\frac{\partial L}{\partial \omega} = 0 \;\Rightarrow \omega = \sum\limits_{i=1}^{m}\alpha_iy_ix_i</script><script type="math/tex; mode=display">\frac{\partial L}{\partial b} = 0 \;\Rightarrow \sum\limits_{i=1}^{m}\alpha_iy_i = 0</script><script type="math/tex; mode=display">\frac{\partial L}{\partial \xi} = 0 \;\Rightarrow C- \alpha_i - \mu_i = 0</script><script type="math/tex; mode=display">\begin{align} L(\omega,b,\xi,\alpha,\mu) & = \frac{1}{2}||\omega||_2^2 +C\sum\limits_{i=1}^{m}\xi_i - \sum\limits_{i=1}^{m}\alpha_i[y_i(\omega^Tx_i + b) - 1 + \xi_i] - \sum\limits_{i=1}^{m}\mu_i\xi_i 　\\&= \frac{1}{2}||\omega||_2^2 - \sum\limits_{i=1}^{m}\alpha_i[y_i(\omega^Tx_i + b) - 1 + \xi_i] + \sum\limits_{i=1}^{m}\alpha_i\xi_i \\& = \frac{1}{2}||\omega||_2^2 - \sum\limits_{i=1}^{m}\alpha_i[y_i(\omega^Tx_i + b) - 1] \\& = \frac{1}{2}\omega^Tw-\sum\limits_{i=1}^{m}\alpha_iy_iw^Tx_i - \sum\limits_{i=1}^{m}\alpha_iy_ib + \sum\limits_{i=1}^{m}\alpha_i \\& = \frac{1}{2}\omega^T\sum\limits_{i=1}^{m}\alpha_iy_ix_i -\sum\limits_{i=1}^{m}\alpha_iy_iw^Tx_i - \sum\limits_{i=1}^{m}\alpha_iy_ib + \sum\limits_{i=1}^{m}\alpha_i \\& = \frac{1}{2}\omega^T\sum\limits_{i=1}^{m}\alpha_iy_ix_i - \omega^T\sum\limits_{i=1}^{m}\alpha_iy_ix_i - \sum\limits_{i=1}^{m}\alpha_iy_ib + \sum\limits_{i=1}^{m}\alpha_i \\& = - \frac{1}{2}\omega^T\sum\limits_{i=1}^{m}\alpha_iy_ix_i - \sum\limits_{i=1}^{m}\alpha_iy_ib + \sum\limits_{i=1}^{m}\alpha_i \\& = - \frac{1}{2}\omega^T\sum\limits_{i=1}^{m}\alpha_iy_ix_i - b\sum\limits_{i=1}^{m}\alpha_iy_i + \sum\limits_{i=1}^{m}\alpha_i \\& = -\frac{1}{2}(\sum\limits_{i=1}^{m}\alpha_iy_ix_i)^T(\sum\limits_{i=1}^{m}\alpha_iy_ix_i) - b\sum\limits_{i=1}^{m}\alpha_iy_i + \sum\limits_{i=1}^{m}\alpha_i \\& = -\frac{1}{2}\sum\limits_{i=1}^{m}\alpha_iy_ix_i^T\sum\limits_{i=1}^{m}\alpha_iy_ix_i - b\sum\limits_{i=1}^{m}\alpha_iy_i + \sum\limits_{i=1}^{m}\alpha_i \\& = -\frac{1}{2}\sum\limits_{i=1}^{m}\alpha_iy_ix_i^T\sum\limits_{i=1}^{m}\alpha_iy_ix_i + \sum\limits_{i=1}^{m}\alpha_i \\& = -\frac{1}{2}\sum\limits_{i=1,j=1}^{m}\alpha_iy_ix_i^T\alpha_jy_jx_j + \sum\limits_{i=1}^{m}\alpha_i \\& = \sum\limits_{i=1}^{m}\alpha_i - \frac{1}{2}\sum\limits_{i=1,j=1}^{m}\alpha_i\alpha_jy_iy_jx_i^Tx_j \end{align}</script><p>注：</p>
-<ul>
-<li>范数的定义：$||\omega||_2^2 =\omega^Tw$</li>
-<li>$(a+b+c+…)(a+b+c+…)=aa+ab+ac+ba+bb+bc+…$</li>
-</ul>
-<p>这个式子和我们上一篇线性可分SVM的一样。唯一不一样的是约束条件。现在我们看看我们的优化目标的数学形式：</p>
-<script type="math/tex; mode=display">\underbrace{ max }_{\alpha} \sum\limits_{i=1}^{m}\alpha_i - \frac{1}{2}\sum\limits_{i=1,j=1}^{m}\alpha_i\alpha_jy_iy_jx_i^Tx_j</script><script type="math/tex; mode=display">s.t. \; \sum\limits_{i=1}^{m}\alpha_iy_i = 0</script><script type="math/tex; mode=display">C- \alpha_i - \mu_i = 0</script><script type="math/tex; mode=display">\mu_i \geq 0 \;(i =1,2,...,m)\;\;,\alpha_i \geq 0 \;(i =1,2,...,m)</script><p>这就是软间隔最大化时的线性可分SVM的优化目标形式，和硬间隔最大化的线性可分SVM相比，我们仅仅是多了一个约束条件$0 \leq \alpha_i \leq C$。我们依然可以通过SMO算法来求上式极小化时对应的$\alpha$向量就可以求出$\omega$和$b$了。</p>
-<p><strong>软间隔SVM也可以用于非线性支持向量机，只需要将内积改为的内核即可</strong>。软间隔支持向量的代价函数既考虑了样本分类误差，又考虑了模型的复杂度，通过调节其中的参数$C$可以使函数既能够兼顾训练集上的分类精度，又控制模型复杂度，使模型泛化能力增加。因此，我们实际中所使用的SVM分类器基本上属于这一类。</p>
-<p>总结成一句话：<strong>支持向量机就是使用了核函数的软间隔线性分类法。</strong></p>
+</li>
+<li><p>所有的叶子结点中包含了全部元素的信息，及指向含这些元素记录的指针，且<strong>叶子结点本身依关键字的大小自小而大顺序链接</strong>。</p>
+</li>
+<li><p>所有的<strong>中间节点元素</strong>都同时存在于子节点，在<strong>子节点元素中是最大（或最小）元素</strong>。<br>如图（图片来自程序员小灰）<br><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/WeChat%20Image_20180812150928.jpg_wm" alt="此处输入图片的描述"></p>
+</li>
+</ol>
+<p>在程序员小灰的公众号里提到了一个概念——卫星数据：索引元素指向的数据记录，比如数据库中的某一行。在B+树中只有叶子节点带卫星数据，其他的中间节点只是索引，没有任何数据关联。在数据库的聚集索引（Clustered Index）中，叶子节点直接包含卫星数据。在非聚集索引（NonClustered Index）中，叶子节点带有指向卫星数据的指针。 吧</p>
+<h2 id="B-树的优势"><a href="#B-树的优势" class="headerlink" title="B+树的优势"></a>B+树的优势</h2><ol>
+<li><strong>单一节点存储更多元素</strong>。B+树中间节点没有卫星数据（也就是说只包含索引信息），所以<strong>每个非叶子节点可以包含更多的内容，同样大小的磁盘页可以容纳更多的节点元素</strong>。也就是说B+树会在相同数据量的情况下比B树更加“矮胖”，查询的IO次数更少。</li>
+<li><strong>查询效率稳定</strong>。B+树的查询必须最终找到叶子节点，而B树如果在中间节点找到匹配的即可（最好情况是只查根节点，最差是查到叶子节点），而B+树每一次都是稳定的。<strong>B-树的好处是，虽然查询性能不稳定，但平均的查询速度快一些</strong>。试想一个数据库的查询，有时候执行10毫秒，有时候执行100毫秒，肯定是不太合适的。还不如每次都执行30毫秒。</li>
+<li><strong>范围查询简便</strong>。B树的范围查询只能依靠繁琐的中序遍历，找到下限和上限。而<strong>B+树的范围查询很简单，只需要在叶子节点那一层的链表上做遍历就行</strong>。</li>
+</ol>
+<h2 id="为什么数据库中一定要索引"><a href="#为什么数据库中一定要索引" class="headerlink" title="为什么数据库中一定要索引"></a>为什么数据库中一定要索引</h2><p>二分查找，二叉树查找都依赖特定的数据结构，分别是待查找数据有序、二叉查找树，显然数据本身不能完全满足各种数据结构。<br>所以，数据库除了维护数据之外，还维护者<strong>满足特定查找算法的数据结构——索引</strong>，索引以某种方式引用数据，这样就可以在索引的基础上实现高级的查找等操作。目前<strong>大部分数据库系统和文件系统都采用B树或者变种的B+树来作为索引结构</strong>。</p>
+<h2 id="为什么MySQL数据库中使用B-树"><a href="#为什么MySQL数据库中使用B-树" class="headerlink" title="为什么MySQL数据库中使用B+树"></a>为什么MySQL数据库中使用B+树</h2><p><strong>1.局部性原理与磁盘预读</strong><br>由于磁盘的存取速度与内存之间鸿沟,为了提高效率,要尽量减少磁盘I/O.磁盘往往不是严格按需读取，而是每次都会预读,磁盘读取完需要的数据,会顺序向后读一定长度的数据放入内存。而这样做的理论依据是计算机科学中著名的局部性原理：</p>
 <blockquote>
-<p>看书&amp;&amp;看大神们博客的整理，给以后复习记下笔记，也希望对你有用（￣︶￣）↗　</p>
-<p>支持向量机的故事还在继续，我会持续更新哒~~也希望能关注一波我的独立博客——<a href="https://baishuidongcheng.com/">白水东城</a>(●’◡’●)</p>
+<p>当一个数据被用到时，其附近的数据也通常会马上被使用，程序运行期间所需要的数据通常比较集中</p>
 </blockquote>
-<p>参考：</p>
-<ul>
-<li><a href="https://www.cnblogs.com/pinard/p/6100722.html" target="_blank" rel="noopener">刘建平Pinard-支持向量机原理(二) </a></li>
-<li><a href="https://blog.csdn.net/zx10212029/article/details/50225897" target="_blank" rel="noopener">Lyndon_zheng-机器学习(7)——支持向量机（三）</a></li>
-<li><a href="https://blog.csdn.net/lch614730/article/details/17071599" target="_blank" rel="noopener">召风-SVM支持向量机三</a></li>
-<li><a href="http://www.blogjava.net/zhenandaci/archive/2009/03/17/260315.html" target="_blank" rel="noopener">嘉士伯的Java小屋-SVM入门（九）松弛变量（续）</a></li>
-<li>周志华《机器学习》</li>
-</ul>
+<p>由于磁盘顺序读取的效率很高(不需要寻道时间，只需很少的旋转时间)，因此对于具有局部性的程序来说，预读可以提高I/O效率.预读的长度一般为页(page)的整倍数。</p>
+<p><strong>2.数据库索引采用B+树的主要原因</strong><br>根据上面的局部性原理和磁盘预读，B树中用了这个技巧：每次新建节点时，直接申请一个页的空间，这样就保证一个节点物理上也存储在一个页里，加之计算机存储分配都是按页对齐的，就实现了一个结点只需一次I/O。<br>B树在提高了IO性能的同时并没有解决元素遍历的效率低下的问题，正是为了解决这个问题，B+树应用而生。B+树只需要去遍历叶子节点就可以实现整棵树的遍历。而且在<strong>数据库中基于范围的查询是非常频繁</strong>（比如查询某段时间之内的数据）的，而B树不支持这样的操作或者说<strong>效率太低</strong>（前文已经说明效率低的原因）。</p>
+<h1 id="二、哈夫曼树"><a href="#二、哈夫曼树" class="headerlink" title="二、哈夫曼树"></a>二、哈夫曼树</h1><p><strong>带权路径长度最小</strong>的树就叫最优二叉树，也就是哈夫曼树。要使带权路径长度最小，那么权值大的点就应该离根节点越近。<br><strong>构造方法</strong>：先从小到大排序，然后选择最小的两棵树合并，重复这两个步骤。</p>
+<h2 id="哈夫曼编码"><a href="#哈夫曼编码" class="headerlink" title="哈夫曼编码"></a>哈夫曼编码</h2><p>如果对一段英文转换为二进制传输，采用哈夫曼编码，让频率高的用短码，频率低的用长码，而且保证不会有某个字符的串是另一个字符的前缀（因为如果每个字符的长度不一样会出现这样的问题，比如，一个字符被11表示，另一个被110表示，出现一段11011，这样就有歧义）</p>
+<h2 id="哈夫曼树实现"><a href="#哈夫曼树实现" class="headerlink" title="哈夫曼树实现"></a>哈夫曼树实现</h2><p>之前数据结构课上用C写过哈夫曼树，Java的暂时不搞了，之后遇见再回来补充。</p>
+<h1 id="三、堆"><a href="#三、堆" class="headerlink" title="三、堆"></a>三、堆</h1><p>堆是一个完全二叉树，大顶堆就是每个节点都不大于它的父节点。<br>插入和删除时间复杂度都是O(logn)。</p>
+<h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><p>初始化一个堆，然后把无序数组的每个值都依次插入堆中，然后一直删除，把被删除的元素放到数组的最后一个有效元素之后的位置。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Heap &#123;</span><br><span class="line">    private int[] element;</span><br><span class="line">    </span><br><span class="line">    public Heap(int maxSize) &#123;</span><br><span class="line">        element = new int[maxSize];</span><br><span class="line">        element[0] = 0;//存放堆中实际的个数</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public boolean isEmpty() &#123;</span><br><span class="line">        return element[0] == 0;</span><br><span class="line">    &#125;</span><br><span class="line">    public boolean isFull() &#123;</span><br><span class="line">        return element[0] == element.length - 1;</span><br><span class="line">    &#125;</span><br><span class="line">    public void insert(int value) &#123;</span><br><span class="line">        if(isFull()) &#123;</span><br><span class="line">            throw new IndexOutOfBoundsException(&quot;堆已经满啦..&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        if(isEmpty()) &#123;</span><br><span class="line">            element[1] = value;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            int i = element[0] + 1;</span><br><span class="line">            while(i != 1 &amp;&amp; value &gt; element[i / 2]) &#123;</span><br><span class="line">                element[i] = element[i / 2];</span><br><span class="line">                i /= 2;</span><br><span class="line">            &#125;</span><br><span class="line">            element[i] = value;</span><br><span class="line">        &#125;</span><br><span class="line">        element[0] ++;</span><br><span class="line">    &#125;</span><br><span class="line">    public int delete() &#123;</span><br><span class="line">        if(isEmpty()) &#123;</span><br><span class="line">            throw new IndexOutOfBoundsException(&quot;堆空啦&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        int deleteElement = element[1];</span><br><span class="line">        element[1] = element[element[0]];</span><br><span class="line">        element[0]--;</span><br><span class="line">        int value = element[1];</span><br><span class="line">        int parent = 1;</span><br><span class="line">        int child = 2;</span><br><span class="line">        while(child &lt;= element[0]) &#123;</span><br><span class="line">            if(child + 1 &lt;= element[0] &amp;&amp; element[child] &lt; element[child + 1]) &#123;</span><br><span class="line">                child ++;</span><br><span class="line">            &#125;</span><br><span class="line">            if(value &gt;= element[child]) &#123;</span><br><span class="line">                break;</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                element[parent] = element[child];</span><br><span class="line">                parent = child;</span><br><span class="line">                child *= 2;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        element[parent] = value;</span><br><span class="line">        return deleteElement;</span><br><span class="line">    &#125;</span><br><span class="line">    public void printAll() &#123;</span><br><span class="line">        for(int i = 0; i &lt; element[0]; i++) &#123;</span><br><span class="line">            System.out.print(element[i]);</span><br><span class="line">            if(i != element[0]) &#123;</span><br><span class="line">                System.out.print(&quot;,&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line">    public void sort() &#123;</span><br><span class="line">        int size = element[0];</span><br><span class="line">        for(int i = 0; i &lt; size; i++) &#123;</span><br><span class="line">            int deleteElement = delete();</span><br><span class="line">            element[element[0] + 1] = deleteElement;</span><br><span class="line">        &#125;    </span><br><span class="line">        for(int i = 1; i &lt;= size; i++) &#123;</span><br><span class="line">            System.out.print(element[i]);</span><br><span class="line">            if(i != size) &#123;</span><br><span class="line">                System.out.print(&quot;,&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h1><p>红黑树的插入、删除、查找最坏时间复杂度都是O(logn)。<br>红黑树理解概念就OK了，目前不深入研究。<br>推荐一篇很好的对红黑树的概念理解文章：<br><a href="https://mp.weixin.qq.com/s/jz1ajDUygZ7sXLQFHyfjWA" target="_blank" rel="noopener">漫画：什么是红黑树？</a></p>
+<p><strong>参考</strong></p>
+<ol>
+<li>《轻松学算法》赵烨</li>
+<li><a href="https://mp.weixin.qq.com/s/jRZMMONW3QP43dsDKIV9VQ" target="_blank" rel="noopener">漫画：什么是B+树？</a></li>
+<li><a href="https://www.cnblogs.com/tiancai/p/9024351.html" target="_blank" rel="noopener">为什么MySQL数据库索引选择使用B+树？</a> </li>
+<li><a href="https://www.cnblogs.com/xyxxs/p/4440187.html" target="_blank" rel="noopener">数据库为什么要用B+树结构—MySQL索引结构的实现</a> </li>
+<li><a href="https://segmentfault.com/a/1190000004690721" target="_blank" rel="noopener">由 B-/B+树看 MySQL索引结构</a> </li>
+</ol>
 
       
 
@@ -262,7 +243,7 @@ _wm" alt="WeChat_Image_20180408193015"></p>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构和算法</a>
         		</li>
       		
 		</ul>
@@ -281,18 +262,9 @@ _wm" alt="WeChat_Image_20180408193015"></p>
   
 <nav id="article-nav">
   
-    <a href="/2018/04/12/查查Z陪你学英语/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          查查Z陪你学英语
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/04/08/支持向量机-2/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">支持向量机-2</div>
+    <a href="/2018/08/11/算法之树（一，B-树原理详解）-Java版-持续更新补充/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">算法之树（一，B-树原理详解）(Java版)-持续更新补充</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -322,7 +294,7 @@ _wm" alt="WeChat_Image_20180408193015"></p>
   
 
   
-  <div id="SOHUCS" sid="支持向量机-3" ></div> 
+  <div id="SOHUCS" sid="算法之树（二，B-树、哈夫曼树、堆、红黑树）-Java版-持续更新补充" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({
