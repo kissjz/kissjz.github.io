@@ -6,23 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="baishuidongcheng.com">
-  <title>算法之树（一，B-树原理详解）(Java版)-持续更新补充 | 白水东城</title>
+  <title>Tag: 操作系统 | 白水东城</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="因为是复习，从基础开始一起复习。如果冲着标题来的，可以直接跳到后半部分看B树的内容(～￣▽￣)～ 一、二叉树二叉树的基本操作">
-<meta name="keywords" content="数据结构和算法">
-<meta property="og:type" content="article">
-<meta property="og:title" content="算法之树（一，B-树原理详解）(Java版)-持续更新补充">
-<meta property="og:url" content="baishuidongcheng.com/2018/08/11/算法之树（一，B-树原理详解）-Java版-持续更新补充/index.html">
+  <meta name="description" content="一个能同时保有两种相反的观念，还能正常行事的人">
+<meta property="og:type" content="website">
+<meta property="og:title" content="白水东城">
+<meta property="og:url" content="baishuidongcheng.com/tags/操作系统/index.html">
 <meta property="og:site_name" content="白水东城">
-<meta property="og:description" content="因为是复习，从基础开始一起复习。如果冲着标题来的，可以直接跳到后半部分看B树的内容(～￣▽￣)～ 一、二叉树二叉树的基本操作">
+<meta property="og:description" content="一个能同时保有两种相反的观念，还能正常行事的人">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/WeChat%20Image_20180811183000.jpg_wm">
-<meta property="og:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/8394323_13074405906V6Q.jpg_wm">
-<meta property="og:updated_time" content="2018-08-16T05:30:25.037Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法之树（一，B-树原理详解）(Java版)-持续更新补充">
-<meta name="twitter:description" content="因为是复习，从基础开始一起复习。如果冲着标题来的，可以直接跳到后半部分看B树的内容(～￣▽￣)～ 一、二叉树二叉树的基本操作">
-<meta name="twitter:image" content="https://hexopic.oss-cn-beijing.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/WeChat%20Image_20180811183000.jpg_wm">
+<meta name="twitter:title" content="白水东城">
+<meta name="twitter:description" content="一个能同时保有两种相反的观念，还能正常行事的人">
   
     <link rel="alternative" href="/atom.xml" title="白水东城" type="application/atom+xml">
   
@@ -173,183 +168,60 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-算法之树（一，B-树原理详解）-Java版-持续更新补充" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      算法之树（一，B-树原理详解）(Java版)-持续更新补充
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/12/21/操作系统实验-软中断-消息队列/" class="archive-article-date">
+  	<time datetime="2018-12-21T00:53:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-21</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/12/21/操作系统实验-软中断-消息队列/">操作系统实验:软中断+消息队列</a>
     </h1>
   
 
-        
-        <a href="/2018/08/11/算法之树（一，B-树原理详解）-Java版-持续更新补充/" class="archive-article-date">
-  	<time datetime="2018-08-11T11:49:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>因为是复习，从基础开始一起复习。<br>如果冲着标题来的，可以直接跳到后半部分看B树的内容(～￣▽￣)～</p>
-<h1 id="一、二叉树"><a href="#一、二叉树" class="headerlink" title="一、二叉树"></a>一、二叉树</h1><h2 id="二叉树的基本操作"><a href="#二叉树的基本操作" class="headerlink" title="二叉树的基本操作"></a>二叉树的基本操作</h2><a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class BinaryTreeNode &#123;</span><br><span class="line">    private int data;</span><br><span class="line">    private BinaryTreeNode leftChild;</span><br><span class="line">    private BinaryTreeNode rightChild;</span><br><span class="line">    public int getData() &#123;</span><br><span class="line">        return data;</span><br><span class="line">    &#125;</span><br><span class="line">    public void setData(int data) &#123;</span><br><span class="line">        this.data = data;</span><br><span class="line">    &#125;</span><br><span class="line">    public BinaryTreeNode getLeftChild() &#123;</span><br><span class="line">        return leftChild;</span><br><span class="line">    &#125;</span><br><span class="line">    public void setLeftChild(BinaryTreeNode leftChild) &#123;</span><br><span class="line">        this.leftChild = leftChild;</span><br><span class="line">    &#125;</span><br><span class="line">    public BinaryTreeNode getRightChild() &#123;</span><br><span class="line">        return rightChild;</span><br><span class="line">    &#125;</span><br><span class="line">    public void setRightChild(BinaryTreeNode rightChild) &#123;</span><br><span class="line">        this.rightChild = rightChild;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">public class BinaryTree &#123;</span><br><span class="line">    private BinaryTreeNode root;</span><br><span class="line">    </span><br><span class="line">    public BinaryTree() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    public BinaryTree(BinaryTreeNode root) &#123;</span><br><span class="line">        this.root = root;</span><br><span class="line">    &#125;</span><br><span class="line">    public void setRoot(BinaryTreeNode root) &#123;</span><br><span class="line">        this.root = root;</span><br><span class="line">    &#125;</span><br><span class="line">    public BinaryTreeNode getRoot() &#123;</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void clear(BinaryTreeNode node) &#123;</span><br><span class="line">        if(node != null) &#123;</span><br><span class="line">            clear(node.getLeftChild());</span><br><span class="line">            clear(node.getRightChild());</span><br><span class="line">            node = null;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public void  clear() &#123;</span><br><span class="line">        clear(root);</span><br><span class="line">    &#125;</span><br><span class="line">    public boolean isEmpty() &#123;</span><br><span class="line">        return root == null;</span><br><span class="line">    &#125;</span><br><span class="line">    public int height() &#123;</span><br><span class="line">        return height(root);</span><br><span class="line">    &#125;</span><br><span class="line">    public int height(BinaryTreeNode node) &#123;</span><br><span class="line">        if(node == null) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            int l = height(node.getLeftChild());</span><br><span class="line">            int r = height(node.getRightChild());</span><br><span class="line">            return l &lt; r ? r + 1 : l + 1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public int size() &#123;</span><br><span class="line">        return size(root);</span><br><span class="line">    &#125;</span><br><span class="line">    public int size(BinaryTreeNode node) &#123;</span><br><span class="line">        if(node == null) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            return 1 + size(node.getLeftChild()) + size(node.getRightChild());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public BinaryTreeNode getParent(BinaryTreeNode node) &#123;</span><br><span class="line">        return (root == null || root == node) ? null : getParent(root, node);</span><br><span class="line">    &#125;</span><br><span class="line">    public BinaryTreeNode getParent(BinaryTreeNode subTree, BinaryTreeNode node) &#123;</span><br><span class="line">        if(subTree == null) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">        if(subTree.getLeftChild() == node || subTree.getRightChild() == node) &#123;</span><br><span class="line">            return subTree;</span><br><span class="line">        &#125;</span><br><span class="line">        BinaryTreeNode parent = null;</span><br><span class="line">        if((parent = getParent(subTree.getLeftChild(),node)) != null) &#123;</span><br><span class="line">            return parent;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            return getParent(subTree.getRightChild(), node);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public BinaryTreeNode getLeftTree(BinaryTreeNode node) &#123;</span><br><span class="line">        return node.getLeftChild();</span><br><span class="line">    &#125;</span><br><span class="line">    public BinaryTreeNode getRightTree(BinaryTreeNode node) &#123;</span><br><span class="line">        return node.getRightChild();</span><br><span class="line">    &#125;</span><br><span class="line">    public void insertLeft(BinaryTreeNode parent, BinaryTreeNode newNode) &#123;</span><br><span class="line">        parent.setLeftChild(newNode);</span><br><span class="line">    &#125;</span><br><span class="line">    public void insertRight(BinaryTreeNode parent, BinaryTreeNode newNode) &#123;</span><br><span class="line">        parent.setRightChild(newNode);</span><br><span class="line">    &#125;</span><br><span class="line">    public void visited(BinaryTreeNode node) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    public void preOrder(BinaryTreeNode node) &#123;</span><br><span class="line">        if(node != null) &#123;</span><br><span class="line">            visited(node);</span><br><span class="line">            preOrder(node.getLeftChild());</span><br><span class="line">            preOrder(node.getRightChild());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public void inOrder(BinaryTreeNode node) &#123;</span><br><span class="line">        if(node != null) &#123;</span><br><span class="line">           inOrder(node.getLeftChild());</span><br><span class="line">           visited(node);</span><br><span class="line">           inOrder(node.getRightChild());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public void postOrder(BinaryTreeNode node) &#123;</span><br><span class="line">        if(node != null) &#123;</span><br><span class="line">            postOrder(node.getLeftChild());</span><br><span class="line">            postOrder(node.getRightChild());</span><br><span class="line">            visited(node);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="二、二叉查找树"><a href="#二、二叉查找树" class="headerlink" title="二、二叉查找树"></a>二、二叉查找树</h1><p>简单来说就是左子树结点值都小于根结点，右子树都大于根结点。</p>
-<h2 id="二叉查找树的操作"><a href="#二叉查找树的操作" class="headerlink" title="二叉查找树的操作"></a>二叉查找树的操作</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">public class BinarySearchingTree &#123;</span><br><span class="line">    private BinaryTreeNode root;</span><br><span class="line">    </span><br><span class="line">    public BinarySearchingTree(BinaryTreeNode root) &#123;</span><br><span class="line">        this.root = root;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public BinaryTreeNode search(int data) &#123;</span><br><span class="line">        return search(root, data);</span><br><span class="line">    &#125;</span><br><span class="line">    //二叉查找树的插入操作很简单，找到和待插入结点同样值的结点则不插入，</span><br><span class="line">    //否则在树的末尾新建一个结点，不需要变动其他结点</span><br><span class="line">    public void insert(int data) &#123;</span><br><span class="line">        if(root == null) &#123;</span><br><span class="line">            root = new BinaryTreeNode();</span><br><span class="line">            root.setData(data);</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            searchAndInsert(null, root, data);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //如果待删除的结点左右子树都不为空，</span><br><span class="line">    //则选择右子树的最左结点或者左子树的最右结点来代替</span><br><span class="line">    public void delete(int data) &#123;</span><br><span class="line">        if(root.getData() == data) &#123;</span><br><span class="line">            root = null;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        //知道要删除那个结点的父结点很关键</span><br><span class="line">        //但无法确定要删除的结点是其父结点的左还是右结点</span><br><span class="line">        //需要特别判断一下 </span><br><span class="line">        BinaryTreeNode parent = searchParent(data);</span><br><span class="line">        if(parent == null) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        BinaryTreeNode node = search(parent, data);</span><br><span class="line">        if(node.getLeftChild() == null &amp;&amp; node.getRightChild() == null) &#123;</span><br><span class="line">            //叶子结点，直接删除</span><br><span class="line">            if(parent.getLeftChild() != null &amp;&amp; parent.getLeftChild().getData() == data) &#123;</span><br><span class="line">                parent.setLeftChild(null);</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                parent.setRightChild(null);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;else if(node.getLeftChild() != null &amp;&amp; node.getRightChild() == null) &#123;</span><br><span class="line">            //左子树不为空</span><br><span class="line">            if(parent.getLeftChild()!= null &amp;&amp; parent.getLeftChild().getData() ==data) &#123;</span><br><span class="line">                parent.setLeftChild(node.getLeftChild());</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                parent.setRightChild(node.getRightChild());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;else if(node.getLeftChild() == null &amp;&amp; node.getClass() != null) &#123;</span><br><span class="line">            //右子树不为空</span><br><span class="line">            if(parent.getLeftChild() != null &amp;&amp; parent.getLeftChild().getData() == data) &#123;</span><br><span class="line">                parent.setLeftChild(node.getRightChild());</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                parent.setRightChild(node.getRightChild());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            //左右子树都不为空</span><br><span class="line">            //查找右子树最左子节点</span><br><span class="line">            BinaryTreeNode deleteNode = node;</span><br><span class="line">            BinaryTreeNode temp = node.getRightChild();</span><br><span class="line">            //1. 右子树没有左孩子，直接上移</span><br><span class="line">            if(temp.getLeftChild() == null) &#123;</span><br><span class="line">                temp.setLeftChild(deleteNode.getLeftChild());</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                while(temp.getLeftChild() != null) &#123;</span><br><span class="line">                    node = temp;</span><br><span class="line">                    temp = temp.getLeftChild();</span><br><span class="line">                &#125;</span><br><span class="line">                //2. 继承节点原右子树上移 </span><br><span class="line">                node.setLeftChild(temp.getRightChild());</span><br><span class="line">                //3. 继承节点就位</span><br><span class="line">                temp.setLeftChild(deleteNode.getLeftChild());</span><br><span class="line">                temp.setRightChild(deleteNode.getRightChild());</span><br><span class="line">            &#125;</span><br><span class="line">            //4. 更新父节点为删除结点的原父节点</span><br><span class="line">            if(parent.getLeftChild() != null &amp;&amp; parent.getLeftChild().getData() == data) &#123;</span><br><span class="line">                parent.setLeftChild(temp);</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                parent.setRightChild(temp);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public BinaryTreeNode searchParent(int data) &#123;</span><br><span class="line">        return searchParent(null, root, data);</span><br><span class="line">    &#125;</span><br><span class="line">    public BinaryTreeNode getRoot() &#123;</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">    private BinaryTreeNode searchAndInsert(BinaryTreeNode parent, BinaryTreeNode node, int data) &#123;</span><br><span class="line">        if(node == null) &#123;</span><br><span class="line">            node = new BinaryTreeNode();</span><br><span class="line">            node.setData(data);</span><br><span class="line">            if(data &gt; parent.getData()) &#123;</span><br><span class="line">                parent.setRightChild(node);</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                parent.setLeftChild(node);</span><br><span class="line">            &#125;</span><br><span class="line">            return node;</span><br><span class="line">        &#125;else if(node.getData() == data) &#123;</span><br><span class="line">            return node;</span><br><span class="line">        &#125;else if(data &gt; node.getData()) &#123;</span><br><span class="line">            return searchAndInsert(node, node.getRightChild(), data);</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            return searchAndInsert(node, node.getLeftChild(), data);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    private BinaryTreeNode search(BinaryTreeNode node, int data) &#123;</span><br><span class="line">        if(node == null) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;else if(node.getData() == data) &#123;</span><br><span class="line">            return node;</span><br><span class="line">        &#125;else if(data &gt; node.getData()) &#123;</span><br><span class="line">            return search(node.getRightChild(), data);</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            return search(node.getLeftChild(), data);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    private BinaryTreeNode searchParent(BinaryTreeNode parent, BinaryTreeNode node, int data) &#123;</span><br><span class="line">        if(node == null) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;else if(node.getData() == data) &#123;</span><br><span class="line">            return parent;</span><br><span class="line">        &#125;else if(data &gt; node.getData()) &#123;</span><br><span class="line">            return searchParent(node, node.getRightChild(), data);</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            return searchParent(node, node.getLeftChild(), data);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="三、平衡二叉树"><a href="#三、平衡二叉树" class="headerlink" title="三、平衡二叉树"></a>三、平衡二叉树</h1><p>Balanced Binary Tree，又叫AVL树(由提出者名字缩写而来)。简单来说，在二叉查找树的基础上，要保持左右子树高度差不超过1，我们把<strong>左子树高度减去右子树高度</strong>叫做<strong>平衡因子</strong>(Balanced Factor,BF)<br>二叉查找树<strong>查找的时间复杂度</strong>最好是O(logn),最坏是O(n)，而AVL最好最坏都是O(logn)，插入和删除也是O(logn)。</p>
-<p><strong>代码暂时省略</strong>，以后回来补充</p>
-<h1 id="四、B-树、B-树"><a href="#四、B-树、B-树" class="headerlink" title="四、B-树、B+树"></a>四、B-树、B+树</h1><h2 id="B-树"><a href="#B-树" class="headerlink" title="B-树"></a>B-树</h2><p>B减树和B树是一个意思，那个不是减号而是短横。这个不纠结，意思明白就行。<br><strong>B树是用于在外存工作的平衡搜索树，MySQL中的索引主要是基于hash表或者B+树</strong>。</p>
-<h3 id="为什么不用二叉查找树？"><a href="#为什么不用二叉查找树？" class="headerlink" title="为什么不用二叉查找树？"></a>为什么不用二叉查找树？</h3><p><strong>数据库索引为啥不用二叉查找树实现呢？</strong><br>二叉查找树的时间复杂度为O(logn)，从算法逻辑上讲查找速度和比较次数都是最小的。但是，现实要考虑 <strong>磁盘IO</strong>。<br><strong>数据库索引是存在磁盘上的</strong>，因为数据量很大的时候索引大小可能达到几个G。所以在利用索引查询的时候，不能把整个索引全部加载到内存，只有逐一加载每一个磁盘页，这里<strong>磁盘页对应着索引树的节点</strong>，如图（图片源于程序员小灰）。<br><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/WeChat%20Image_20180811183000.jpg_wm" alt="此处输入图片的描述"></p>
-<p>当数据比较大，无法全部存入内存时，需要将部分数据存在外存中，在需要的时候读入内存，修改之后又写回外存。由于外存的速度与内存有几个数量级的差别，所以节省在外存上花的时间，对搜索树的性能提高时最有效的。<br><strong>最常见的外存就是磁盘</strong>。磁盘是块设备，也就是说<strong>磁盘的读写单位是以块为单位</strong>，一般地块大小从0.5k到4k。即使你只读取一个字节，磁盘也是将包含该字节的所有数据读取到硬盘中。而在磁盘读取过程中，<strong>最占用时间的是磁盘的寻道</strong>，也就是磁头在盘片上找到需要读取的块所在位置的时间，而在盘片上顺序读取数据的所花的时间是占比比较小的。</p>
-<p>要减少外存上花的时间，就可以从减少读盘次数以及减少寻道时间着手。<strong>B树采取的方法就是，就充分的利用盘块的空间，在一个盘块中尽可能多的存储信息，或者在连续的盘块地址上存储尽可能多的信息</strong>。在数据结构上的变化就是每个节点存储多个key信息以及包含多个子节点。</p>
-<p><strong>磁盘的IO次数由树的高度决定的</strong>，在最坏的情况下磁盘的IO数等于索引树的高度。而B-树是一棵平衡的m-路查找树，一个m-路查找树，高度为h，每一个节点最多容纳m-1个关键字，所以一棵m-路查找树总共可容纳<code>m^k - 1</code>个关键字。<br>与二叉查找树比较，当高度为h，能容纳<code>2^h - 1</code>个关键字，高度若为3，则二叉查找树只能容纳7个关键字；而对于200-路查找树可以容纳<code>200^3 - 1</code>个关键字！</p>
-<p>再说回来，为了减少磁盘的IO次数，就需要把原来“瘦高”的树结构变得“矮胖”，而这个正满足B树的特征之一。<br><strong>B树是多路平衡查找树</strong>，它的每一个节点最多包含k个孩子，k被称为B树的阶，<strong>k的大小取决于磁盘页的大小</strong>。就像刚才举例200-路查找树一样。</p>
-<h3 id="B树文件查找的具体过程"><a href="#B树文件查找的具体过程" class="headerlink" title="B树文件查找的具体过程"></a>B树文件查找的具体过程</h3><p><strong>假设每一个磁盘页正好存放一个B树的节点，而子树的指针就是存放另一个磁盘页的地址。</strong><br>那么查找操作就是：首先是根节点（从磁盘调出数据，进行第一次磁盘I/O，数据读入内存进行查找），内存中可以顺序也可以二分，如果找到要查找的那个数则OK，否则要确认指针的位置，也就是确认是那棵子树，然后递归下去。</p>
-<p><img src="https://hexopic.oss-cn-beijing.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/8394323_13074405906V6Q.jpg_wm" alt="此处输入图片的描述"><br>图片来自： v_JULY_v的CSDN博客</p>
-<h3 id="B树的特征"><a href="#B树的特征" class="headerlink" title="B树的特征"></a>B树的特征</h3><ol>
-<li><p>根结点至少有两个子女。</p>
-</li>
-<li><p>每个中间节点都包含k-1个元素和k个孩子，其中 m/2 &lt;= k &lt;= m</p>
-</li>
-<li><p>每一个叶子节点都包含k-1个元素，其中 m/2 &lt;= k &lt;= m</p>
-</li>
-<li><p>所有的叶子结点都位于同一层。</p>
-</li>
-<li><p>每个节点中的元素从小到大排列，节点当中k-1个元素正好是k个孩子包含的元素的值域分划。</p>
-</li>
-</ol>
-<p><strong>B树在查询中比较的次数不比二叉查找树少</strong>，但是因为B树把多个关键字放在了同一个节点中，这样<strong>减少了磁盘的IO次数，同时在内存中比较耗时几乎可以忽略</strong>，所以只要树高度足够低，IO次数足够少，就能调高查找性能。</p>
-<h3 id="B树的应用场景"><a href="#B树的应用场景" class="headerlink" title="B树的应用场景"></a>B树的应用场景</h3><p><strong>B-树主要用于文件系统以及部分数据库索引，比如非关系型数据库MongoDB。</strong></p>
-<h3 id="B树的代码实现"><a href="#B树的代码实现" class="headerlink" title="B树的代码实现"></a>B树的代码实现</h3><p>先mark在这，暂时不打算搞。</p>
-<p>OK，下一篇接着搞树！总结了几个大牛的书和博客的内容，记下笔记，也希望能对你有帮助（￣︶￣）↗　</p>
-<p><strong>参考</strong></p>
-<ol>
-<li>《轻松学算法》赵烨</li>
-<li><a href="https://mp.weixin.qq.com/s/rDCEFzoKHIjyHfI_bsz5Rw" target="_blank" rel="noopener">漫画：什么是B-树（程序员小灰）</a></li>
-<li><a href="https://blog.csdn.net/v_JULY_v/article/details/6530142" target="_blank" rel="noopener">从B树、B+树、B*树谈到R 树</a></li>
-<li><a href="https://blog.csdn.net/kalikrick/article/details/27980007" target="_blank" rel="noopener">B树(Java)实现</a></li>
-</ol>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你给我买冰棍的钱，爱你:)<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/alipay.png">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/wechatpay.png">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构和算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">操作系统</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2018/08/16/算法之树（二，B-树、哈夫曼树、堆、红黑树）-Java版-持续更新补充/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          算法之树（二，B+树、哈夫曼树、堆、红黑树）(Java版)-持续更新补充
-        
-      </div>
-    </a>
   
   
-    <a href="/2018/08/06/算法之搜索-Java版-持续更新补充/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">算法之搜索(Java版)-持续更新补充</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-  <div id="SOHUCS" sid="算法之树（一，B-树原理详解）-Java版-持续更新补充" ></div> 
-<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
-<script type="text/javascript">
-    window.changyan.api.config({
-        appid: "cytJRJ8kN",
-        conf: "3d4baa91d75eb18a87d1cbe0c329fc69"
-    });
-</script>
-</script>
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -375,9 +247,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
